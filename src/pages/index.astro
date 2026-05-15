@@ -1,0 +1,301 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PluginCard from '../components/PluginCard.astro';
+import PostCard from '../components/PostCard.astro';
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+
+const plugins = [
+  {
+    name: 'PlayerHUD',
+    description: 'Bloco de gamificação para Moodle com XP, níveis, conquistas, ranking, missões e um assistente de IA integrado para criar estratégias pedagógicas.',
+    version: '1.4.0',
+    tags: ['Moodle', 'Gamificação', 'XP', 'IA'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/block_playerhud',
+    color: 'indigo' as const,
+    icon: '🎮',
+  },
+  {
+    name: 'PlayerGroup',
+    description: 'Plugin de grupos gamificados para Moodle. Crie equipes com XP coletivo, missões de grupo e ranking entre times.',
+    version: '1.0.0',
+    tags: ['Moodle', 'Grupos', 'Colaboração'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
+    color: 'purple' as const,
+    icon: '👥',
+  },
+];
+---
+
+<BaseLayout title="Jean Lúcio — Educação, Moodle e Plugins Open Source">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge badge--primary">✨ Novo: PlayerHUD v1.4</span>
+        </div>
+        <h1 class="hero-title">
+          Tecnologia a serviço<br />
+          <span class="hero-highlight">da educação</span>
+        </h1>
+        <p class="hero-description">
+          Tutoriais de Moodle, gamificação, inteligência artificial na educação
+          e plugins open source desenvolvidos para transformar a experiência de aprender.
+        </p>
+        <div class="hero-actions">
+          <a href="/blog" class="btn btn--white">
+            Explorar o blog
+          </a>
+          <a href="/plugins" class="btn btn--white-outline">
+            Ver plugins →
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-stats" aria-label="Estatísticas">
+        <div class="stat">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Plugins publicados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">GPL</span>
+          <span class="stat-label">100% open source</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">IF</span>
+          <span class="stat-label">Sertão Pernambucano</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 80L1440 80L1440 30C1200 70 900 0 720 20C540 40 240 70 0 30L0 80Z" fill="white" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Plugins em destaque -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Plugins</h2>
+        <p class="section-subtitle">
+          Ferramentas open source para transformar o Moodle.
+        </p>
+      </header>
+
+      <div class="plugins-grid">
+        {plugins.map(plugin => (
+          <PluginCard {...plugin} />
+        ))}
+      </div>
+
+      <div class="section-cta">
+        <a href="/plugins" class="btn btn--outline">Ver todos os plugins →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts recentes -->
+  {recentPosts.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title">Blog</h2>
+          <p class="section-subtitle">
+            Tutoriais, dicas e reflexões sobre educação e tecnologia.
+          </p>
+        </header>
+
+        <div class="posts-grid">
+          {recentPosts.map((post, i) => (
+            <PostCard post={post} featured={i === 0} />
+          ))}
+        </div>
+
+        <div class="section-cta">
+          <a href="/blog" class="btn btn--outline">Ver todos os posts →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA final -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2>Quer contribuir?</h2>
+      <p>Todos os plugins são open source. Issues, PRs e sugestões são bem-vindos no GitHub.</p>
+      <a
+        href="https://github.com/jeanlucio"
+        class="btn btn--primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        Acessar GitHub
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #6D28D9 100%);
+    padding-top: 5rem;
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .hero-badge {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-badge .badge {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-highlight {
+    background: linear-gradient(90deg, #FCD34D, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #FCD34D;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-wave {
+    line-height: 0;
+    margin-top: -1px;
+  }
+
+  .hero-wave svg {
+    width: 100%;
+    height: 80px;
+  }
+
+  /* ---- Sections ---- */
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section--alt {
+    background: var(--color-bg-alt);
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .section-cta {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  /* ---- CTA final ---- */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  }
+
+  .cta-inner {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .cta-inner h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-inner p {
+    color: #94A3B8;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+</style>

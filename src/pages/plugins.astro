@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PluginCard from '../components/PluginCard.astro';
+
+const plugins = [
+  {
+    name: 'PlayerHUD',
+    description: 'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas. Disponível no Moodle Plugin Directory.',
+    version: '1.4.0',
+    tags: ['Moodle', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/block_playerhud',
+    color: 'indigo' as const,
+    icon: '🎮',
+  },
+  {
+    name: 'PlayerGroup',
+    description: 'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
+    version: '1.0.0',
+    tags: ['Moodle', 'Grupos', 'Colaboração', 'Gamificação'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
+    color: 'purple' as const,
+    icon: '👥',
+  },
+];
+---
+
+<BaseLayout
+  title="Plugins — Jean Lúcio"
+  description="Plugins open source para Moodle: PlayerHUD e PlayerGroup. Gamificação, XP, conquistas e IA na educação."
+>
+  <section class="plugins-page">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Plugins</h1>
+        <p class="page-subtitle">
+          Ferramentas open source que desenvolvo para o Moodle.
+          Todas licenciadas sob <strong>GPL v3+</strong>.
+        </p>
+      </header>
+
+      <div class="plugins-list">
+        {plugins.map(plugin => (
+          <div class="plugin-item">
+            <PluginCard {...plugin} />
+          </div>
+        ))}
+      </div>
+
+      <aside class="ecosystem-note">
+        <h2>PlayerGames</h2>
+        <p>
+          PlayerHUD e PlayerGroup fazem parte do ecossistema <strong>PlayerGames</strong> —
+          um conjunto de plugins complementares que trazem gamificação de ponta a ponta
+          para o Moodle. Cada plugin funciona de forma independente e também em conjunto.
+        </p>
+        <a
+          href="https://github.com/jeanlucio"
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver todos no GitHub →
+        </a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .plugins-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+    max-width: 640px;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .plugins-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .ecosystem-note {
+    background: linear-gradient(135deg, #EEF2FF, #EDE9FE);
+    border: 1px solid #C7D2FE;
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    max-width: 720px;
+  }
+
+  .ecosystem-note h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-dark);
+  }
+
+  .ecosystem-note p {
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+</style>

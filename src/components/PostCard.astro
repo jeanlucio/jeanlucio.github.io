@@ -1,0 +1,189 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const { title, description, pubDate, tags, category, heroImage } = post.data;
+
+const formattedDate = pubDate.toLocaleDateString('pt-BR', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+const categoryColors: Record<string, string> = {
+  tutorial: 'badge--primary',
+  plugin: 'badge--purple',
+  moodle: 'badge--accent',
+  ia: 'badge--secondary',
+  gamificacao: 'badge--secondary',
+  geral: 'badge--muted',
+};
+---
+
+<article class={`post-card${featured ? ' post-card--featured' : ''}`}>
+  {heroImage && (
+    <a href={`/blog/${post.slug}`} class="post-card-image" tabindex="-1" aria-hidden="true">
+      <img src={heroImage} alt="" loading="lazy" />
+    </a>
+  )}
+
+  <div class="post-card-body">
+    <div class="post-card-meta">
+      {category && (
+        <span class={`badge ${categoryColors[category] ?? 'badge--muted'}`}>
+          {category}
+        </span>
+      )}
+      <time datetime={pubDate.toISOString()} class="post-card-date">{formattedDate}</time>
+    </div>
+
+    <h3 class="post-card-title">
+      <a href={`/blog/${post.slug}`}>{title}</a>
+    </h3>
+
+    <p class="post-card-description">{description}</p>
+
+    {tags.length > 0 && (
+      <div class="post-card-tags">
+        {tags.slice(0, 3).map(tag => (
+          <span class="badge badge--muted">#{tag}</span>
+        ))}
+      </div>
+    )}
+
+    <a href={`/blog/${post.slug}`} class="post-card-read-more" aria-label={`Ler: ${title}`}>
+      Ler artigo →
+    </a>
+  </div>
+</article>
+
+<style>
+  .post-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .post-card--featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  .post-card-image {
+    display: block;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .post-card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card--featured .post-card-image img {
+    height: 100%;
+    width: 380px;
+  }
+
+  .post-card:hover .post-card-image img {
+    transform: scale(1.04);
+  }
+
+  .post-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .post-card-date {
+    font-size: 0.825rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .post-card--featured .post-card-title {
+    font-size: 1.4rem;
+  }
+
+  .post-card-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .post-card-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .post-card-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .post-card-read-more {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap 0.15s ease;
+  }
+
+  .post-card-read-more:hover {
+    color: var(--color-primary-dark);
+  }
+
+  @media (max-width: 640px) {
+    .post-card--featured {
+      flex-direction: column;
+    }
+
+    .post-card--featured .post-card-image img {
+      width: 100%;
+      height: 200px;
+    }
+  }
+</style>

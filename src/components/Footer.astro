@@ -1,0 +1,169 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <span aria-hidden="true">⚡</span> Jean Lúcio
+      </a>
+      <p class="footer-tagline">
+        Educação, tecnologia e plugins Moodle open source.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <div class="footer-col">
+        <h3>Blog</h3>
+        <ul role="list">
+          <li><a href="/blog">Todos os posts</a></li>
+          <li><a href="/blog?categoria=tutorial">Tutoriais</a></li>
+          <li><a href="/blog?categoria=moodle">Moodle</a></li>
+          <li><a href="/blog?categoria=ia">IA na Educação</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Plugins</h3>
+        <ul role="list">
+          <li><a href="/plugins">Todos os plugins</a></li>
+          <li>
+            <a href="https://moodle.org/plugins/block_playerhud" target="_blank" rel="noopener noreferrer">
+              PlayerHUD ↗
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/jeanlucio" target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <ul role="list">
+          <li>
+            <a href="https://github.com/jeanlucio" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="mailto:jeanlucio@gmail.com">
+              E-mail
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {year} Jean Lúcio. Conteúdo sob <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Plugins sob <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GPL v3+</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #0F172A;
+    color: #CBD5E1;
+    margin-top: 6rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer-logo {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94A3B8;
+    margin: 0;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-col h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94A3B8;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-col a {
+    font-size: 0.9rem;
+    color: #CBD5E1;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .footer-col a:hover {
+    color: #fff;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.25rem 0;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: #64748B;
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-bottom a {
+    color: #94A3B8;
+  }
+
+  .footer-bottom a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

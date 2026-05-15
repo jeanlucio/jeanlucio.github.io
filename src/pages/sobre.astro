@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre — Jean Lúcio"
+  description="Jean Lúcio — professor, desenvolvedor e criador de plugins Moodle open source. Instituto Federal do Sertão Pernambucano."
+>
+  <section class="about-page">
+    <div class="container--narrow">
+      <header class="page-header">
+        <h1 class="page-title">Sobre</h1>
+      </header>
+
+      <div class="about-content">
+        <div class="about-intro">
+          <div class="about-avatar" aria-hidden="true">JL</div>
+          <div>
+            <h2>Jean Lúcio</h2>
+            <p class="about-role">Professor · Desenvolvedor · Instituto Federal do Sertão Pernambucano</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>
+            Sou professor e desenvolvedor apaixonado por educação e tecnologia. Atuo no
+            <strong>Instituto Federal do Sertão Pernambucano</strong>, onde pesquiso e
+            aplico metodologias ativas e gamificação no ensino.
+          </p>
+
+          <p>
+            Desenvolvo plugins open source para o <strong>Moodle</strong> com foco em
+            engajamento e experiência do aluno. Meu principal projeto é o
+            <strong>PlayerHUD</strong> — um sistema completo de gamificação com XP, níveis,
+            conquistas, ranking e IA integrada.
+          </p>
+
+          <h2>Interesses</h2>
+          <ul>
+            <li>Gamificação na educação</li>
+            <li>Inteligência Artificial aplicada ao ensino</li>
+            <li>Desenvolvimento de plugins Moodle (PHP, JavaScript, Mustache)</li>
+            <li>Metodologias ativas e aprendizagem baseada em projetos</li>
+          </ul>
+
+          <h2>Contato</h2>
+          <p>
+            A melhor forma de entrar em contato é pelo
+            <a href="https://github.com/jeanlucio" target="_blank" rel="noopener noreferrer">GitHub</a>
+            ou por e-mail em <a href="mailto:jeanlucio@gmail.com">jeanlucio@gmail.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+  }
+
+  .about-intro {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding: 1.75rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+  }
+
+  .about-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .about-intro h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .about-role {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+</style>

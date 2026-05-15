@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = ['tutorial', 'plugin', 'moodle', 'ia', 'gamificacao', 'geral'];
+---
+
+<BaseLayout
+  title="Blog — Jean Lúcio"
+  description="Tutoriais de Moodle, gamificação, IA na educação e plugins open source."
+>
+  <section class="blog-page">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Blog</h1>
+        <p class="page-subtitle">
+          Tutoriais, dicas e reflexões sobre educação, Moodle e tecnologia.
+        </p>
+      </header>
+
+      {posts.length === 0 ? (
+        <div class="empty-state">
+          <p>Em breve — os primeiros posts estão chegando! 🚀</p>
+        </div>
+      ) : (
+        <div class="posts-grid">
+          {posts.map((post, i) => (
+            <PostCard post={post} featured={i === 0 && posts.length > 2} />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 5rem 0;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+  }
+</style>
