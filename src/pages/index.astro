@@ -12,9 +12,9 @@ const recentPosts = allPosts
 const plugins = [
   {
     name: 'PlayerHUD',
-    description: 'Bloco de gamificação para Moodle com XP, níveis, conquistas, ranking, missões e um assistente de IA integrado para criar estratégias pedagógicas.',
+    description: 'Bloco de gamificação com XP, níveis, conquistas, ranking, missões e assistente de IA integrado para estratégias pedagógicas.',
     version: '1.4.0',
-    tags: ['Moodle', 'Gamificação', 'XP', 'IA'],
+    tags: ['Bloco', 'Gamificação', 'XP', 'IA'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
     color: 'indigo' as const,
@@ -24,10 +24,30 @@ const plugins = [
     name: 'PlayerGroup',
     description: 'Plugin de grupos gamificados para Moodle. Crie equipes com XP coletivo, missões de grupo e ranking entre times.',
     version: '1.0.0',
-    tags: ['Moodle', 'Grupos', 'Colaboração'],
+    tags: ['Atividade', 'Grupos', 'Colaboração'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     color: 'purple' as const,
     icon: '👥',
+  },
+  {
+    name: 'Teacher Checklist',
+    description: 'Bloco com detecção automática de problemas de configuração e lista de tarefas manual. Garante a qualidade do curso antes dos alunos chegarem.',
+    version: '1.2.1',
+    tags: ['Bloco', 'Qualidade', 'Checklist'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
+    moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
+    color: 'emerald' as const,
+    icon: '✅',
+  },
+  {
+    name: 'Resource Stats',
+    description: 'Plugin local que exibe badges de acesso nos módulos do curso — total de views e alunos únicos — visível só para professores, sem analytics externo.',
+    version: '1.0.2',
+    tags: ['Local', 'Estatísticas', 'Engajamento'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
+    moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
+    color: 'amber' as const,
+    icon: '📊',
   },
 ];
 ---
@@ -38,7 +58,7 @@ const plugins = [
     <div class="container hero-inner">
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="badge badge--primary">✨ Novo: PlayerHUD v1.4</span>
+          <span class="badge badge--primary">✨ 4 plugins publicados no Moodle.org</span>
         </div>
         <h1 class="hero-title">
           Tecnologia a serviço<br />
@@ -60,7 +80,7 @@ const plugins = [
 
       <div class="hero-stats" aria-label="Estatísticas">
         <div class="stat">
-          <span class="stat-number">2</span>
+          <span class="stat-number">4</span>
           <span class="stat-label">Plugins publicados</span>
         </div>
         <div class="stat">

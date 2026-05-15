@@ -5,9 +5,9 @@ import PluginCard from '../components/PluginCard.astro';
 const plugins = [
   {
     name: 'PlayerHUD',
-    description: 'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas. Disponível no Moodle Plugin Directory.',
+    description: 'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
     version: '1.4.0',
-    tags: ['Moodle', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
+    tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
     color: 'indigo' as const,
@@ -17,17 +17,37 @@ const plugins = [
     name: 'PlayerGroup',
     description: 'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
     version: '1.0.0',
-    tags: ['Moodle', 'Grupos', 'Colaboração', 'Gamificação'],
+    tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     color: 'purple' as const,
     icon: '👥',
+  },
+  {
+    name: 'Teacher Checklist',
+    description: 'Bloco que ajuda professores a garantir a qualidade do curso antes de os alunos chegarem. Combina detecção automática de problemas de configuração (visibilidade, prazos, atividades sem descrição) com uma lista de tarefas manual totalmente personalizável.',
+    version: '1.2.1',
+    tags: ['Bloco', 'Qualidade', 'Checklist', 'Coordenação'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
+    moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
+    color: 'emerald' as const,
+    icon: '✅',
+  },
+  {
+    name: 'Resource Stats',
+    description: 'Plugin local que exibe estatísticas de acesso dos módulos diretamente na página do curso — visível apenas para professores. Mostra total de visualizações e número de alunos únicos sem depender de ferramentas externas de analytics.',
+    version: '1.0.2',
+    tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
+    moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
+    color: 'amber' as const,
+    icon: '📊',
   },
 ];
 ---
 
 <BaseLayout
   title="Plugins — Jean Lúcio"
-  description="Plugins open source para Moodle: PlayerHUD e PlayerGroup. Gamificação, XP, conquistas e IA na educação."
+  description="Plugins open source para Moodle: PlayerHUD, PlayerGroup, Teacher Checklist e Resource Stats."
 >
   <section class="plugins-page">
     <div class="container">
@@ -50,9 +70,11 @@ const plugins = [
       <aside class="ecosystem-note">
         <h2>PlayerGames</h2>
         <p>
-          PlayerHUD e PlayerGroup fazem parte do ecossistema <strong>PlayerGames</strong> —
+          <strong>PlayerHUD</strong> e <strong>PlayerGroup</strong> fazem parte do ecossistema <strong>PlayerGames</strong> —
           um conjunto de plugins complementares que trazem gamificação de ponta a ponta
-          para o Moodle. Cada plugin funciona de forma independente e também em conjunto.
+          para o Moodle. <strong>Teacher Checklist</strong> e <strong>Resource Stats</strong> são ferramentas
+          independentes focadas em qualidade de curso e análise de engajamento.
+          Todos os plugins funcionam de forma autônoma e podem ser combinados.
         </p>
         <a
           href="https://github.com/jeanlucio"
