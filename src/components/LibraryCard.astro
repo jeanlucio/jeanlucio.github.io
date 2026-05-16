@@ -1,0 +1,182 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  item: CollectionEntry<'biblioteca'>;
+}
+
+const { item } = Astro.props;
+const { title, url, author, description, type, tags, lang, pubDate } = item.data;
+
+const TYPE_LABELS: Record<string, string> = {
+  article: 'Artigo',
+  book: 'Livro',
+  video: 'Vídeo',
+  tool: 'Ferramenta',
+  game: 'Jogo',
+};
+
+const TYPE_BADGE: Record<string, string> = {
+  article: 'badge--primary',
+  book: 'badge--purple',
+  video: 'badge--secondary',
+  tool: 'badge--accent',
+  game: 'badge--game',
+};
+
+const isExternal = url.startsWith('http');
+
+const formattedDate = pubDate.toLocaleDateString('pt-BR', {
+  year: 'numeric',
+  month: 'short',
+});
+---
+
+<article class="lib-card">
+  <div class="lib-card-top">
+    <span class={`badge ${TYPE_BADGE[type] ?? 'badge--muted'}`}>
+      {TYPE_LABELS[type] ?? type}
+    </span>
+    <span class="lib-lang" aria-label={`Idioma: ${lang === 'pt' ? 'Português' : 'Inglês'}`}>
+      {lang.toUpperCase()}
+    </span>
+  </div>
+
+  <h3 class="lib-card-title">
+    <a
+      href={url}
+      {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      aria-label={isExternal ? `${title} (abre em nova aba)` : title}
+    >
+      {title}
+      {isExternal && (
+        <svg
+          class="ext-icon"
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      )}
+    </a>
+  </h3>
+
+  {author && <p class="lib-card-author">{author}</p>}
+
+  <p class="lib-card-description">{description}</p>
+
+  {tags.length > 0 && (
+    <div class="lib-card-tags">
+      {tags.slice(0, 3).map(tag => (
+        <span class="badge badge--muted">#{tag}</span>
+      ))}
+    </div>
+  )}
+
+  <time datetime={pubDate.toISOString()} class="lib-card-date">{formattedDate}</time>
+</article>
+
+<style>
+  .lib-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .lib-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .lib-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lib-lang {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    background: var(--color-bg-alt);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .lib-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .lib-card-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    transition: color 0.15s ease;
+  }
+
+  .lib-card-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .ext-icon {
+    flex-shrink: 0;
+    opacity: 0.45;
+    position: relative;
+    top: -0.05em;
+  }
+
+  .lib-card-author {
+    font-size: 0.825rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .lib-card-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .lib-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .lib-card-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .badge--game {
+    background: #FFE4E6;
+    color: #BE123C;
+  }
+</style>
