@@ -102,9 +102,19 @@ const webTools = [
 
       <section class="plugin-group">
         <header class="group-header">
-          <div class="group-label">
-            <span class="group-icon" aria-hidden="true">🎮</span>
-            <h2 class="group-title">Ecossistema PlayerGames</h2>
+          <div class="group-header-top">
+            <div class="group-label">
+              <span class="group-icon" aria-hidden="true">🎮</span>
+              <h2 class="group-title">Ecossistema PlayerGames</h2>
+            </div>
+            <a
+              href="https://jeanlucio.github.io/en/playergames/"
+              class="btn btn--outline btn--sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver ecossistema →
+            </a>
           </div>
           <p class="group-description">
             Conjunto de plugins complementares que trazem gamificação de ponta a ponta para o Moodle.
@@ -234,6 +244,15 @@ const webTools = [
     margin-bottom: 1.75rem;
     padding-bottom: 1.25rem;
     border-bottom: 2px solid var(--color-border);
+  }
+
+  .group-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .group-label {
