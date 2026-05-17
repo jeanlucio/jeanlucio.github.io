@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PluginCard from '../../components/PluginCard.astro';
+
+const plugins = [
+  {
+    name: 'PlayerHUD',
+    description: 'The core gamification block for Moodle. Brings XP, customizable levels, achievements, ranking, missions, activity history, and an integrated AI assistant to your courses. Teachers define the rules — students choose to engage.',
+    version: '1.4.0',
+    tags: ['Block', 'Gamification', 'XP', 'Achievements', 'AI', 'Ranking'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/block_playerhud',
+    color: 'indigo' as const,
+    icon: '🕹️',
+  },
+  {
+    name: 'PlayerHUD Filter',
+    description: 'A companion text filter that lets you embed live PlayerHUD data — current level, XP, and progress — directly inside Moodle activity content using simple shortcodes. No need to leave the page.',
+    version: '1.4.0',
+    tags: ['Filter', 'Gamification', 'Dynamic Content', 'Shortcodes'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
+    color: 'indigo' as const,
+    icon: '🔍',
+  },
+  {
+    name: 'PlayerHUD Availability',
+    description: 'An availability condition that restricts access to activities, resources, or course sections based on a student\'s PlayerHUD progress — unlock content only when a student reaches a specific level or XP threshold.',
+    version: '1.4.0',
+    tags: ['Availability', 'Gamification', 'XP Gating', 'Conditional Access'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
+    color: 'purple' as const,
+    icon: '🔓',
+  },
+  {
+    name: 'PlayerGroup',
+    description: 'Lets students autonomously form their own groups directly from the activity page — no teacher intervention needed. Replaces manual group assignment with a self-service experience that works with any course format.',
+    version: '1.1.0',
+    tags: ['Activity', 'Groups', 'Collaboration', 'Gamification'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
+    moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
+    color: 'purple' as const,
+    icon: '👥',
+  },
+];
+---
+
+<BaseLayout
+  title="PlayerGames — Gamification Ecosystem for Moodle"
+  description="PlayerGames is an open source ecosystem of Moodle plugins built around gamification and student engagement. Developed by Jean Lúcio."
+>
+  <section class="pg-page">
+    <div class="container">
+
+      <!-- Hero -->
+      <header class="pg-hero">
+        <div class="pg-hero-badge">🎮 Open Source · GPL v3+</div>
+        <h1 class="pg-hero-title">PlayerGames</h1>
+        <p class="pg-hero-subtitle">
+          An ecosystem of Moodle plugins built around one goal: making gamification and student engagement
+          a first-class experience — flexible for teachers, meaningful for students.
+        </p>
+        <a
+          href="https://github.com/jeanlucio"
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub →
+        </a>
+      </header>
+
+      <!-- Published Plugins -->
+      <div class="pg-section-label">
+        <span class="pg-section-tag">Published plugins</span>
+      </div>
+
+      <div class="pg-grid">
+        {plugins.map(plugin => (
+          <PluginCard {...plugin} />
+        ))}
+      </div>
+
+      <!-- Coming Soon -->
+      <div class="pg-coming-soon">
+        <div class="pg-coming-soon-inner">
+          <span class="pg-coming-soon-icon">🚀</span>
+          <div>
+            <h2 class="pg-coming-soon-title">More plugins coming soon</h2>
+            <p class="pg-coming-soon-text">
+              The PlayerGames ecosystem is actively growing. New plugins focused on gamification
+              and engagement are currently in development.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggestions -->
+      <div class="pg-suggestions">
+        <h2 class="pg-suggestions-title">Have an idea?</h2>
+        <p class="pg-suggestions-text">
+          Suggestions for new plugins, pedagogical use cases, or improvements to existing ones
+          are always welcome. If you work with Moodle and have a gamification challenge in mind,
+          feel free to reach out or open an issue on GitHub.
+        </p>
+        <a
+          href="https://github.com/jeanlucio"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Share a suggestion →
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pg-page {
+    padding: 4rem 0 6rem;
+  }
+
+  /* Hero */
+  .pg-hero {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .pg-hero-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .pg-hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .pg-hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Section label */
+  .pg-section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .pg-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .pg-section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  /* Grid */
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+
+  /* Coming soon */
+  .pg-coming-soon {
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2.25rem;
+    margin-bottom: 4rem;
+    background: var(--color-bg-alt);
+  }
+
+  .pg-coming-soon-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .pg-coming-soon-icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .pg-coming-soon-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+  }
+
+  .pg-coming-soon-text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Suggestions */
+  .pg-suggestions {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pg-suggestions-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .pg-suggestions-text {
+    color: var(--color-text-muted);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
