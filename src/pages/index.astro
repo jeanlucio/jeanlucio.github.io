@@ -18,7 +18,7 @@ const plugins = [
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
     color: 'indigo' as const,
-    icon: '🎮',
+    icon: '🕹️',
   },
   {
     name: 'Teacher Checklist',
@@ -92,28 +92,6 @@ const plugins = [
     </div>
   </section>
 
-  <!-- Plugins em destaque -->
-  <section class="section">
-    <div class="container">
-      <header class="section-header">
-        <h2 class="section-title">Plugins</h2>
-        <p class="section-subtitle">
-          Ferramentas open source para transformar o Moodle.
-        </p>
-      </header>
-
-      <div class="plugins-grid">
-        {plugins.map(plugin => (
-          <PluginCard {...plugin} />
-        ))}
-      </div>
-
-      <div class="section-cta">
-        <a href="/projetos" class="btn btn--outline">Ver todos os projetos →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Posts recentes -->
   {recentPosts.length > 0 && (
     <section class="section section--alt">
@@ -137,6 +115,28 @@ const plugins = [
       </div>
     </section>
   )}
+
+  <!-- Plugins em destaque -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Plugins</h2>
+        <p class="section-subtitle">
+          Ferramentas open source para transformar o Moodle.
+        </p>
+      </header>
+
+      <div class="plugins-grid">
+        {plugins.map(plugin => (
+          <PluginCard {...plugin} />
+        ))}
+      </div>
+
+      <div class="section-cta">
+        <a href="/projetos" class="btn btn--outline">Ver todos os projetos →</a>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA final -->
   <section class="cta-section">
