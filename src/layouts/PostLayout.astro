@@ -12,8 +12,10 @@ const { title, description, pubDate, updatedDate, heroImage, tags, category } = 
 const pageUrl = encodeURIComponent(Astro.url.href);
 const pageTitle = encodeURIComponent(title);
 
+const pageDescription = encodeURIComponent(description ?? '');
+
 const shareLinks = {
-  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`,
+  linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}&summary=${pageDescription}&source=jeanlucio.github.io`,
   facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
   twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
   whatsapp: `https://wa.me/?text=${pageTitle}%20${pageUrl}`,
