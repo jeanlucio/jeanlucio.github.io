@@ -53,7 +53,7 @@ Ofereça múltiplos caminhos para ganhar XP. Alunos têm ritmos e habilidades di
 
 ## Como começar no Moodle
 
-A forma mais simples de começar é instalando o **PlayerHUD**. Ele já vem com configurações sensatas por padrão e você pode começar com o básico:
+A forma mais simples de começar é instalando o **PlayerHUD**. Ele já vem com configurações robustas por padrão e você pode começar com o básico:
 
 1. Instale o plugin no Moodle
 2. Adicione o bloco ao seu curso
