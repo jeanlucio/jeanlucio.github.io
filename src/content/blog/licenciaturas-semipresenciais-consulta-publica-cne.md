@@ -6,6 +6,10 @@ category: ead
 tags: [ead, licenciatura, cne, legislação, formação-de-professores]
 ---
 
+**A Consulta Pública do CNE sobre as mudanças na Resolução 04/2024 já está no ar, com prazo para contribuições até 13 de junho de 2026. Acesse, leia a proposta e deixe a sua opinião: [brasilparticipativo.presidencia.gov.br](https://brasilparticipativo.presidencia.gov.br/processes/dcnformacaoprofessores)**
+
+---
+
 O Decreto 12.456, publicado em 19 de maio de 2025, redesenhou profundamente o marco legal da EAD no Brasil. Um dos efeitos mais imediatos foi colocar a Resolução CNE/CP 04/2024 em uma posição delicada: os dois documentos, publicados com menos de um ano de diferença, apontam em direções diferentes quanto às exigências de presencialidade nas licenciaturas.
 
 ## O que o Decreto 12.456/2025 mudou
@@ -58,3 +62,16 @@ Há ainda um ponto que me parece completamente ignorado nas discussões: estamos
 O equilíbrio não está na flexibilização total nem no engessamento que anula o propósito do formato semipresencial. Está em exigências que garantam qualidade sem fechar as portas para quem mais precisa de acesso à formação superior — e que preparem o professor para o mundo como ele é, não como gostaríamos que fosse.
 
 **Você já leu a proposta? Qual a sua opinião?** A consulta está aberta e o prazo é curto. Acesse, leia e contribua.
+
+---
+
+## Fontes consultadas
+
+- [Decreto nº 12.456, de 19 de maio de 2025 — Câmara dos Deputados](https://www2.camara.leg.br/legin/fed/decret/2025/decreto-12456-19-maio-2025-797463-publicacaooriginal-175414-pe.html)
+- [Novo marco regulatório do EAD: o que muda — Grupo Integrado](https://www.grupointegrado.br/noticias/novo-marco-regulatorio-transforma-educacao-a-distancia-no-brasil)
+- [Fim da Licenciatura EaD? Entenda o que muda com o Decreto 12.456 — Estude Sem Fronteiras](https://blog.estudesemfronteiras.com/fim-da-licenciatura-ead-entenda-o-que-realmente-muda-com-o-decreto-12-456/)
+- [MEC apoia nova regra que pode reduzir exigência presencial — Paraíba Online](https://paraibaonline.com.br/educacao-e-ciencia/2026/02/26/mec-apoia-nova-regra-que-pode-reduzir-exigencia-presencial-para-formar-professores/)
+- [MEC contraria própria regra e sugere menos aulas presenciais — Diário do Grande ABC](https://www.dgabc.com.br/Noticia/4288164/mec-contraria-propria-regra-e-sugere-menos-aulas-presenciais-para-formar-professor)
+- [Secretários de Educação pressionam MEC por mais presencial — CONTEE](https://contee.org.br/secretarios-de-educacao-pressionam-mec-por-mais-aula-presencial-na-formacao-de-professores/)
+- [CNE recua e mantém exigência de 50% presencial para formação de professores — PEBSP](https://www.pebsp.com/cne-recua-de-proposta-do-mec-e-mantem-exigencia-de-50-presencial-para-formacao-de-professores/)
+- [Consulta Pública CNE — Formação de Professores — Brasil Participativo](https://brasilparticipativo.presidencia.gov.br/processes/dcnformacaoprofessores)
