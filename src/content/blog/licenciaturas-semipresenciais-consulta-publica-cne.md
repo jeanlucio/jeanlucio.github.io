@@ -1,7 +1,7 @@
 ---
 title: "Consulta pública do CNE pode definir novos rumos para carga horária EaD em Licenciaturas"
 description: "O Decreto 12.456/2025 extinguiu as licenciaturas EAD e criou o formato semipresencial, mas entrou em contradição com a Resolução CNE/CP 04/2024. Agora o CNE abriu consulta pública para reformular as diretrizes."
-pubDate: 2026-05-18
+pubDate: 2026-05-17
 category: ead
 tags: [ead, licenciatura, cne, legislação, formação-de-professores]
 ---
