@@ -47,6 +47,8 @@ const categoryColors: Record<string, string> = {
               {category}
             </span>
           )}
+          <span class="post-author">Jean Lúcio Santos Evangelista</span>
+          <span class="post-meta-sep" aria-hidden="true">·</span>
           <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
           {updatedDate && (
             <span class="post-updated">· Atualizado em {formattedUpdatedDate}</span>
@@ -109,6 +111,15 @@ const categoryColors: Record<string, string> = {
     margin-bottom: 1rem;
     color: var(--color-text-muted);
     font-size: 0.9rem;
+  }
+
+  .post-author {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .post-meta-sep {
+    color: var(--color-border);
   }
 
   .post-title {
