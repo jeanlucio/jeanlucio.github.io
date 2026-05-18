@@ -24,6 +24,14 @@ Gamificação não é só adicionar pontos e medalhas. Vou explorar como criar e
 
 A IA está transformando a educação. Vou mostrar como usá-la como ferramenta pedagógica — desde a criação de conteúdo até assistentes integrados ao Moodle.
 
+### Tecnologias na educação
+
+Ferramentas, plataformas e tendências que estão mudando a forma de ensinar e aprender. Artigos, dicas e materiais para quem quer usar a tecnologia a favor da educação.
+
+### Educação a Distância
+
+Reflexões e práticas sobre EAD — design instrucional, engajamento de alunos remotos, gestão de AVA e tudo que envolve ensinar bem à distância.
+
 ### Bastidores dos plugins
 
 Vou compartilhar os bastidores do desenvolvimento do **PlayerHUD** e do **PlayerGroup**: decisões de arquitetura, bugs interessantes, novidades e como contribuir.
