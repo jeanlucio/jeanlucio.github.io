@@ -1,0 +1,49 @@
+name: Publish to Social Networks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/blog/**.md'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect new blog posts
+        id: detect
+        run: |
+          FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' | tr '\n' ' ')
+          echo "files=${FILES}" >> $GITHUB_OUTPUT
+          if [ -n "$FILES" ]; then
+            echo "Novos posts detectados: $FILES"
+          else
+            echo "Nenhum post novo neste push."
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.detect.outputs.files != ''
+        with:
+          node-version: '20'
+
+      - name: Publish to Bluesky
+        if: steps.detect.outputs.files != ''
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          NEW_FILES: ${{ steps.detect.outputs.files }}
+          SITE_URL: https://jeanlucio.github.io
+        run: node .github/scripts/publish-bluesky.mjs
+
+      - name: Publish to LinkedIn
+        if: steps.detect.outputs.files != ''
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          NEW_FILES: ${{ steps.detect.outputs.files }}
+          SITE_URL: https://jeanlucio.github.io
+        run: node .github/scripts/publish-linkedin.mjs
