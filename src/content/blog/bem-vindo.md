@@ -12,9 +12,13 @@ Sou Jean Lúcio, professor no Instituto Federal do Sertão Pernambucano e desenv
 
 ## O que você vai encontrar aqui
 
-### Moodle na prática
+### Tecnologias na educação
 
-Dicas, configurações e boas práticas para tirar o máximo do Moodle no dia a dia — desde a administração da plataforma até estratégias para engajar os alunos.
+Ferramentas, plataformas e tendências que estão mudando a forma de ensinar e aprender. Artigos, dicas e materiais para quem quer usar a tecnologia a favor da educação.
+
+### Educação a Distância
+
+Reflexões e práticas sobre EAD — design instrucional, engajamento de alunos remotos, gestão de AVA e tudo que envolve ensinar bem à distância.
 
 ### Gamificação na educação
 
@@ -24,13 +28,9 @@ Gamificação não é só adicionar pontos e medalhas. Vou explorar como criar e
 
 A IA está transformando a educação. Vou mostrar como usá-la como ferramenta pedagógica — desde a criação de conteúdo até assistentes integrados ao Moodle.
 
-### Tecnologias na educação
+### Moodle na prática
 
-Ferramentas, plataformas e tendências que estão mudando a forma de ensinar e aprender. Artigos, dicas e materiais para quem quer usar a tecnologia a favor da educação.
-
-### Educação a Distância
-
-Reflexões e práticas sobre EAD — design instrucional, engajamento de alunos remotos, gestão de AVA e tudo que envolve ensinar bem à distância.
+Dicas, configurações e boas práticas para tirar o máximo do Moodle no dia a dia — desde a administração da plataforma até estratégias para engajar os alunos.
 
 ### Bastidores dos plugins
 
