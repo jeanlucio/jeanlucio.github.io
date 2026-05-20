@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LibraryCard from '../components/LibraryCard.astro';
 
 const allItems = await getCollection('biblioteca');
 const sorted = allItems.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -19,6 +18,24 @@ const TYPE_OPTIONS = [
   { value: 'tool', label: 'Ferramentas' },
   { value: 'game', label: 'Jogos' },
 ];
+
+const TYPE_LABELS: Record<string, string> = {
+  article: 'Artigo',
+  book: 'Livro',
+  course: 'Curso',
+  video: 'Vídeo',
+  tool: 'Ferramenta',
+  game: 'Jogo',
+};
+
+const TYPE_CLASS: Record<string, string> = {
+  article: 'type--article',
+  book: 'type--book',
+  course: 'type--course',
+  video: 'type--video',
+  tool: 'type--tool',
+  game: 'type--game',
+};
 ---
 
 <BaseLayout
@@ -69,52 +86,116 @@ const TYPE_OPTIONS = [
         </div>
       </div>
 
-      <div
-        role="tabpanel"
-        id="panel-own"
-        aria-labelledby="tab-own"
-        hidden={defaultTab !== 'own'}
-      >
+      <!-- Painel: Meus -->
+      <div role="tabpanel" id="panel-own" aria-labelledby="tab-own" hidden={defaultTab !== 'own'}>
         {ownItems.length === 0 ? (
-          <div class="empty-state">
-            <p>Nenhum item ainda. Em breve!</p>
-          </div>
+          <div class="empty-state"><p>Nenhum item ainda. Em breve!</p></div>
         ) : (
-          <div class="lib-grid">
-            {ownItems.map(item => (
-              <div data-type={item.data.type}>
-                <LibraryCard item={item} />
-              </div>
-            ))}
+          <div class="lib-table-wrap">
+            <table class="lib-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-type">Tipo</th>
+                  <th scope="col" class="col-main">Título / Descrição</th>
+                  <th scope="col" class="col-author">Autor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ownItems.map(item => (
+                  <tr data-type={item.data.type}>
+                    <td class="col-type">
+                      <span class={`type-badge ${TYPE_CLASS[item.data.type] ?? ''}`}>
+                        {TYPE_LABELS[item.data.type] ?? item.data.type}
+                      </span>
+                    </td>
+                    <td class="col-main">
+                      <a
+                        href={item.data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="item-title"
+                        aria-label={`${item.data.title} (abre em nova aba)`}
+                      >
+                        {item.data.title}
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                      </a>
+                      <p class="item-desc">{item.data.description}</p>
+                      {item.data.tags.length > 0 && (
+                        <ul class="item-tags" aria-label="Tags">
+                          {item.data.tags.map(tag => (
+                            <li class="item-tag">#{tag}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </td>
+                    <td class="col-author">{item.data.author ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
-        <div class="filter-empty" hidden>
-          <p>Nenhum item para este filtro.</p>
-        </div>
+        <div class="filter-empty" hidden><p>Nenhum item para este filtro.</p></div>
       </div>
 
-      <div
-        role="tabpanel"
-        id="panel-curated"
-        aria-labelledby="tab-curated"
-        hidden={defaultTab !== 'curated'}
-      >
+      <!-- Painel: Curadoria -->
+      <div role="tabpanel" id="panel-curated" aria-labelledby="tab-curated" hidden={defaultTab !== 'curated'}>
         {curatedItems.length === 0 ? (
-          <div class="empty-state">
-            <p>Nenhum item ainda. Em breve!</p>
-          </div>
+          <div class="empty-state"><p>Nenhum item ainda. Em breve!</p></div>
         ) : (
-          <div class="lib-grid">
-            {curatedItems.map(item => (
-              <div data-type={item.data.type}>
-                <LibraryCard item={item} />
-              </div>
-            ))}
+          <div class="lib-table-wrap">
+            <table class="lib-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-type">Tipo</th>
+                  <th scope="col" class="col-main">Título / Descrição</th>
+                  <th scope="col" class="col-author">Autor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {curatedItems.map(item => (
+                  <tr data-type={item.data.type}>
+                    <td class="col-type">
+                      <span class={`type-badge ${TYPE_CLASS[item.data.type] ?? ''}`}>
+                        {TYPE_LABELS[item.data.type] ?? item.data.type}
+                      </span>
+                    </td>
+                    <td class="col-main">
+                      <a
+                        href={item.data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="item-title"
+                        aria-label={`${item.data.title} (abre em nova aba)`}
+                      >
+                        {item.data.title}
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                      </a>
+                      <p class="item-desc">{item.data.description}</p>
+                      {item.data.tags.length > 0 && (
+                        <ul class="item-tags" aria-label="Tags">
+                          {item.data.tags.map(tag => (
+                            <li class="item-tag">#{tag}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </td>
+                    <td class="col-author">{item.data.author ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
-        <div class="filter-empty" hidden>
-          <p>Nenhum item para este filtro.</p>
-        </div>
+        <div class="filter-empty" hidden><p>Nenhum item para este filtro.</p></div>
       </div>
     </div>
   </section>
@@ -137,25 +218,25 @@ const TYPE_OPTIONS = [
       return;
     }
 
-    const cards = panel.querySelectorAll<HTMLElement>('[data-type]');
+    const rows = panel.querySelectorAll<HTMLElement>('tbody [data-type]');
     let visible = 0;
 
-    cards.forEach(card => {
-      const show = activeFilter === 'all' || card.dataset.type === activeFilter;
-      card.hidden = !show;
+    rows.forEach(row => {
+      const show = activeFilter === 'all' || row.dataset.type === activeFilter;
+      row.hidden = !show;
       if (show) {
         visible++;
       }
     });
 
     const filterEmpty = panel.querySelector<HTMLElement>('.filter-empty');
-    const libGrid = panel.querySelector<HTMLElement>('.lib-grid');
+    const tableWrap = panel.querySelector<HTMLElement>('.lib-table-wrap');
 
     if (filterEmpty) {
       filterEmpty.hidden = visible > 0 || activeFilter === 'all';
     }
-    if (libGrid) {
-      libGrid.hidden = visible === 0 && activeFilter !== 'all';
+    if (tableWrap) {
+      tableWrap.hidden = visible === 0 && activeFilter !== 'all';
     }
 
     filterBtns.forEach(btn => {
@@ -218,6 +299,7 @@ const TYPE_OPTIONS = [
     margin: 0;
   }
 
+  /* ---- Controls ---- */
   .lib-controls {
     display: flex;
     flex-direction: column;
@@ -299,12 +381,142 @@ const TYPE_OPTIONS = [
     color: #fff;
   }
 
-  .lib-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+  /* ---- Table ---- */
+  .lib-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
   }
 
+  .lib-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .lib-table thead {
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .lib-table th {
+    padding: 0.75rem 1rem;
+    text-align: start;
+    font-size: 0.775rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .lib-table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.15s ease;
+  }
+
+  .lib-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .lib-table tbody tr:hover {
+    background: var(--color-bg-alt);
+  }
+
+  .lib-table td {
+    padding: 1rem;
+    vertical-align: top;
+  }
+
+  /* ---- Columns ---- */
+  .col-type {
+    width: 90px;
+    white-space: nowrap;
+  }
+
+  .col-main {
+    min-width: 260px;
+  }
+
+  .col-author {
+    width: 220px;
+    font-size: 0.825rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .col-author {
+      display: none;
+    }
+  }
+
+  /* ---- Type badges ---- */
+  .type-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .type--book    { background: #EDE9FE; color: #5B21B6; }
+  .type--course  { background: #D1FAE5; color: #065F46; }
+  .type--article { background: #FEF3C7; color: #92400E; }
+  .type--video   { background: #FEE2E2; color: #991B1B; }
+  .type--tool    { background: #DBEAFE; color: #1E40AF; }
+  .type--game    { background: #FCE7F3; color: #9D174D; }
+
+  /* ---- Item content ---- */
+  .item-title {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.15s ease;
+  }
+
+  .item-title:hover {
+    color: var(--color-primary);
+  }
+
+  .item-title svg {
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  .item-desc {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+
+  .item-tag {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+  }
+
+  /* ---- Empty states ---- */
   .empty-state,
   .filter-empty {
     text-align: center;
