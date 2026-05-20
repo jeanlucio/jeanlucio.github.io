@@ -14,6 +14,7 @@ const TYPE_OPTIONS = [
   { value: 'all', label: 'Todos' },
   { value: 'article', label: 'Artigos' },
   { value: 'book', label: 'Livros' },
+  { value: 'course', label: 'Cursos' },
   { value: 'video', label: 'Vídeos' },
   { value: 'tool', label: 'Ferramentas' },
   { value: 'game', label: 'Jogos' },
@@ -286,12 +287,13 @@ const TYPE_OPTIONS = [
     transition: all 0.15s ease;
   }
 
-  .filter-btn:hover {
+  .filter-btn:not(.filter-btn--active):hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
   }
 
-  .filter-btn--active {
+  .filter-btn--active,
+  .filter-btn--active:hover {
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: #fff;

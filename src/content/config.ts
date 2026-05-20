@@ -20,7 +20,7 @@ const biblioteca = defineCollection({
     url: z.string(),
     author: z.string().optional(),
     description: z.string(),
-    type: z.enum(['article', 'book', 'video', 'tool', 'game']),
+    type: z.enum(['article', 'book', 'video', 'tool', 'game', 'course']),
     origin: z.enum(['own', 'curated']),
     pubDate: z.coerce.date(),
     tags: z.array(z.string()).default([]),
