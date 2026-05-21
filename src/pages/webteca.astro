@@ -103,6 +103,9 @@ const TYPE_CLASS: Record<string, string> = {
 
       <!-- Painel: Meus -->
       <div role="tabpanel" id="panel-own" aria-labelledby="tab-own" hidden={defaultTab !== 'own'}>
+        <div class="panel-section-label" aria-hidden="true">
+          Meus <span class="section-count"></span>
+        </div>
         {ownItems.length === 0 ? (
           <div class="empty-state"><p>Nenhum item ainda. Em breve!</p></div>
         ) : (
@@ -159,6 +162,9 @@ const TYPE_CLASS: Record<string, string> = {
 
       <!-- Painel: Curadoria -->
       <div role="tabpanel" id="panel-curated" aria-labelledby="tab-curated" hidden={defaultTab !== 'curated'}>
+        <div class="panel-section-label" aria-hidden="true">
+          Curadoria <span class="section-count"></span>
+        </div>
         {curatedItems.length === 0 ? (
           <div class="empty-state"><p>Nenhum item ainda. Em breve!</p></div>
         ) : (
@@ -240,34 +246,54 @@ const TYPE_CLASS: Record<string, string> = {
   }
 
   function applyFilter(): void {
-    const panel = document.getElementById(`panel-${activeTab}`);
-    if (!panel) {
-      return;
-    }
-
+    const isSearching = activeSearch.trim() !== '';
     const query = activeSearch.toLowerCase().trim();
-    const rows = panel.querySelectorAll<HTMLElement>('tbody [data-type]');
-    let visible = 0;
+    const libPage = document.querySelector<HTMLElement>('.lib-page');
+    libPage?.classList.toggle('is-searching', isSearching);
 
-    rows.forEach(row => {
-      const typeMatch = activeFilter === 'all' || row.dataset.type === activeFilter;
-      const searchMatch = query === '' || getRowText(row).includes(query);
-      const show = typeMatch && searchMatch;
-      row.hidden = !show;
-      if (show) {
-        visible++;
+    panels.forEach(panel => {
+      const isActivePanel = panel.id === `panel-${activeTab}`;
+
+      if (!isSearching) {
+        panel.hidden = !isActivePanel;
+      }
+
+      if (isSearching || isActivePanel) {
+        const rows = panel.querySelectorAll<HTMLElement>('tbody [data-type]');
+        let visible = 0;
+
+        rows.forEach(row => {
+          const typeMatch = activeFilter === 'all' || row.dataset.type === activeFilter;
+          const searchMatch = query === '' || getRowText(row).includes(query);
+          const show = typeMatch && searchMatch;
+          row.hidden = !show;
+          if (show) {
+            visible++;
+          }
+        });
+
+        const filterEmpty = panel.querySelector<HTMLElement>('.filter-empty');
+        const tableWrap = panel.querySelector<HTMLElement>('.lib-table-wrap');
+        const sectionLabel = panel.querySelector<HTMLElement>('.panel-section-label');
+
+        if (filterEmpty) {
+          filterEmpty.hidden = visible > 0;
+        }
+        if (tableWrap) {
+          tableWrap.hidden = visible === 0;
+        }
+
+        if (isSearching) {
+          panel.hidden = visible === 0;
+          if (sectionLabel) {
+            const countEl = sectionLabel.querySelector<HTMLElement>('.section-count');
+            if (countEl) {
+              countEl.textContent = `(${visible})`;
+            }
+          }
+        }
       }
     });
-
-    const filterEmpty = panel.querySelector<HTMLElement>('.filter-empty');
-    const tableWrap = panel.querySelector<HTMLElement>('.lib-table-wrap');
-
-    if (filterEmpty) {
-      filterEmpty.hidden = visible > 0;
-    }
-    if (tableWrap) {
-      tableWrap.hidden = visible === 0;
-    }
 
     filterBtns.forEach(btn => {
       btn.classList.toggle('filter-btn--active', btn.dataset.filter === activeFilter);
@@ -549,6 +575,33 @@ const TYPE_CLASS: Record<string, string> = {
     border: 1px solid var(--color-border);
     padding: 0.1rem 0.45rem;
     border-radius: 999px;
+  }
+
+  /* ---- Search mode ---- */
+  .lib-page.is-searching .lib-tabs {
+    display: none;
+  }
+
+  .panel-section-label {
+    display: none;
+    padding: 1.5rem 0 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-text-muted);
+  }
+
+  .lib-page.is-searching .panel-section-label {
+    display: block;
+  }
+
+  #panel-own .panel-section-label {
+    padding-top: 0;
+  }
+
+  .section-count {
+    font-weight: 500;
   }
 
   /* ---- Search ---- */
