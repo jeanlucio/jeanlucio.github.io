@@ -74,6 +74,21 @@ const TYPE_CLASS: Record<string, string> = {
           </button>
         </div>
 
+        <div class="search-wrap">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="search"
+            id="lib-search"
+            class="search-input"
+            placeholder="Buscar título, autor, tags…"
+            aria-label="Buscar na Webteca"
+            autocomplete="off"
+          />
+        </div>
+
         <div class="type-filters" role="group" aria-label="Filtrar por tipo">
           {TYPE_OPTIONS.map(opt => (
             <button
@@ -139,7 +154,7 @@ const TYPE_CLASS: Record<string, string> = {
             </table>
           </div>
         )}
-        <div class="filter-empty" hidden><p>Nenhum item para este filtro.</p></div>
+        <div class="filter-empty" hidden><p>Nenhum resultado encontrado.</p></div>
       </div>
 
       <!-- Painel: Curadoria -->
@@ -195,7 +210,7 @@ const TYPE_CLASS: Record<string, string> = {
             </table>
           </div>
         )}
-        <div class="filter-empty" hidden><p>Nenhum item para este filtro.</p></div>
+        <div class="filter-empty" hidden><p>Nenhum resultado encontrado.</p></div>
       </div>
     </div>
   </section>
@@ -208,9 +223,21 @@ const TYPE_CLASS: Record<string, string> = {
   const tabBtns = document.querySelectorAll<HTMLButtonElement>('[role="tab"]');
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const panels = document.querySelectorAll<HTMLElement>('[role="tabpanel"]');
+  const searchInput = document.getElementById('lib-search') as HTMLInputElement | null;
 
   let activeTab = defaultTab;
   let activeFilter = 'all';
+  let activeSearch = '';
+
+  function getRowText(row: HTMLElement): string {
+    const title = row.querySelector('.item-title')?.textContent ?? '';
+    const desc = row.querySelector('.item-desc')?.textContent ?? '';
+    const author = row.querySelector('.col-author')?.textContent ?? '';
+    const tags = Array.from(row.querySelectorAll('.item-tag'))
+      .map(t => t.textContent ?? '')
+      .join(' ');
+    return `${title} ${desc} ${author} ${tags}`.toLowerCase();
+  }
 
   function applyFilter(): void {
     const panel = document.getElementById(`panel-${activeTab}`);
@@ -218,11 +245,14 @@ const TYPE_CLASS: Record<string, string> = {
       return;
     }
 
+    const query = activeSearch.toLowerCase().trim();
     const rows = panel.querySelectorAll<HTMLElement>('tbody [data-type]');
     let visible = 0;
 
     rows.forEach(row => {
-      const show = activeFilter === 'all' || row.dataset.type === activeFilter;
+      const typeMatch = activeFilter === 'all' || row.dataset.type === activeFilter;
+      const searchMatch = query === '' || getRowText(row).includes(query);
+      const show = typeMatch && searchMatch;
       row.hidden = !show;
       if (show) {
         visible++;
@@ -233,10 +263,10 @@ const TYPE_CLASS: Record<string, string> = {
     const tableWrap = panel.querySelector<HTMLElement>('.lib-table-wrap');
 
     if (filterEmpty) {
-      filterEmpty.hidden = visible > 0 || activeFilter === 'all';
+      filterEmpty.hidden = visible > 0;
     }
     if (tableWrap) {
-      tableWrap.hidden = visible === 0 && activeFilter !== 'all';
+      tableWrap.hidden = visible === 0;
     }
 
     filterBtns.forEach(btn => {
@@ -272,6 +302,11 @@ const TYPE_CLASS: Record<string, string> = {
       activeFilter = btn.dataset.filter ?? 'all';
       applyFilter();
     });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    activeSearch = searchInput.value;
+    applyFilter();
   });
 
   switchTab(defaultTab);
@@ -514,6 +549,42 @@ const TYPE_CLASS: Record<string, string> = {
     border: 1px solid var(--color-border);
     padding: 0.1rem 0.45rem;
     border-radius: 999px;
+  }
+
+  /* ---- Search ---- */
+  .search-wrap {
+    position: relative;
+    max-width: 380px;
+  }
+
+  .search-icon {
+    position: absolute;
+    inset-inline-start: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 0.875rem 0.5rem 2.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .search-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .search-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
   }
 
   /* ---- Empty states ---- */
