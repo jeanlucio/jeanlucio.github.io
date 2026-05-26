@@ -11,9 +11,11 @@ O **PlayerHUD** é um plugin de gamificação para Moodle que eu desenvolvi para
 
 Esta não é uma resenha externa. É uma análise autoral do plugin: o que ele propõe, quais decisões de design estão por trás dele, onde ele pode funcionar bem e quais cuidados eu considero importantes antes de usar em um curso real.
 
-![Visão geral do HUD do PlayerHUD com avatar, nível, XP, inventário e card de personagem](/images/playerhud-hud-overview.png)
+<figure class="prose-float prose-float--left">
+  <img src="/images/playerhud-hud-overview.png" alt="Visão geral do HUD do PlayerHUD com avatar, nível, XP, inventário e card de personagem" loading="lazy" />
+</figure>
 
-O print acima mostra bem a proposta do plugin: o aluno não vê apenas uma lista de atividades; ele acompanha um painel de progresso. Há avatar, nível atual, XP acumulado, barra percentual, atalhos para áreas do sistema, itens coletados e um card de personagem. Essa composição muda a percepção do curso: o Moodle continua sendo o ambiente de aprendizagem, mas passa a ter uma camada de feedback mais próxima de jogos.
+O print mostra bem a proposta do plugin: o aluno não vê apenas uma lista de atividades; ele acompanha um painel de progresso. Há avatar, nível atual, XP acumulado, barra percentual, atalhos para áreas do sistema, itens coletados e um card de personagem. Essa composição muda a percepção do curso: o Moodle continua sendo o ambiente de aprendizagem, mas passa a ter uma camada de feedback mais próxima de jogos.
 
 ## O que é HUD?
 
