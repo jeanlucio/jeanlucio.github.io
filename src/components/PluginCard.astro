@@ -65,8 +65,13 @@ const {
     )}
 
     {reviewUrl && (
-      <a href={reviewUrl} class="btn btn--outline btn--sm">
-        Review
+      <a href={reviewUrl} class="btn btn--review btn--sm plugin-review-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 3.5h5.5L19 9v11.5H8A3 3 0 0 1 5 17.5v-11a3 3 0 0 1 3-3Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3.5V9H19" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6M9 16h6" />
+        </svg>
+        Ler Análise
       </a>
     )}
 
@@ -158,5 +163,23 @@ const {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.25rem;
+  }
+
+  .btn--review {
+    background: rgba(79, 70, 229, 0.06);
+    border-color: rgba(79, 70, 229, 0.22);
+    color: var(--color-primary);
+    justify-content: center;
+  }
+
+  .btn--review:hover {
+    background: rgba(79, 70, 229, 0.11);
+    border-color: rgba(79, 70, 229, 0.42);
+    color: var(--color-primary-dark);
+    transform: translateY(-1px);
+  }
+
+  .plugin-review-link {
+    flex-basis: 100%;
   }
 </style>
