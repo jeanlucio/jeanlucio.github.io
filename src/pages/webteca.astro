@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const allItems = await getCollection('biblioteca');
-const sorted = allItems.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sorted = allItems.sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'pt-BR', { sensitivity: 'base' })
+);
 
 const ownItems = sorted.filter(item => item.data.origin === 'own');
 const curatedItems = sorted.filter(item => item.data.origin === 'curated');
