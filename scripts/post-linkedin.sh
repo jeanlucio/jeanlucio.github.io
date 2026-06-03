@@ -20,10 +20,14 @@ echo "--- Post preview ---"
 echo "$TEXT"
 echo "--------------------"
 echo ""
-read -r -p "Publish to LinkedIn? [y/N] " confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-  echo "Aborted."
-  exit 0
+
+# Skip confirmation when stdin is not a terminal (e.g. Claude Code piping input)
+if [ -t 0 ]; then
+  read -r -p "Publish to LinkedIn? [y/N] " confirm
+  if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+    echo "Aborted."
+    exit 0
+  fi
 fi
 
 gh api repos/jeanlucio/jeanlucio.github.io/actions/workflows/linkedin-post.yml/dispatches \
