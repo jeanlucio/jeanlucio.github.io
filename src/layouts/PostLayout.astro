@@ -23,8 +23,6 @@ const shareLinks = {
   telegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`,
 };
 
-const counterUrl = `https://jeanlucio.goatcounter.com/counter${Astro.url.pathname}.svg`;
-
 const formattedPubDate = pubDate.toLocaleDateString('pt-BR', {
   year: 'numeric',
   month: 'long',
@@ -72,11 +70,7 @@ const categoryColors: Record<string, string> = {
           <span class="post-meta-sep" aria-hidden="true">·</span>
           <span class="post-views">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            <img
-              src={counterUrl}
-              alt="Visualizações desta página"
-              class="post-views-counter"
-            />
+            <span class="post-views-count" data-path={Astro.url.pathname} aria-label="Visualizações desta página"></span>
           </span>
         </div>
 
@@ -265,10 +259,18 @@ const categoryColors: Record<string, string> = {
     align-items: center;
     gap: 0.3rem;
   }
-
-  .post-views-counter {
-    height: 1.1em;
-    width: auto;
-    vertical-align: middle;
-  }
 </style>
+
+<script>
+  const el = document.querySelector<HTMLElement>('.post-views-count');
+  if (el) {
+    const path = el.dataset.path ?? '';
+    try {
+      const res = await fetch(`https://jeanlucio.goatcounter.com/counter${path}.json`);
+      const data = await res.json() as { count: string };
+      el.textContent = data.count;
+    } catch {
+      el.remove();
+    }
+  }
+</script>
