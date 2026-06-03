@@ -266,7 +266,7 @@ const categoryColors: Record<string, string> = {
   if (el) {
     const path = el.dataset.path ?? '';
     try {
-      const res = await fetch(`https://jeanlucio.goatcounter.com/counter${path}.json`);
+      const res = await fetch(`https://jeanlucio.goatcounter.com/counter${path}.json`, { cache: 'no-store' });
       const data = await res.json() as { count: string };
       el.textContent = data.count;
     } catch {
