@@ -1,0 +1,26 @@
+name: Post directly to LinkedIn
+
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 'Post text (plain text, supports line breaks with \n)'
+        required: true
+        type: string
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish to LinkedIn
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          POST_TEXT: ${{ inputs.text }}
+        run: node .github/scripts/publish-linkedin-direct.mjs
