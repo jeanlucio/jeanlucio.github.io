@@ -35,6 +35,35 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString('pt-BR', {
   day: 'numeric',
 });
 
+const siteUrl = 'https://jeanlucio.github.io';
+const postUrl = `${siteUrl}/blog/${post.slug}/`;
+const imageUrl = heroImage ? `${siteUrl}${heroImage}` : `${siteUrl}/og-default.png`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: description ?? '',
+  image: imageUrl,
+  url: postUrl,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Jean Lúcio Santos Evangelista',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Jean Lúcio Santos Evangelista',
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': postUrl,
+  },
+};
+
 const categoryColors: Record<string, string> = {
   tutorial: 'badge--primary',
   plugin: 'badge--purple',
@@ -45,7 +74,8 @@ const categoryColors: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={`${title} — Jean Lúcio`} description={description} image={heroImage}>
+<BaseLayout title={`${title} — Jean Lúcio`} description={description} image={heroImage} ogType="article">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
   <article class="post-page">
     {heroImage && (
       <div class="post-hero-image">
