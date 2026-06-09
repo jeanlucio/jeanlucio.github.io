@@ -9,7 +9,7 @@ tags: [playergroup, moodle, grupos, colaboração, gamificação, plugin]
 O **PlayerGroup** é um plugin de atividade para Moodle desenvolvido para resolver um gargalo comum em cursos online: a formação manual de grupos pelo professor. Em vez de criar grupos administrativamente e atribuir estudantes a eles, o plugin transforma essa etapa em uma atividade pedagógica autônoma — os próprios estudantes acessam a atividade, criam ou ingressam em grupos, e o Moodle registra tudo automaticamente.
 
 <figure class="prose-float prose-float--left">
-  <img src="/images/playergroup.png" alt="Tela da atividade PlayerGroup no Moodle exibindo grupos criados pelos estudantes" loading="lazy" />
+  <img src="/images/playergroup.png" alt="Tela da atividade PlayerGroup exibindo seis grupos criados pelos estudantes — Caçadores do Norte, Filhos do Trovão, Guerreiros da Luz (fechado), Magos do Cristal (protegido por senha), Os Invencíveis e Sombras Eternas — cada um com emoji, líder, descrição, contador de membros e botão Entrar no Grupo" loading="lazy" />
 </figure>
 
 ## 🤝 O que é o PlayerGroup?
