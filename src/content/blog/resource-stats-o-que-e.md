@@ -6,7 +6,7 @@ category: plugin
 tags: [resource-stats, moodle, estatísticas, engajamento, dados, plugin]
 ---
 
-O **Resource Stats** é um plugin local para Moodle desenvolvido para responder uma pergunta que professores de cursos online frequentemente se fazem: "quais recursos os estudantes estão acessando?" Sem precisar de ferramenta externa de analytics, o plugin exibe diretamente na página do curso pequenos badges com contagens de acesso — visíveis apenas para o professor.
+O **Resource Stats** é um plugin local para Moodle desenvolvido para responder uma pergunta que qualquer professor que usa o Moodle pode se fazer: "quais recursos os estudantes estão acessando?" Sem precisar de ferramenta externa de analytics, o plugin exibe diretamente na página do curso pequenos badges com contagens de acesso — visíveis apenas para o professor.
 
 ## 📊 O que é o Resource Stats?
 
@@ -19,7 +19,9 @@ Visitantes e professores nunca são contados — apenas estudantes matriculados.
 
 ## 🧠 Por que acompanhar acessos no curso?
 
-Em cursos presenciais, o professor consegue observar fisicamente a participação. Em cursos online e híbridos, esse sinal desaparece. O professor pode não saber que um recurso crítico nunca foi aberto, ou que metade da turma nunca acessou determinado material.
+Em aulas presenciais, o professor observa a participação diretamente. Mas mesmo em disciplinas presenciais, quando o Moodle funciona como repositório de materiais e espaço de atividades, esse sinal some: o professor não sabe quem acessou a leitura indicada, quem baixou o arquivo, quem sequer abriu o recurso antes da aula. Em cursos online e híbridos, a lacuna é ainda maior.
+
+O Resource Stats preenche essa lacuna. O professor pode não saber que um recurso crítico nunca foi aberto, ou que metade da turma nunca acessou determinado material.
 
 O acompanhamento de acessos serve para:
 
@@ -60,8 +62,9 @@ O Resource Stats apoia o professor na **gestão baseada em dados**:
 
 Indicado para:
 
+- disciplinas presenciais que usam o Moodle como repositório de materiais e atividades
 - cursos online e híbridos onde a visibilidade de participação é limitada
-- cursos com materiais de ritmo livre onde a participação é mais difícil de acompanhar
+- cursos com materiais de ritmo livre onde o acesso é difícil de acompanhar
 - professores que preferem agir de forma preventiva em vez de reativa
 
 ## 📈 Como utilizar o Resource Stats (passo a passo)
@@ -84,6 +87,7 @@ Para ver quem acessou um recurso específico, abra a atividade ou recurso e use 
 
 ## 🎯 Público-alvo
 
+- Professores presenciais que usam o Moodle como apoio e querem saber se os materiais estão sendo acessados
 - Professores de cursos online e híbridos que querem acompanhar o engajamento com os materiais
 - Designers instrucionais que revisam cursos com base em dados de uso
 - Coordenadores pedagógicos que precisam de indicadores de participação sem integrar ferramentas externas
