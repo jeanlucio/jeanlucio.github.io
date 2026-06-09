@@ -282,6 +282,15 @@ pre code {
   margin: 2rem auto;
 }
 
+.prose .prose-full {
+  margin: 1.5rem 0;
+}
+
+.prose .prose-full img {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
 .prose .prose-float {
   margin: 0.25rem 1.5rem 1rem 0;
 }
