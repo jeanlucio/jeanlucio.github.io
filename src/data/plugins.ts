@@ -1,0 +1,126 @@
+export type PluginColor = 'indigo' | 'purple' | 'emerald' | 'amber' | 'teal';
+
+export interface PluginData {
+  name: string;
+  description: string;
+  version?: string;
+  tags: string[];
+  githubUrl: string;
+  moodleUrl?: string;
+  reviewUrl?: string;
+  siteUrl?: string;
+  docsUrl?: string;
+  color?: PluginColor;
+  icon?: string;
+  featured?: boolean;
+}
+
+export const playerGames: PluginData[] = [
+  {
+    name: 'PlayerHUD',
+    description:
+      'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
+    version: '1.5.0',
+    tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/block_playerhud',
+    reviewUrl: '/blog/playerhud-o-que-e',
+    color: 'indigo',
+    icon: '🕹️',
+    featured: true,
+  },
+  {
+    name: 'PlayerHUD Filter',
+    description:
+      'Filtro de texto que permite exibir dados do PlayerHUD diretamente no conteúdo de atividades e recursos — nível atual do aluno, XP acumulado e progresso — sem precisar sair da página.',
+    version: '1.4.0',
+    tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
+    color: 'indigo',
+    icon: '🔍',
+  },
+  {
+    name: 'PlayerHUD Availability',
+    description:
+      'Condição de disponibilidade que permite restringir o acesso a atividades com base nos dados do PlayerHUD — libere conteúdo somente quando o aluno atingir determinado nível ou quantidade de XP.',
+    version: '1.4.0',
+    tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
+    moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
+    color: 'purple',
+    icon: '🔓',
+  },
+  {
+    name: 'PlayerGroup',
+    description:
+      'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
+    version: '1.2.0',
+    tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
+    moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
+    reviewUrl: '/blog/playergroup-o-que-e',
+    color: 'purple',
+    icon: '👥',
+  },
+];
+
+export const teacherTools: PluginData[] = [
+  {
+    name: 'Teacher Checklist',
+    description:
+      'Bloco que ajuda professores a garantir a qualidade do curso antes de os alunos chegarem. Combina detecção automática de problemas de configuração (visibilidade, prazos, atividades sem descrição) com uma lista de tarefas manual totalmente personalizável.',
+    version: '1.2.1',
+    tags: ['Bloco', 'Qualidade', 'Checklist', 'Coordenação'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
+    moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
+    reviewUrl: '/blog/teacher-checklist-o-que-e',
+    color: 'emerald',
+    icon: '📋',
+    featured: true,
+  },
+  {
+    name: 'Resource Stats',
+    description:
+      'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
+    version: '1.0.2',
+    tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
+    moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
+    reviewUrl: '/blog/resource-stats-o-que-e',
+    color: 'amber',
+    icon: '📊',
+    featured: true,
+  },
+  {
+    name: 'Late Penalty',
+    description:
+      'Plugin local que aplica penalidades progressivas por atraso em atividades avaliativas do Moodle. Funciona com Assignment, Quiz, Fórum, SCORM e outros módulos que registram nota no livro de notas.',
+    version: '1.0.2',
+    tags: ['Local', 'Avaliação', 'Prazos', 'Notas', 'Relatórios'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_latepenalty',
+    moodleUrl: 'https://moodle.org/plugins/local_latepenalty',
+    reviewUrl: '/blog/late-penalty-o-que-e',
+    color: 'amber',
+    icon: '⏱️',
+  },
+];
+
+export const webTools: PluginData[] = [
+  {
+    name: 'PromptKit Edu',
+    description:
+      'Ferramenta interativa para organizar, criar e gerenciar prompts educacionais — com exportação, backup, filtros e formatos Moodle. Funciona direto no navegador, sem instalação.',
+    tags: ['Prompts', 'IA', 'Educação', 'Moodle'],
+    githubUrl: 'https://github.com/jeanlucio/promptkitedu',
+    siteUrl: 'https://jeanlucio.github.io/promptkitedu/',
+    color: 'teal',
+    icon: '✨',
+  },
+];
+
+export const featuredPlugins: PluginData[] = [
+  ...playerGames,
+  ...teacherTools,
+  ...webTools,
+].filter(p => p.featured);

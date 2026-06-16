@@ -3,45 +3,12 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
 import PostCard from '../components/PostCard.astro';
+import { featuredPlugins } from '../data/plugins';
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 4);
-
-const plugins = [
-  {
-    name: 'PlayerHUD',
-    description: 'Bloco de gamificação com XP, níveis, conquistas, ranking, missões e assistente de IA integrado para estratégias pedagógicas.',
-    version: '1.4.0',
-    tags: ['Bloco', 'Gamificação', 'XP', 'IA'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
-    moodleUrl: 'https://moodle.org/plugins/block_playerhud',
-    reviewUrl: '/blog/playerhud-o-que-e',
-    color: 'indigo' as const,
-    icon: '🕹️',
-  },
-  {
-    name: 'Teacher Checklist',
-    description: 'Bloco com detecção automática de problemas de configuração e lista de tarefas manual. Garante a qualidade do curso antes dos alunos chegarem.',
-    version: '1.2.2',
-    tags: ['Bloco', 'Qualidade', 'Checklist'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
-    moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
-    color: 'emerald' as const,
-    icon: '✅',
-  },
-  {
-    name: 'Resource Stats',
-    description: 'Plugin local que exibe badges de acesso nos módulos do curso — total de views e alunos únicos — visível só para professores, sem analytics externo.',
-    version: '1.0.2',
-    tags: ['Local', 'Estatísticas', 'Engajamento'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
-    moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
-    color: 'amber' as const,
-    icon: '📊',
-  },
-];
 ---
 
 <BaseLayout title="Prof. Jean Lúcio — Educação e Tecnologias">
@@ -128,7 +95,7 @@ const plugins = [
       </header>
 
       <div class="plugins-grid">
-        {plugins.map(plugin => (
+        {featuredPlugins.map(plugin => (
           <PluginCard {...plugin} />
         ))}
       </div>
