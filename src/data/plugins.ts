@@ -20,7 +20,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.5.0',
+    version: '1.5.2',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
@@ -33,7 +33,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Filter',
     description:
       'Filtro de texto que permite exibir dados do PlayerHUD diretamente no conteúdo de atividades e recursos — nível atual do aluno, XP acumulado e progresso — sem precisar sair da página.',
-    version: '1.4.0',
+    version: '1.5.0',
     tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
     githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
     moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
@@ -44,7 +44,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Availability',
     description:
       'Condição de disponibilidade que permite restringir o acesso a atividades com base nos dados do PlayerHUD — libere conteúdo somente quando o aluno atingir determinado nível ou quantidade de XP.',
-    version: '1.4.0',
+    version: '1.4.1',
     tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
     githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
     moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
@@ -55,7 +55,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerGroup',
     description:
       'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
-    version: '1.2.0',
+    version: '1.2.2',
     tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
@@ -70,7 +70,7 @@ export const teacherTools: PluginData[] = [
     name: 'Teacher Checklist',
     description:
       'Bloco que ajuda professores a garantir a qualidade do curso antes de os alunos chegarem. Combina detecção automática de problemas de configuração (visibilidade, prazos, atividades sem descrição) com uma lista de tarefas manual totalmente personalizável.',
-    version: '1.2.1',
+    version: '1.2.2',
     tags: ['Bloco', 'Qualidade', 'Checklist', 'Coordenação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
     moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
@@ -83,7 +83,7 @@ export const teacherTools: PluginData[] = [
     name: 'Resource Stats',
     description:
       'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
-    version: '1.0.2',
+    version: '1.2.0',
     tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
     moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
