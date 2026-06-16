@@ -67,7 +67,7 @@ export const playerGames: PluginData[] = [
 
 export const teacherTools: PluginData[] = [
   {
-    name: 'Teacher Checklist',
+    name: 'Checklist do Professor',
     description:
       'Bloco que ajuda professores a garantir a qualidade do curso antes de os alunos chegarem. Combina detecção automática de problemas de configuração (visibilidade, prazos, atividades sem descrição) com uma lista de tarefas manual totalmente personalizável.',
     version: '1.2.2',
@@ -80,7 +80,7 @@ export const teacherTools: PluginData[] = [
     featured: true,
   },
   {
-    name: 'Resource Stats',
+    name: 'Estatísticas de Recursos',
     description:
       'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
     version: '1.2.0',
@@ -93,7 +93,7 @@ export const teacherTools: PluginData[] = [
     featured: true,
   },
   {
-    name: 'Late Penalty',
+    name: 'Penalidade por Atraso',
     description:
       'Plugin local que aplica penalidades progressivas por atraso em atividades avaliativas do Moodle. Funciona com Assignment, Quiz, Fórum, SCORM e outros módulos que registram nota no livro de notas.',
     version: '1.0.2',
