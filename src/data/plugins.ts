@@ -70,7 +70,7 @@ export const teacherTools: PluginData[] = [
     name: 'Checklist do Professor',
     description:
       'Bloco que ajuda professores a garantir a qualidade do curso antes de os alunos chegarem. Combina detecção automática de problemas de configuração (visibilidade, prazos, atividades sem descrição) com uma lista de tarefas manual totalmente personalizável.',
-    version: '1.2.2',
+    version: '1.3.0',
     tags: ['Bloco', 'Qualidade', 'Checklist', 'Coordenação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_teacher_checklist',
     moodleUrl: 'https://moodle.org/plugins/block_teacher_checklist',
