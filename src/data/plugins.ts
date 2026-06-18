@@ -55,7 +55,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerGroup',
     description:
       'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
-    version: '1.2.2',
+    version: '1.2.3',
     tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
@@ -96,7 +96,7 @@ export const teacherTools: PluginData[] = [
     name: 'Penalidade por Atraso',
     description:
       'Plugin local que aplica penalidades progressivas por atraso em atividades avaliativas do Moodle. Funciona com Assignment, Quiz, Fórum, SCORM e outros módulos que registram nota no livro de notas.',
-    version: '1.0.2',
+    version: '1.0.3',
     tags: ['Local', 'Avaliação', 'Prazos', 'Notas', 'Relatórios'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_latepenalty',
     moodleUrl: 'https://moodle.org/plugins/local_latepenalty',
