@@ -1,16 +1,16 @@
 ---
-title: "Teacher Checklist: verificação de qualidade de cursos no Moodle"
-description: "Análise do Teacher Checklist, bloco para Moodle que detecta automaticamente problemas de configuração em cursos e combina essa detecção com uma lista de tarefas manual para o professor."
+title: "Checklist do Professor: verificação de qualidade de cursos no Moodle"
+description: "Análise do Checklist do Professor, bloco para Moodle que detecta automaticamente problemas de configuração em cursos e combina essa detecção com uma lista de tarefas manual para o professor."
 pubDate: 2026-06-09
 category: plugin
 tags: [teacher-checklist, moodle, qualidade, checklist, gestão, plugin]
 ---
 
-O **Teacher Checklist** é um bloco para Moodle desenvolvido para ajudar professores a verificar a qualidade da configuração de seus cursos antes de publicá-los para os estudantes. Ele combina dois tipos de verificação em uma única interface: a detecção automática de problemas comuns de configuração e uma lista de tarefas manual para itens que o sistema não consegue detectar sozinho.
+O **Checklist do Professor** é um bloco para Moodle desenvolvido para ajudar professores a verificar a qualidade da configuração de seus cursos antes de publicá-los para os estudantes. Ele combina dois tipos de verificação em uma única interface: a detecção automática de problemas comuns de configuração e uma lista de tarefas manual para itens que o sistema não consegue detectar sozinho.
 
-## ✅ O que é o Teacher Checklist?
+## ✅ O que é o Checklist do Professor?
 
-O Teacher Checklist é um bloco adicionado à página do curso. Uma vez instalado, ele começa a escanear automaticamente o curso em busca de problemas de configuração e exibe um resumo diretamente no bloco — sem precisar abrir nenhum relatório separado.
+O Checklist do Professor é um bloco adicionado à página do curso. Uma vez instalado, ele começa a escanear automaticamente o curso em busca de problemas de configuração e exibe um resumo diretamente no bloco — sem precisar abrir nenhum relatório separado.
 
 Para a lista completa, o professor clica em **Ver relatório completo** e acessa um painel com três abas: **Pendentes**, **Ignorados** e **Feitos**. Nessa página é possível gerenciar todos os itens, adicionar tarefas manuais e realizar ações em lote.
 
@@ -25,7 +25,7 @@ Uma verificação estruturada antes da publicação pode:
 - **Apoiar garantia de qualidade em escala** para coordenadores que revisam múltiplos cursos
 - **Funcionar como lista de lembretes** para itens específicos de cada professor ou instituição
 
-## 🚀 O que o Teacher Checklist oferece?
+## 🚀 O que o Checklist do Professor oferece?
 
 Entre os principais recursos do plugin estão:
 
@@ -53,7 +53,7 @@ Entre os principais recursos do plugin estão:
 
 ## 🎓 Possibilidades pedagógicas
 
-O Teacher Checklist apoia práticas de qualidade no ambiente virtual:
+O Checklist do Professor apoia práticas de qualidade no ambiente virtual:
 
 - verificação completa do curso antes de cada nova edição ou abertura de matrículas
 - revisão sistemática por coordenadores pedagógicos em cursos de múltiplos professores
@@ -66,11 +66,11 @@ Indicado para:
 - equipes de EAD que adotam critérios mínimos de configuração
 - instituições que buscam padronizar a qualidade dos cursos no Moodle
 
-## 📋 Como utilizar o Teacher Checklist (passo a passo)
+## 📋 Como utilizar o Checklist do Professor (passo a passo)
 
 **1️⃣ Adicionar o bloco ao curso**
 
-Ative o modo de edição e selecione **Adicionar bloco → Teacher Checklist**.
+Ative o modo de edição e selecione **Adicionar bloco → Checklist do Professor**.
 
 **2️⃣ Revisar os problemas detectados**
 
@@ -101,14 +101,14 @@ Se preferir usar o bloco apenas como lista manual, desative a **Verificação Au
 
 ## 🔗 Como instalar
 
-O Teacher Checklist está disponível gratuitamente no **Moodle Plugin Directory**:
+O Checklist do Professor está disponível gratuitamente no **Moodle Plugin Directory**:
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
-2. Pesquise por **"Teacher Checklist"**
+2. Pesquise por **"Checklist do Professor"**
 3. Instale e adicione o bloco ao curso pelo modo de edição
 
 O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-block_teacher_checklist) para acompanhar a versão mais recente.
 
 ---
 
-O Teacher Checklist é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/block_teacher_checklist).
+O Checklist do Professor é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/block_teacher_checklist).

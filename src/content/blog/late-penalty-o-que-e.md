@@ -1,16 +1,16 @@
 ---
-title: "Late Penalty: penalidade automática por atraso no Moodle"
-description: "Análise do Late Penalty, plugin local para Moodle que aplica descontos progressivos em notas quando estudantes entregam atividades depois do prazo, com suporte a múltiplos tipos de atividade, exceções por estudante ou grupo e relatório exportável."
+title: "Penalidade por Atraso: desconto automático em atividades avaliativas no Moodle"
+description: "Análise da Penalidade por Atraso, plugin local para Moodle que aplica descontos progressivos em notas quando estudantes entregam atividades depois do prazo, com suporte a múltiplos tipos de atividade, exceções por estudante ou grupo e relatório exportável."
 pubDate: 2026-06-11
 category: plugin
 tags: [late-penalty, moodle, avaliação, prazos, notas, plugin]
 ---
 
-O **Late Penalty** é um plugin local para Moodle desenvolvido para automatizar uma regra comum em cursos: aplicar desconto na nota quando uma atividade é entregue depois do prazo. A diferença é que ele não fica restrito ao módulo Tarefa. O plugin observa eventos do Livro de Notas e pode funcionar com qualquer atividade que registre nota, como Tarefas, Questionários, Fóruns, SCORM, Lições, Workshops e outros módulos avaliativos.
+A **Penalidade por Atraso** é um plugin local para Moodle desenvolvido para automatizar uma regra comum em cursos: aplicar desconto na nota quando uma atividade é entregue depois do prazo. A diferença é que ele não fica restrito ao módulo Tarefa. O plugin observa eventos do Livro de Notas e pode funcionar com qualquer atividade que registre nota, como Tarefas, Questionários, Fóruns, SCORM, Lições, Workshops e outros módulos avaliativos.
 
-## ⏱️ O que é o Late Penalty?
+## ⏱️ O que é a Penalidade por Atraso?
 
-O Late Penalty adiciona uma seção de configuração nas atividades avaliativas do Moodle. Nela, o professor ativa a penalidade progressiva, define o percentual de desconto por dia de atraso e estabelece um limite máximo de penalidade.
+A Penalidade por Atraso adiciona uma seção de configuração nas atividades avaliativas do Moodle. Nela, o professor ativa a penalidade progressiva, define o percentual de desconto por dia de atraso e estabelece um limite máximo de penalidade.
 
 Quando o estudante entrega após o prazo e a nota é registrada, o plugin calcula o atraso, aplica o desconto e grava a nova nota usando a API padrão do Moodle. A alteração fica registrada no histórico do Livro de Notas, o que preserva rastreabilidade para professores, coordenação e auditoria acadêmica.
 
@@ -28,7 +28,7 @@ Automatizar essa regra ajuda a:
 - **Manter histórico de alterações:** as modificações aparecem no histórico padrão de notas do Moodle
 - **Apoiar exceções formais:** prazos e percentuais podem ser ajustados por estudante ou por grupo
 
-## 🚀 O que o Late Penalty oferece?
+## 🚀 O que a Penalidade por Atraso oferece?
 
 Entre os principais recursos do plugin estão:
 
@@ -46,14 +46,14 @@ Entre os principais recursos do plugin estão:
 
 ## 📌 Como o prazo é definido?
 
-Um ponto importante do Late Penalty é que nem todo módulo do Moodle tem um prazo "macio", isto é, um prazo que permita entrega atrasada. Alguns módulos fecham a atividade e impedem novas submissões; nesses casos, não há atraso para calcular.
+Um ponto importante da Penalidade por Atraso é que nem todo módulo do Moodle tem um prazo "macio", isto é, um prazo que permita entrega atrasada. Alguns módulos fecham a atividade e impedem novas submissões; nesses casos, não há atraso para calcular.
 
 Por isso, o plugin resolve o prazo efetivo nesta ordem:
 
 | Prioridade | Fonte | Aplicação |
 |---|---|---|
-| 1 | Exceção por estudante do Late Penalty | Todos os módulos |
-| 2 | Exceção por grupo do Late Penalty | Todos os módulos |
+| 1 | Exceção por estudante da Penalidade por Atraso | Todos os módulos |
+| 2 | Exceção por grupo da Penalidade por Atraso | Todos os módulos |
 | 3 | Overrides nativos do módulo | Tarefa, Questionário e Lição |
 | 4 | "Definir lembrete na linha do tempo" (`completionexpected`) | Todos os módulos |
 | 5 | Campo nativo de prazo | Tarefa e Fórum |
@@ -62,7 +62,7 @@ Para atividades como Questionário, SCORM, H5P e outros módulos que normalmente
 
 ## 🎓 Possibilidades pedagógicas
 
-O Late Penalty é útil quando a política de atraso faz parte do desenho do curso, mas precisa ser aplicada de forma consistente e transparente.
+A Penalidade por Atraso é útil quando a política de atraso faz parte do desenho do curso, mas precisa ser aplicada de forma consistente e transparente.
 
 Ele pode apoiar:
 
@@ -74,11 +74,11 @@ Ele pode apoiar:
 
 O plugin não substitui o julgamento pedagógico do professor. Ele automatiza uma regra configurável. Casos especiais continuam podendo ser tratados por overrides, ajustes manuais ou revisão da política de avaliação.
 
-## 📈 Como utilizar o Late Penalty (passo a passo)
+## 📈 Como utilizar a Penalidade por Atraso (passo a passo)
 
 **1️⃣ Instalar o plugin**
 
-Instale o plugin em `local/latepenalty`. Após a instalação, a seção **Late Penalty** passa a aparecer nas atividades avaliativas.
+Instale o plugin em `local/latepenalty`. Após a instalação, a seção **Penalidade por Atraso** passa a aparecer nas atividades avaliativas.
 
 **2️⃣ Configurar o prazo da atividade**
 
@@ -86,11 +86,11 @@ Em Tarefas e Fóruns, use o prazo nativo quando fizer sentido. Em outros módulo
 
 **3️⃣ Ativar a penalidade progressiva**
 
-Na seção **Late Penalty**, marque **Enable progressive penalty**, defina o percentual diário e o percentual máximo. O limite máximo precisa ser maior ou igual ao percentual diário.
+Na seção **Penalidade por Atraso**, marque **Enable progressive penalty**, defina o percentual diário e o percentual máximo. O limite máximo precisa ser maior ou igual ao percentual diário.
 
 **4️⃣ Ajustar exceções quando necessário**
 
-Dentro da atividade, use as opções de **Late penalty overrides** para criar exceções por estudante ou por grupo. Campos deixados em branco herdam a regra padrão da atividade.
+Dentro da atividade, use as opções de **Exceções da Penalidade por Atraso** para criar exceções por estudante ou por grupo. Campos deixados em branco herdam a regra padrão da atividade.
 
 **5️⃣ Acompanhar badges e avisos**
 
@@ -98,7 +98,7 @@ Na página do curso, estudantes veem avisos contextuais sobre prazo e penalidade
 
 **6️⃣ Consultar o relatório**
 
-No menu do curso, acesse **Late penalty report** para ver as penalidades aplicadas. O relatório pode ser filtrado por estudante e atividade, e exportado em CSV ou Excel.
+No menu do curso, acesse **Relatório da Penalidade por Atraso** para ver as penalidades aplicadas. O relatório pode ser filtrado por estudante e atividade, e exportado em CSV ou Excel.
 
 ## 🎯 Público-alvo
 
@@ -110,14 +110,14 @@ No menu do curso, acesse **Late penalty report** para ver as penalidades aplicad
 
 ## 🔗 Como instalar
 
-O Late Penalty está disponível gratuitamente no **Moodle Plugin Directory**:
+A Penalidade por Atraso está disponível gratuitamente no **Moodle Plugin Directory**:
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
-2. Pesquise por **"Late Penalty"**
+2. Pesquise por **"Penalidade por Atraso"**
 3. Instale e configure as regras nas atividades avaliativas
 
 O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-local_latepenalty) para acompanhar a versão mais recente.
 
 ---
 
-O Late Penalty é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_latepenalty).
+A Penalidade por Atraso é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_latepenalty).

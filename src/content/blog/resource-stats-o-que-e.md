@@ -1,16 +1,16 @@
 ---
-title: "Resource Stats: estatísticas de acesso a recursos no Moodle"
-description: "Análise do Resource Stats, plugin local para Moodle que exibe badges de acesso diretamente na página do curso, mostrando ao professor quantos estudantes acessaram cada recurso e quantas vezes."
+title: "Estatísticas de Recursos: acesso a recursos no Moodle"
+description: "Análise das Estatísticas de Recursos, plugin local para Moodle que exibe badges de acesso diretamente na página do curso, mostrando ao professor quantos estudantes acessaram cada recurso e quantas vezes."
 pubDate: 2026-06-09
 category: plugin
 tags: [resource-stats, moodle, estatísticas, engajamento, dados, plugin]
 ---
 
-O **Resource Stats** é um plugin local para Moodle desenvolvido para responder uma pergunta que qualquer professor que usa o Moodle pode se fazer: "quais recursos os estudantes estão acessando?" Sem precisar de ferramenta externa de analytics, o plugin exibe diretamente na página do curso pequenos badges com contagens de acesso — visíveis apenas para o professor.
+O plugin **Estatísticas de Recursos** foi desenvolvido para responder uma pergunta que qualquer professor que usa o Moodle pode se fazer: "quais recursos os estudantes estão acessando?" Sem precisar de ferramenta externa de analytics, o plugin exibe diretamente na página do curso pequenos badges com contagens de acesso — visíveis apenas para o professor.
 
-## 📊 O que é o Resource Stats?
+## 📊 O que é o plugin Estatísticas de Recursos?
 
-O Resource Stats é um plugin local que registra em segundo plano cada acesso de estudante a módulos do curso. Ele não interfere na experiência dos estudantes — apenas coleta os dados silenciosamente. Para o professor, os dados aparecem em dois lugares:
+O plugin Estatísticas de Recursos registra em segundo plano cada acesso de estudante a módulos do curso. Ele não interfere na experiência dos estudantes — apenas coleta os dados silenciosamente. Para o professor, os dados aparecem em dois lugares:
 
 1. **Na página do curso:** badges abaixo de cada atividade ou recurso, com contagens de acesso
 2. **Na aba de estatísticas do módulo:** uma tabela com cada estudante, total de acessos, data do primeiro acesso e data do último acesso
@@ -21,7 +21,7 @@ Visitantes e professores nunca são contados — apenas estudantes matriculados.
 
 Em aulas presenciais, o professor observa a participação diretamente. Mas mesmo em disciplinas presenciais, quando o Moodle funciona como repositório de materiais e espaço de atividades, esse sinal some: o professor não sabe quem acessou a leitura indicada, quem baixou o arquivo, quem sequer abriu o recurso antes da aula. Em cursos online e híbridos, a lacuna é ainda maior.
 
-O Resource Stats preenche essa lacuna. O professor pode não saber que um recurso crítico nunca foi aberto, ou que metade da turma nunca acessou determinado material.
+O plugin Estatísticas de Recursos preenche essa lacuna. O professor pode não saber que um recurso crítico nunca foi aberto, ou que metade da turma nunca acessou determinado material.
 
 O acompanhamento de acessos serve para:
 
@@ -30,7 +30,7 @@ O acompanhamento de acessos serve para:
 - **Medir engajamento real:** diferenciar atividades que realmente atraem atenção das que ficam em segundo plano
 - **Embasar decisões pedagógicas:** usar dados históricos de acesso para ajustar a estrutura do curso em edições futuras
 
-## 🚀 O que o Resource Stats oferece?
+## 🚀 O que o plugin Estatísticas de Recursos oferece?
 
 Entre os principais recursos do plugin estão:
 
@@ -53,7 +53,7 @@ Entre os principais recursos do plugin estão:
 
 ## 🎓 Possibilidades pedagógicas
 
-O Resource Stats apoia o professor na **gestão baseada em dados**:
+O plugin Estatísticas de Recursos apoia o professor na **gestão baseada em dados**:
 
 - monitorar quais recursos e atividades estão sendo acessados e com que frequência
 - identificar estudantes que nunca acessaram um material e intervir preventivamente
@@ -67,7 +67,7 @@ Indicado para:
 - cursos com materiais de ritmo livre onde o acesso é difícil de acompanhar
 - professores que preferem agir de forma preventiva em vez de reativa
 
-## 📈 Como utilizar o Resource Stats (passo a passo)
+## 📈 Como utilizar o plugin Estatísticas de Recursos (passo a passo)
 
 **1️⃣ Instalar o plugin**
 
@@ -95,14 +95,14 @@ Para ver quem acessou um recurso específico, abra a atividade ou recurso e use 
 
 ## 🔗 Como instalar
 
-O Resource Stats está disponível gratuitamente no **Moodle Plugin Directory**:
+O plugin Estatísticas de Recursos está disponível gratuitamente no **Moodle Plugin Directory**:
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
-2. Pesquise por **"Resource Stats"**
+2. Pesquise por **"Estatísticas de Recursos"**
 3. Instale e configure o padrão de exibição em **Plugins locais → Estatísticas de Recursos**
 
 O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-local_resourcestats) para acompanhar a versão mais recente.
 
 ---
 
-O Resource Stats é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_resourcestats).
+O plugin Estatísticas de Recursos é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_resourcestats).
