@@ -20,7 +20,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.5.2',
+    version: '1.5.3',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
@@ -83,7 +83,7 @@ export const teacherTools: PluginData[] = [
     name: 'Estatísticas de Recursos',
     description:
       'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
-    version: '1.2.0',
+    version: '1.2.1',
     tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
     moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
