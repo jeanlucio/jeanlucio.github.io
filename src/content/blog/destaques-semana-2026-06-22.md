@@ -1,6 +1,6 @@
 ---
 title: "Destaques da semana — novos plugins no Moodle (15 a 21 de jun)"
-description: "Plugins que chegaram ao Moodle Plugin Directory nesta semana: notas de rodapé no TinyMCE, questões contábeis, notificações de notas e mais."
+description: "Plugins que chegaram ao Moodle Plugin Directory nesta semana: notas de rodapé no TinyMCE, notificações de notas e mais."
 pubDate: 2026-06-22
 category: moodle
 tags: [Moodle, plugins, educação, novidades, tutoriais, produtividade, avaliação]

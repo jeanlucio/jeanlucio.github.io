@@ -40,6 +40,9 @@ def load_env() -> dict:
 
 def week_range() -> tuple[datetime.date, datetime.date]:
     today = datetime.date.today()
+    # When running on Monday (publish day), refer to the week that just ended.
+    if today.weekday() == 0:
+        today -= datetime.timedelta(days=1)
     monday = today - datetime.timedelta(days=today.weekday())
     sunday = monday + datetime.timedelta(days=6)
     return monday, sunday
@@ -55,8 +58,8 @@ def format_date_range(monday: datetime.date, sunday: datetime.date) -> str:
     return f'{monday.day} {months[monday.month]} a {sunday.day} {months[sunday.month]}'
 
 
-def post_slug(sunday: datetime.date) -> str:
-    return f'destaques-semana-{sunday.strftime("%Y-%m-%d")}'
+def post_slug(pub_date: datetime.date) -> str:
+    return f'destaques-semana-{pub_date.strftime("%Y-%m-%d")}'
 
 
 # ---------------------------------------------------------------------------
@@ -165,18 +168,26 @@ def build_digest_prompt(plugins: list[dict], date_range: str) -> str:
     return (
         'Você é um educador especialista em Moodle escrevendo para um blog técnico em português brasileiro. '
         f'Abaixo estão {len(plugins)} plugin(s) lançado(s) esta semana no Moodle Plugin Directory. '
-        f'Selecione os {n} mais relevantes para professores, coordenadores e administradores de Moodle — '
-        'priorizando ferramentas pedagógicas, produtividade, acessibilidade e novidades técnicas importantes. '
-        'Escreva um post de blog com o seguinte formato EXATO, sem markdown extra:\n\n'
+        f'Selecione até {n} que sejam interessantes para professores, coordenadores e administradores de Moodle '
+        '(pedagogia, produtividade, acessibilidade ou novidades técnicas relevantes). '
+        'Ignore os que sejam muito específicos de nicho, redundantes com o core do Moodle ou sem diferencial claro.\n\n'
+        'REGRAS DE LINGUAGEM — siga à risca:\n'
+        f'- TITULO: use exatamente o formato "Destaques da semana — novos plugins no Moodle ({date_range})"\n'
+        '- Nunca use superlativos ou números no título nem na introdução '
+        '(proibido: "essenciais", "melhores", "mais úteis", "7 plugins que vão...")\n'
+        '- A introdução deve ser neutra: apenas situe o leitor sobre os lançamentos da semana, sem ranking\n'
+        '- A conclusão deve ser simples e neutra, sem prometer transformação ou resultados da instituição\n'
+        '- Cada plugin: seção `## [Nome](link)` com 2-3 parágrafos sobre o que faz e para quem é útil\n\n'
+        'Escreva o post com o seguinte formato EXATO, sem markdown extra:\n\n'
         '---INICIO---\n'
         'TITULO: <título do post>\n'
-        'DESCRICAO: <uma frase resumindo o post, máximo 160 caracteres>\n'
+        'DESCRICAO: <uma frase descrevendo os plugins abordados, máximo 160 caracteres, sem superlativos>\n'
         'TAGS: <lista de tags separadas por vírgula>\n'
         'CORPO:\n'
-        '<corpo completo em Markdown: introdução de 2-3 linhas, '
-        'uma seção `## Nome do Plugin` para cada plugin selecionado com '
+        '<corpo completo em Markdown: introdução neutra de 1-2 linhas, '
+        'uma seção `## [Nome do Plugin](link)` para cada plugin selecionado com '
         '2-3 parágrafos sobre o que faz e por que é interessante, '
-        'e uma conclusão curta>\n'
+        'e uma conclusão curta e neutra>\n'
         '---FIM---\n\n'
         f'Plugins da semana de {date_range}:\n\n'
         f'{plugin_list}'
@@ -319,7 +330,8 @@ def run_preview() -> None:
 
     monday, sunday = week_range()
     date_range = format_date_range(monday, sunday)
-    slug = post_slug(sunday)
+    publish_date = sunday + datetime.timedelta(days=1)
+    slug = post_slug(publish_date)
     post_path = BLOG_DIR / f'{slug}.md'
 
     if post_path.exists():
@@ -330,7 +342,7 @@ def run_preview() -> None:
     raw = call_ai(build_digest_prompt(plugins, date_range), env)
     parsed = parse_ai_response(raw, date_range)
 
-    post_path = write_draft(slug, parsed, sunday)
+    post_path = write_draft(slug, parsed, publish_date)
     print(f'Rascunho criado: {post_path}')
 
     DRAFT_FILE.write_text(json.dumps({
