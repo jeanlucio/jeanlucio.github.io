@@ -63,11 +63,11 @@ export const capacitacoes: CapacitacaoData[] = [
     duration: '40 horas',
     targetAudience: 'Gestores de ensino, coordenadores pedagógicos e docentes.',
     topics: [
-      'Módulo 1: Introdução – Bases Legais da EaD no Brasil (8h)',
-      'Módulo 2: EaD na Educação Básica e Técnica (8h)',
-      'Módulo 3: EaD no Ensino Superior (12h)',
-      'Módulo 4: EaD na Pós-graduação (8h)',
-      'Módulo 5: Considerações finais (4h)'
+      'Introdução – Bases Legais da EaD no Brasil',
+      'EaD na Educação Básica e Técnica',
+      'EaD no Ensino Superior',
+      'EaD na Pós-graduação',
+      'Considerações finais'
     ],
     color: 'amber',
     icon: '⚖️'
