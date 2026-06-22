@@ -63,7 +63,7 @@ const TYPE_CLASS: Record<string, string> = {
             aria-selected={defaultTab === 'own' ? 'true' : 'false'}
             aria-controls="panel-own"
           >
-            Meus <span class="tab-count">{ownItems.length}</span>
+            Autorais <span class="tab-count">{ownItems.length}</span>
           </button>
           <button
             role="tab"
@@ -106,7 +106,7 @@ const TYPE_CLASS: Record<string, string> = {
       <!-- Painel: Meus -->
       <div role="tabpanel" id="panel-own" aria-labelledby="tab-own" hidden={defaultTab !== 'own'}>
         <div class="panel-section-label" aria-hidden="true">
-          Meus <span class="section-count"></span>
+          Autorais <span class="section-count"></span>
         </div>
         {ownItems.length === 0 ? (
           <div class="empty-state"><p>Nenhum item ainda. Em breve!</p></div>
