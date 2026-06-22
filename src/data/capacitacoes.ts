@@ -15,7 +15,7 @@ export const capacitacoes: CapacitacaoData[] = [
     title: 'Destravando o Moodle',
     description:
       'Curso prático para docentes e administradores dominarem os recursos essenciais do Moodle. Aprenda a configurar salas virtuais eficientes, organizar recursos pedagógicos, criar avaliações integradas e gerenciar turmas com facilidade e autonomia.',
-    duration: '20 horas',
+    duration: '40 horas',
     targetAudience: 'Docentes, tutores e profissionais da educação em geral.',
     topics: [
       'Estruturação lógica de salas de aula e boas práticas de design instrucional.',
@@ -30,7 +30,7 @@ export const capacitacoes: CapacitacaoData[] = [
     title: 'Gamificação no Moodle com PlayerHUD e IA',
     description:
       'Aprenda a transformar salas virtuais em experiências imersivas de aprendizagem. Domine a aplicação de mecânicas de jogos e configure o ecossistema PlayerHUD (XP, níveis, conquistas e ranking) com o suporte de Inteligência Artificial para planejar jornadas pedagógicas engajadoras.',
-    duration: '30 horas',
+    duration: '40 horas',
     targetAudience: 'Professores, designers instrucionais e administradores do Moodle.',
     topics: [
       'Teorias e conceitos de gamificação aplicada à educação (octalysis, tipos de jogadores).',
@@ -45,7 +45,7 @@ export const capacitacoes: CapacitacaoData[] = [
     title: 'Ferramentas de Produtividade no Moodle',
     description:
       'Otimize o tempo de gestão pedagógica e foque na mediação. Descubra como configurar checklists de qualidade de curso, badge de estatísticas locais e regras de penalidades automatizadas por atraso, integrando utilitários web para maximizar a eficiência docente.',
-    duration: '15 horas',
+    duration: '20 horas',
     targetAudience: 'Professores, coordenadores de curso e tutores virtuais.',
     topics: [
       'Configuração do Checklist do Professor para garantia de qualidade pré-lançamento.',
@@ -90,7 +90,7 @@ export const capacitacoes: CapacitacaoData[] = [
     title: 'Introdução a Educação a Distância',
     description:
       'Fundamentos conceituais, históricos e metodológicos da EaD. Conheça as principais teorias de aprendizagem em rede, entenda a transição do papel de transmissor para mediador e aprenda a estabelecer uma comunicação síncrona e assíncrona clara e afetiva.',
-    duration: '20 horas',
+    duration: '40 horas',
     targetAudience: 'Professores ingressantes na EaD, tutores iniciantes e licenciandos.',
     topics: [
       'Gênese e gerações da Educação a Distância.',

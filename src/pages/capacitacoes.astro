@@ -13,7 +13,8 @@ import { capacitacoes } from '../data/capacitacoes';
         <h1 class="page-title">Capacitações e parcerias</h1>
         <p class="page-subtitle">
           Portfólio de cursos, oficinas e palestras com foco em Moodle, metodologias ativas, IA aplicada e EaD. 
-          Disponível para convites institucionais, parcerias pedagógicas e atuações via <strong>GECC</strong>.
+          Todos os cursos são ministrados no formato <strong>100% online</strong> com <strong>carga horária flexível (síncrona e assíncrona)</strong>, 
+          disponíveis para convites institucionais, parcerias pedagógicas e atuações via <strong>GECC</strong>.
         </p>
       </header>
 
@@ -27,7 +28,10 @@ import { capacitacoes } from '../data/capacitacoes';
             </div>
             
             <div class="course-meta">
-              <span class="badge badge--primary">⏱️ {curso.duration}</span>
+              <div class="course-badges">
+                <span class="badge badge--primary">⏱️ {curso.duration}</span>
+                <span class="badge badge--purple">🌐 Online (Flexível)</span>
+              </div>
               <p class="course-audience"><strong>Público-alvo:</strong> {curso.targetAudience}</p>
             </div>
 
@@ -176,6 +180,12 @@ import { capacitacoes } from '../data/capacitacoes';
   .course-meta {
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .course-badges {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
