@@ -60,13 +60,14 @@ export const capacitacoes: CapacitacaoData[] = [
     title: 'Legislação aplicada a EaD',
     description:
       'Uma análise prática do marco regulatório da Educação a Distância no Brasil. Compreenda os decretos federais, as portarias do MEC para credenciamento, os limites de carga horária online em cursos presenciais e as regras específicas para a atuação de docentes federais.',
-    duration: '20 horas',
+    duration: '40 horas',
     targetAudience: 'Gestores de ensino, coordenadores pedagógicos e docentes.',
     topics: [
-      'Histórico e evolução das leis de EaD no Brasil (LDB, Decretos Federais).',
-      'Portarias do MEC para credenciamento de cursos e polos, e processos de avaliação.',
-      'Regime de Dedicação Exclusiva (Lei nº 12.772/2012) e a percepção de GECC (Lei nº 8.112/1990).',
-      'Direitos autorais na internet, uso de obras de terceiros e Lei Geral de Proteção de Dados (LGPD).'
+      'Módulo 1: Introdução – Bases Legais da EaD no Brasil (8h)',
+      'Módulo 2: EaD na Educação Básica e Técnica (8h)',
+      'Módulo 3: EaD no Ensino Superior (12h)',
+      'Módulo 4: EaD na Pós-graduação (8h)',
+      'Módulo 5: Considerações finais (4h)'
     ],
     color: 'amber',
     icon: '⚖️'
