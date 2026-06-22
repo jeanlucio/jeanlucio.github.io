@@ -1,0 +1,355 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { capacitacoes } from '../data/capacitacoes';
+---
+
+<BaseLayout
+  title="Capacitações e Parcerias — Jean Lúcio"
+  description="Portfólio de cursos, capacitações e palestras de autoria do Prof. Jean Lúcio. Projetos de formação continuada e parcerias via GECC."
+>
+  <section class="courses-page">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Capacitações e parcerias</h1>
+        <p class="page-subtitle">
+          Portfólio de cursos, oficinas e palestras com foco em Moodle, metodologias ativas, IA aplicada e EaD. 
+          Disponível para convites institucionais, parcerias pedagógicas e atuações via <strong>GECC</strong>.
+        </p>
+      </header>
+
+      <!-- Grade de Cursos -->
+      <div class="courses-grid">
+        {capacitacoes.map(curso => (
+          <article class={`course-card course-card--${curso.color}`}>
+            <div class="course-header">
+              <span class="course-icon" aria-hidden="true">{curso.icon}</span>
+              <h2 class="course-title">{curso.title}</h2>
+            </div>
+            
+            <div class="course-meta">
+              <span class="badge badge--primary">⏱️ {curso.duration}</span>
+              <p class="course-audience"><strong>Público-alvo:</strong> {curso.targetAudience}</p>
+            </div>
+
+            <p class="course-description">{curso.description}</p>
+
+            <div class="course-topics">
+              <h3>Tópicos principais:</h3>
+              <ul>
+                {curso.topics.map(topic => (
+                  <li>{topic}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Seção Informativa de Parcerias e GECC -->
+      <section class="partnership-info">
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true">🏫</div>
+          <div class="info-content">
+            <h2>Como funcionam as capacitações e parcerias?</h2>
+            
+            <p>
+              Sou professor sob o regime de <strong>Dedicação Exclusiva (DE)</strong> no <strong>Instituto Federal do Sertão Pernambucano</strong>. 
+              Dessa forma, minha atuação externa em outras instituições públicas ou privadas é regida estritamente pelas diretrizes da <strong>Lei nº 12.772/2012</strong>.
+            </p>
+
+            <div class="info-formats">
+              <div class="format-item">
+                <h3>💼 Gratificação por Encargo de Curso ou Concurso (GECC)</h3>
+                <p>
+                  Conforme o <strong>Art. 21, § 4º, inciso VIII</strong> da referida Lei (e do <strong>Art. 76-A da Lei nº 8.112/1990</strong>), 
+                  posso ministrar cursos e oficinas esporádicas ou atuar em bancas e concursos em outras instituições públicas sob o regime de GECC. 
+                  Todo o trâmite é realizado via e-mail oficial e respeita o limite de carga horária anual estipulado.
+                </p>
+              </div>
+
+              <div class="format-item">
+                <h3>🤝 Parcerias e Acordos de Cooperação</h3>
+                <p>
+                  As capacitações também podem ser promovidas por meio de acordos formais de cooperação técnica, projetos de extensão ou 
+                  parcerias entre o IFSertãoPE e outras instituições públicas, universidades ou fundações de apoio.
+                </p>
+              </div>
+            </div>
+
+            <div class="info-cta">
+              <p>Tem interesse em levar algum desses cursos para sua instituição ou propor uma parceria?</p>
+              <a href="mailto:jean.lucio@ifsertao-pe.edu.br" class="btn btn--primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                Entrar em contato por E-mail
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .courses-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 4rem;
+    max-width: 780px;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 5rem;
+  }
+
+  .course-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .course-card--indigo::before { background: linear-gradient(90deg, #4F46E5, #818CF8); }
+  .course-card--purple::before { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+  .course-card--emerald::before { background: linear-gradient(90deg, #10B981, #6EE7B7); }
+  .course-card--amber::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+  .course-card--teal::before { background: linear-gradient(90deg, #0D9488, #5EEAD4); }
+
+  .course-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .course-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .course-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .course-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .course-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .course-audience {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .course-description {
+    color: var(--color-text);
+    font-size: 0.925rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .course-topics {
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  .course-topics h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .course-topics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .course-topics li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .course-topics li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  /* Seção Informativa de Parcerias e GECC */
+  .partnership-info {
+    margin-top: 4rem;
+  }
+
+  .info-card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .info-icon {
+    font-size: 3rem;
+    background: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  .info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-content h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .info-content > p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-formats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .format-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .format-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .format-item p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .info-cta {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .info-cta p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .info-card {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .info-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 2.25rem;
+    }
+
+    .info-formats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .info-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>
