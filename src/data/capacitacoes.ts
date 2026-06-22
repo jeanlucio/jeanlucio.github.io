@@ -49,12 +49,27 @@ export const capacitacoes: CapacitacaoData[] = [
     targetAudience: 'Professores, coordenadores de curso e tutores virtuais.',
     topics: [
       'Configuração do Checklist do Professor para garantia de qualidade pré-lançamento.',
-      'Acompanhamento ágil com estatísticas locais de acesso a recursos (sem complicar a LGPD).',
+      'Acompanhamento ágil com estatísticas locais de acesso a recursos.',
       'Configuração e automação de penalidades por atraso no envio de tarefas.',
       'Uso de geradores de prompts (PromptKit Edu) e editores integrados para acelerar a rotina.'
     ],
     color: 'teal',
     icon: '⚡'
+  },
+  {
+    title: 'Introdução a Educação a Distância',
+    description:
+      'Fundamentos conceituais, históricos e metodológicos da EaD. Conheça as principais teorias de aprendizagem em rede, entenda a transição do papel de transmissor para mediador e aprenda a estabelecer uma comunicação síncrona e assíncrona clara e afetiva.',
+    duration: '40 horas',
+    targetAudience: 'Professores ingressantes na EaD, tutores iniciantes e licenciandos.',
+    topics: [
+      'Gênese e gerações da Educação a Distância.',
+      'Papéis e competências do docente, do tutor e do estudante na EaD.',
+      'Comunicação assíncrona (fóruns, mensagens) e síncrona: mediação pedagógica ativa.',
+      'Ambientes Virtuais de Aprendizagem (AVAs) como ecossistemas de aprendizagem.'
+    ],
+    color: 'indigo',
+    icon: '🎓'
   },
   {
     title: 'Legislação aplicada a EaD',
@@ -86,20 +101,5 @@ export const capacitacoes: CapacitacaoData[] = [
     ],
     color: 'emerald',
     icon: '🎨'
-  },
-  {
-    title: 'Introdução a Educação a Distância',
-    description:
-      'Fundamentos conceituais, históricos e metodológicos da EaD. Conheça as principais teorias de aprendizagem em rede, entenda a transição do papel de transmissor para mediador e aprenda a estabelecer uma comunicação síncrona e assíncrona clara e afetiva.',
-    duration: '40 horas',
-    targetAudience: 'Professores ingressantes na EaD, tutores iniciantes e licenciandos.',
-    topics: [
-      'Gênese e gerações da Educação a Distância.',
-      'Papéis e competências do docente, do tutor e do estudante na EaD.',
-      'Comunicação assíncrona (fóruns, mensagens) e síncrona: mediação pedagógica ativa.',
-      'Ambientes Virtuais de Aprendizagem (AVAs) como ecossistemas de aprendizagem.'
-    ],
-    color: 'indigo',
-    icon: '🎓'
   }
 ];
