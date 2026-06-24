@@ -20,7 +20,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.5.3',
+    version: '1.5.4',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
@@ -55,7 +55,7 @@ export const playerGames: PluginData[] = [
     name: 'PlayerGroup',
     description:
       'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
-    version: '1.2.3',
+    version: '1.2.4',
     tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
