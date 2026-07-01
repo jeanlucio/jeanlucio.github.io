@@ -108,6 +108,7 @@ export const teacherTools: PluginData[] = [
     name: 'Report Unlocker',
     description:
       'Relatório de curso que centraliza as restrições de acesso de todas as atividades. Permite visualizar, editar inline (data, grupo, nota, conclusão, etc.) e remover restrições em lote diretamente pelo painel.',
+    version: '1.0.4',
     tags: ['Relatório', 'Restrições', 'Acesso', 'Gestão', 'Administração'],
     githubUrl: 'https://github.com/jeanlucio/moodle-report_unlocker',
     moodleUrl: 'https://moodle.org/plugins/report_unlocker',
