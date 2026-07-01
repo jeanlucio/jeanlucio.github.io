@@ -104,6 +104,18 @@ export const teacherTools: PluginData[] = [
     color: 'amber',
     icon: '⏱️',
   },
+  {
+    name: 'Report Unlocker',
+    description:
+      'Relatório de curso que centraliza as restrições de acesso de todas as atividades. Permite visualizar, editar inline (data, grupo, nota, conclusão, etc.) e remover restrições em lote diretamente pelo painel.',
+    tags: ['Relatório', 'Restrições', 'Acesso', 'Gestão', 'Administração'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-report_unlocker',
+    moodleUrl: 'https://moodle.org/plugins/report_unlocker',
+    reviewUrl: '/blog/report-unlocker-o-que-e',
+    color: 'emerald',
+    icon: '🔓',
+    featured: true,
+  },
 ];
 
 export const webTools: PluginData[] = [

@@ -101,14 +101,23 @@ Se preferir usar o bloco apenas como lista manual, desative a **Verificação Au
 
 ## 🔗 Como instalar
 
-O Checklist do Professor está disponível gratuitamente no **Moodle Plugin Directory**:
+O Checklist do Professor está disponível em dois lugares:
+
+- **Moodle Plugin Directory** (recomendado): [moodle.org/plugins/block_teacher_checklist](https://moodle.org/plugins/block_teacher_checklist)
+- **GitHub** (código-fonte e versão mais recente): [github.com/jeanlucio/moodle-block_teacher_checklist](https://github.com/jeanlucio/moodle-block_teacher_checklist)
+
+**Instalando pelo Moodle Plugin Directory:**
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
 2. Pesquise por **"Checklist do Professor"**
 3. Instale e adicione o bloco ao curso pelo modo de edição
 
-O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-block_teacher_checklist) para acompanhar a versão mais recente.
+**Instalando pelo GitHub:**
+
+1. Baixe o `.zip` da versão mais recente
+2. Extraia o conteúdo na pasta `blocks/teacher_checklist` do seu servidor Moodle
+3. Acesse **Administração do site → Notificações** para concluir a instalação
 
 ---
 
-O Checklist do Professor é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/block_teacher_checklist).
+O Checklist do Professor é 100% Open Source e compatível com Moodle 4.5 ou superior.

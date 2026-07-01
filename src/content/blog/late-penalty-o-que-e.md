@@ -110,14 +110,23 @@ No menu do curso, acesse **Relatório da Penalidade por Atraso** para ver as pen
 
 ## 🔗 Como instalar
 
-A Penalidade por Atraso está disponível gratuitamente no **Moodle Plugin Directory**:
+A Penalidade por Atraso está disponível em dois lugares:
+
+- **Moodle Plugin Directory** (recomendado): [moodle.org/plugins/local_latepenalty](https://moodle.org/plugins/local_latepenalty)
+- **GitHub** (código-fonte e versão mais recente): [github.com/jeanlucio/moodle-local_latepenalty](https://github.com/jeanlucio/moodle-local_latepenalty)
+
+**Instalando pelo Moodle Plugin Directory:**
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
 2. Pesquise por **"Penalidade por Atraso"**
 3. Instale e configure as regras nas atividades avaliativas
 
-O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-local_latepenalty) para acompanhar a versão mais recente.
+**Instalando pelo GitHub:**
+
+1. Baixe o `.zip` da versão mais recente
+2. Extraia o conteúdo na pasta `local/latepenalty` do seu servidor Moodle
+3. Acesse **Administração do site → Notificações** para concluir a instalação
 
 ---
 
-A Penalidade por Atraso é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_latepenalty).
+A Penalidade por Atraso é 100% Open Source e compatível com Moodle 4.5 ou superior.

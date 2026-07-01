@@ -95,14 +95,23 @@ Para ver quem acessou um recurso específico, abra a atividade ou recurso e use 
 
 ## 🔗 Como instalar
 
-O plugin Estatísticas de Recursos está disponível gratuitamente no **Moodle Plugin Directory**:
+O plugin Estatísticas de Recursos está disponível em dois lugares:
+
+- **Moodle Plugin Directory** (recomendado): [moodle.org/plugins/local_resourcestats](https://moodle.org/plugins/local_resourcestats)
+- **GitHub** (código-fonte e versão mais recente): [github.com/jeanlucio/moodle-local_resourcestats](https://github.com/jeanlucio/moodle-local_resourcestats)
+
+**Instalando pelo Moodle Plugin Directory:**
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
 2. Pesquise por **"Estatísticas de Recursos"**
 3. Instale e configure o padrão de exibição em **Plugins locais → Estatísticas de Recursos**
 
-O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-local_resourcestats) para acompanhar a versão mais recente.
+**Instalando pelo GitHub:**
+
+1. Baixe o `.zip` da versão mais recente
+2. Extraia o conteúdo na pasta `local/resourcestats` do seu servidor Moodle
+3. Acesse **Administração do site → Notificações** para concluir a instalação
 
 ---
 
-O plugin Estatísticas de Recursos é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/local_resourcestats).
+O plugin Estatísticas de Recursos é 100% Open Source e compatível com Moodle 4.5 ou superior.

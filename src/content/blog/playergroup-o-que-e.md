@@ -91,14 +91,23 @@ Como o PlayerGroup cria agrupamentos nativos, os grupos formados ficam imediatam
 
 ## 🔗 Como instalar
 
-O PlayerGroup está disponível gratuitamente no **Moodle Plugin Directory**:
+O PlayerGroup está disponível em dois lugares:
+
+- **Moodle Plugin Directory** (recomendado): [moodle.org/plugins/mod_playergroup](https://moodle.org/plugins/mod_playergroup)
+- **GitHub** (código-fonte e versão mais recente): [github.com/jeanlucio/moodle-mod_playergroup](https://github.com/jeanlucio/moodle-mod_playergroup)
+
+**Instalando pelo Moodle Plugin Directory:**
 
 1. Acesse **Administração do site → Plugins → Instalar plugins**
 2. Pesquise por **"PlayerGroup"**
 3. Instale e adicione a atividade ao curso desejado
 
-O código-fonte também está disponível no [GitHub](https://github.com/jeanlucio/moodle-mod_playergroup) para acompanhar a versão mais recente.
+**Instalando pelo GitHub:**
+
+1. Baixe o `.zip` da versão mais recente
+2. Extraia o conteúdo na pasta `mod/playergroup` do seu servidor Moodle
+3. Acesse **Administração do site → Notificações** para concluir a instalação
 
 ---
 
-O PlayerGroup é 100% Open Source, compatível com Moodle 4.5 ou superior, e está disponível no [Diretório Oficial de Plugins do Moodle](https://moodle.org/plugins/mod_playergroup).
+O PlayerGroup é 100% Open Source e compatível com Moodle 4.5 ou superior.
