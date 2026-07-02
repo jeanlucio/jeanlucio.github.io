@@ -4,7 +4,6 @@ import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Map each plugin name (as it appears in plugins.ts) to its GitHub repo.
 const PLUGINS = [
   { name: 'PlayerHUD',              repo: 'jeanlucio/moodle-block_playerhud' },
   { name: 'PlayerHUD Filter',       repo: 'jeanlucio/moodle-filter_playerhud' },
@@ -22,8 +21,6 @@ async function fetchLatestVersion(repo) {
     headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
 
-  // Use the tags API (first result = most recent tag).
-  // Repos use annotated tags, not GitHub Releases.
   const res = await fetch(
     `https://api.github.com/repos/${repo}/tags?per_page=1`,
     { headers },
@@ -36,17 +33,24 @@ async function fetchLatestVersion(repo) {
 
   const data = await res.json();
   const tag = data[0]?.name ?? '';
+  const commitUrl = data[0]?.commit?.url;
+  
+  let date = null;
+  if (commitUrl) {
+    const commitRes = await fetch(commitUrl, { headers });
+    const commitData = await commitRes.json();
+    date = commitData.commit?.committer?.date;
+  }
 
-  // Extract semver digits from any tag format (v1.5.0, 1.5.0, release-1.5.0 etc.)
   const match = tag.match(/(\d+\.\d+\.\d+)/);
-  return match ? match[1] : null;
+  const version = match ? match[1] : null;
+  return { version, date };
 }
 
-function updateVersion(content, pluginName, version) {
+function updateVersion(content, pluginName, info) {
+  const { version, date } = info;
   const escaped = pluginName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-  // Match the version field inside the block that starts with this name.
-  // The [\s\S]*? non-greedy match stops at the first version: encountered.
   const regex = new RegExp(
     `(name: '${escaped}',[\\s\\S]*?version: ')[^']*(')`
   );
@@ -56,7 +60,21 @@ function updateVersion(content, pluginName, version) {
     return content;
   }
 
-  return content.replace(regex, `$1${version}$2`);
+  let newContent = content.replace(regex, `$1${version}$2`);
+  
+  if (date) {
+    const dateRegex = new RegExp(`(name: '${escaped}',[\\s\\S]*?)updatedDate: '[^']*'`);
+    if (dateRegex.test(newContent)) {
+      newContent = newContent.replace(new RegExp(`(name: '${escaped}',[\\s\\S]*?updatedDate: ')[^']*(')`), `$1${date}$2`);
+    } else {
+      newContent = newContent.replace(
+        new RegExp(`(name: '${escaped}',[\\s\\S]*?version: '[^']*',)`),
+        `$1\n    updatedDate: '${date}',`
+      );
+    }
+  }
+
+  return newContent;
 }
 
 const filePath = join(__dirname, '../src/data/plugins.ts');
@@ -65,19 +83,19 @@ const original = content;
 
 for (const plugin of PLUGINS) {
   process.stdout.write(`Checking ${plugin.name}... `);
-  const version = await fetchLatestVersion(plugin.repo);
+  const info = await fetchLatestVersion(plugin.repo);
 
-  if (!version) {
+  if (!info || !info.version) {
     console.log('skipped (no release found)');
     continue;
   }
 
-  const next = updateVersion(content, plugin.name, version);
+  const next = updateVersion(content, plugin.name, info);
   if (next !== content) {
-    console.log(`updated to ${version}`);
+    console.log(`updated to ${info.version} (${info.date})`);
     content = next;
   } else {
-    console.log(`already at ${version}`);
+    console.log(`already up to date`);
   }
 }
 
