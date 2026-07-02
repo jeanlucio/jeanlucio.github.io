@@ -10,7 +10,7 @@ tags: [playerhud, moodle, gamificação, conquistas, plugin, destaque]
 
 O que torna esse marco ainda mais especial é o tempo de vida do projeto. Enquanto os dados de download oficiais do Moodle.org refletem o acumulado dos últimos **12 meses** para a grande maioria dos plugins da lista, o PlayerHUD alcançou essa posição expressiva com **apenas 4 meses** de existência.
 
-<figure class="prose-float">
+<figure class="prose-full">
   <img src="/images/playerhud-downloads-chart.png" alt="Gráfico de barras destacando o PlayerHUD entre os blocos mais baixados do Moodle, com 1893 downloads em apenas 4 meses" loading="lazy" />
   <figcaption>O PlayerHUD já acumula 1.893 downloads em apenas 4 meses, colocando-o entre os blocos mais populares do Moodle.</figcaption>
 </figure>
