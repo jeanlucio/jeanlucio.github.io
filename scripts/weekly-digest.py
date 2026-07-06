@@ -91,7 +91,7 @@ def call_openai_compat(prompt: str, key: str, api_url: str, model: str) -> str:
     body = {
         'model': model,
         'messages': [{'role': 'user', 'content': prompt}],
-        'max_tokens': 2000,
+        'max_tokens': 6000,
     }
     result = http_post(api_url, {'Authorization': f'Bearer {key}'}, body)
     return result['choices'][0]['message']['content'].strip()
