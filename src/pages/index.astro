@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
 import PostCard from '../components/PostCard.astro';
-import { featuredPlugins } from '../data/plugins';
+import { featuredPlugins, playerGames, teacherTools, webTools } from '../data/plugins';
+
+const totalMoodlePlugins = playerGames.length + teacherTools.length;
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
@@ -17,7 +19,7 @@ const recentPosts = allPosts
     <div class="container hero-inner">
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="badge badge--primary">✨ 6 plugins publicados no Moodle.org</span>
+          <span class="badge badge--primary">✨ {totalMoodlePlugins} plugins publicados no Moodle.org</span>
         </div>
         <h1 class="hero-title">
           Tecnologia a serviço<br />
@@ -39,8 +41,12 @@ const recentPosts = allPosts
 
       <div class="hero-stats" aria-label="Estatísticas">
         <div class="stat">
-          <span class="stat-number">6</span>
-          <span class="stat-label">Plugins publicados</span>
+          <span class="stat-number">{totalMoodlePlugins}</span>
+          <span class="stat-label">Plugins Moodle</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{webTools.length}</span>
+          <span class="stat-label">Aplicações Web</span>
         </div>
         <div class="stat">
           <span class="stat-number">GPL</span>
