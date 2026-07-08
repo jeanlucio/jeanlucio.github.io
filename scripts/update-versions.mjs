@@ -13,6 +13,7 @@ const PLUGINS = [
   { name: 'Estatísticas de Recursos', repo: 'jeanlucio/moodle-local_resourcestats' },
   { name: 'Penalidade por Atraso',  repo: 'jeanlucio/moodle-local_latepenalty' },
   { name: 'Report Unlocker',        repo: 'jeanlucio/moodle-report_unlocker' },
+  { name: 'Lab Virtual',            repo: 'jeanlucio/moodle-local_virtuallab' },
 ];
 
 async function fetchLatestVersion(repo) {
