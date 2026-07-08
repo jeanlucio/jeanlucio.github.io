@@ -20,8 +20,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.6.2',
-    updatedDate: '2026-06-30T00:21:33Z',
+    version: '1.7.1',
+    updatedDate: '2026-07-07T17:40:57Z',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
