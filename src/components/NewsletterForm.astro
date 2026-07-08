@@ -37,10 +37,8 @@ const BUTTONDOWN_USERNAME = 'jeanlucio';
     action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
     method="post"
     target="popupwindow"
-    onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
     class="newsletter-form"
     id="newsletter-subscribe-form"
-    novalidate
   >
     <input type="hidden" name="embed" value="1" />
 
@@ -285,3 +283,31 @@ const BUTTONDOWN_USERNAME = 'jeanlucio';
     }
   }
 </style>
+
+<script>
+  const form = document.getElementById('newsletter-subscribe-form') as HTMLFormElement | null;
+  const checkbox = document.getElementById('newsletter-consent-checkbox') as HTMLInputElement | null;
+  const BUTTONDOWN_URL = 'https://buttondown.com/jeanlucio';
+
+  // Mensagem de erro customizada para o checkbox
+  if (checkbox) {
+    checkbox.addEventListener('invalid', () => {
+      checkbox.setCustomValidity('Por favor, marque esta caixa para confirmar o consentimento.');
+    });
+    checkbox.addEventListener('change', () => {
+      checkbox.setCustomValidity('');
+    });
+  }
+
+  // Abre popup do Buttondown apenas se o formulário for válido
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      if (!form.checkValidity()) {
+        // Deixa o navegador exibir os erros nativos
+        return;
+      }
+      // Formulário válido: abre popup e envia
+      window.open(BUTTONDOWN_URL, 'popupwindow', 'width=600,height=700');
+    });
+  }
+</script>
