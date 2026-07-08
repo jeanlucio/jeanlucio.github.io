@@ -1,0 +1,39 @@
+name: Newsletter Semanal
+
+on:
+  schedule:
+    # Toda segunda-feira às 08:00 BRT (11:00 UTC)
+    - cron: '0 11 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (não envia o email, só mostra o que seria enviado)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  send-newsletter:
+    name: Verificar RSS e enviar newsletter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependência xml2js
+        run: npm install xml2js
+
+      - name: Executar script de newsletter
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: node .github/scripts/send-newsletter.mjs

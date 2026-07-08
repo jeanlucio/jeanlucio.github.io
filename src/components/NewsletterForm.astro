@@ -1,0 +1,287 @@
+---
+/**
+ * NewsletterForm.astro
+ * Formulário de assinatura da newsletter via Buttondown.
+ * Substitua BUTTONDOWN_USERNAME pelo seu username real do Buttondown.
+ */
+
+interface Props {
+  variant?: 'default' | 'compact';
+}
+
+const { variant = 'default' } = Astro.props;
+
+// Username do Buttondown
+const BUTTONDOWN_USERNAME = 'jeanlucio';
+---
+
+<div class={`newsletter-form-wrapper newsletter-form-wrapper--${variant}`}>
+  {variant === 'default' && (
+    <div class="newsletter-header">
+      <div class="newsletter-icon" aria-hidden="true">📬</div>
+      <div>
+        <h3 class="newsletter-title">Destaques Semanais</h3>
+        <p class="newsletter-subtitle">
+          Receba as publicações da semana diretamente no seu e-mail. Sem spam, sem enrolação —
+          só o conteúdo que publico aqui no blog.
+        </p>
+      </div>
+    </div>
+  )}
+
+  {variant === 'compact' && (
+    <p class="newsletter-compact-label">📬 <strong>Newsletter semanal</strong> — assine e receba os posts por e-mail.</p>
+  )}
+
+  <form
+    action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
+    method="post"
+    target="popupwindow"
+    onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
+    class="newsletter-form"
+    id="newsletter-subscribe-form"
+    novalidate
+  >
+    <input type="hidden" name="embed" value="1" />
+
+    <div class="newsletter-fields">
+      <label for="newsletter-email" class="sr-only">Seu endereço de e-mail</label>
+      <input
+        id="newsletter-email"
+        type="email"
+        name="email"
+        placeholder="seu@email.com"
+        required
+        autocomplete="email"
+        class="newsletter-input"
+        aria-label="Seu endereço de e-mail"
+      />
+      <button type="submit" class="newsletter-btn" id="newsletter-submit-btn">
+        Assinar gratuitamente
+      </button>
+    </div>
+
+    <div class="newsletter-consent">
+      <label class="consent-label">
+        <input
+          type="checkbox"
+          name="consent"
+          id="newsletter-consent-checkbox"
+          required
+          class="consent-checkbox"
+        />
+        <span>
+          Concordo em receber e-mails com as publicações do blog, conforme a
+          <a href="/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
+          Posso cancelar a qualquer momento.
+        </span>
+      </label>
+    </div>
+
+    <p class="newsletter-note">
+      Gratuito · Sem spam · Cancele quando quiser
+    </p>
+  </form>
+
+  <div class="newsletter-rss-tip">
+    <span class="rss-icon" aria-hidden="true">📡</span>
+    <span>
+      Prefere RSS?
+      <a href="/rss.xml" title="Feed RSS do blog">Assine o feed</a>
+      e acompanhe no leitor de sua preferência (ex: Feedly).
+    </span>
+  </div>
+</div>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Wrapper ── */
+  .newsletter-form-wrapper {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .newsletter-form-wrapper--compact {
+    padding: 1.5rem;
+  }
+
+  /* ── Header ── */
+  .newsletter-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .newsletter-icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .newsletter-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+    color: var(--color-text);
+  }
+
+  .newsletter-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Compact variant ── */
+  .newsletter-compact-label {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Form fields ── */
+  .newsletter-fields {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-border, rgba(99, 102, 241, 0.3));
+    border-radius: var(--radius-md, 8px);
+    background: var(--color-bg, #fff);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .newsletter-input:focus {
+    border-color: var(--color-primary, #6366f1);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+  }
+
+  .newsletter-btn {
+    padding: 0.7rem 1.4rem;
+    background: linear-gradient(135deg, var(--color-primary, #6366f1), var(--color-purple, #8b5cf6));
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md, 8px);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+
+  .newsletter-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .newsletter-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ── Consent ── */
+  .newsletter-consent {
+    margin-bottom: 0.75rem;
+  }
+
+  .consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .consent-checkbox {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    accent-color: var(--color-primary, #6366f1);
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+  }
+
+  .consent-label a {
+    color: var(--color-primary, #6366f1);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ── Note ── */
+  .newsletter-note {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+    margin: 0 0 1.25rem;
+  }
+
+  /* ── RSS Tip ── */
+  .newsletter-rss-tip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(99, 102, 241, 0.15);
+    font-size: 0.83rem;
+    color: var(--color-text-muted);
+  }
+
+  .rss-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .newsletter-rss-tip a {
+    color: var(--color-primary, #6366f1);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 560px) {
+    .newsletter-fields {
+      flex-direction: column;
+    }
+
+    .newsletter-btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .newsletter-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 ---
 
 <BaseLayout
@@ -50,6 +51,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             ou por e-mail em <a href="mailto:jeanlucio@gmail.com">jeanlucio@gmail.com</a>.
           </p>
         </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="about-section">
+        <h2 class="section-heading">📬 Newsletter Semanal</h2>
+        <p class="section-description">
+          Assine e receba os destaques da semana diretamente no seu e-mail.
+          Publico sobre Moodle, gamificação, IA na educação e plugins open source.
+        </p>
+        <NewsletterForm variant="default" />
       </div>
     </div>
   </section>
@@ -102,5 +113,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text-muted);
     font-size: 0.9rem;
     margin: 0;
+  }
+
+  .about-section {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border, rgba(0,0,0,0.08));
+  }
+
+  .section-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-description {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
   }
 </style>

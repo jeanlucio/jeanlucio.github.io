@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lastUpdate = '08 de julho de 2025';
+---
+
+<BaseLayout
+  title="Política de Privacidade — Jean Lúcio"
+  description="Política de privacidade do blog do Prof. Jean Lúcio. Saiba como seus dados são tratados conforme a LGPD."
+>
+  <section class="privacy-page">
+    <div class="container--narrow">
+      <header class="page-header">
+        <h1 class="page-title">Política de Privacidade</h1>
+        <p class="last-update">Última atualização: {lastUpdate}</p>
+      </header>
+
+      <div class="prose">
+
+        <h2>1. Quem é o responsável pelos dados</h2>
+        <p>
+          Este blog é mantido por <strong>Jean Lúcio</strong>, professor no Instituto Federal do Sertão
+          Pernambucano. Para dúvidas relacionadas à privacidade, entre em contato pelo e-mail
+          <a href="mailto:jeanlucio@gmail.com">jeanlucio@gmail.com</a>.
+        </p>
+
+        <h2>2. Quais dados coletamos</h2>
+        <p>
+          Este site coleta <strong>apenas o endereço de e-mail</strong> dos visitantes que optam
+          voluntariamente por assinar a newsletter <em>"Destaques Semanais — Blog do Prof. Jean Lúcio"</em>.
+        </p>
+        <p>
+          Nenhum outro dado pessoal é solicitado ou armazenado por este blog. Não utilizamos
+          cookies de rastreamento nem ferramentas de publicidade.
+        </p>
+        <p>
+          Para fins de análise de acesso, utilizamos o <strong>GoatCounter</strong> — uma ferramenta
+          de analytics que <em>não coleta dados pessoais</em> e não utiliza cookies.
+        </p>
+
+        <h2>3. Para que usamos seu e-mail</h2>
+        <p>Seu e-mail é usado exclusivamente para:</p>
+        <ul>
+          <li>Enviar o digest semanal com as novas publicações do blog</li>
+          <li>Comunicações eventuais relacionadas ao conteúdo do blog</li>
+        </ul>
+        <p>
+          Seu e-mail <strong>nunca será vendido, compartilhado ou usado para fins comerciais</strong>.
+        </p>
+
+        <h2>4. Quem processa os dados (operador)</h2>
+        <p>
+          O armazenamento e envio de e-mails é feito pela plataforma <strong>Buttondown</strong>
+          (<a href="https://buttondown.com" target="_blank" rel="noopener noreferrer">buttondown.com</a>),
+          que atua como operador dos dados conforme a LGPD.
+        </p>
+        <p>
+          A Buttondown adota práticas de segurança adequadas e permite a exportação e exclusão de
+          dados a qualquer momento. Consulte a
+          <a href="https://buttondown.com/privacy" target="_blank" rel="noopener noreferrer">
+            política de privacidade da Buttondown
+          </a>
+          para mais detalhes.
+        </p>
+
+        <h2>5. Base legal para o tratamento</h2>
+        <p>
+          O tratamento dos seus dados é baseado no seu <strong>consentimento explícito</strong>,
+          fornecido ao marcar a caixa de confirmação no formulário de assinatura, conforme exigido
+          pela Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).
+        </p>
+
+        <h2>6. Seus direitos</h2>
+        <p>Você tem direito a, a qualquer momento:</p>
+        <ul>
+          <li><strong>Cancelar a assinatura</strong> — clicando no link "Cancelar inscrição" presente em todo e-mail enviado</li>
+          <li><strong>Solicitar exclusão dos seus dados</strong> — enviando e-mail para <a href="mailto:jeanlucio@gmail.com">jeanlucio@gmail.com</a></li>
+          <li><strong>Confirmar a existência do tratamento</strong> — entrando em contato pelo e-mail acima</li>
+        </ul>
+        <p>
+          Após o cancelamento ou solicitação de exclusão, seu e-mail é removido da base em até
+          <strong>30 dias</strong>.
+        </p>
+
+        <h2>7. Alterações nesta política</h2>
+        <p>
+          Esta política pode ser atualizada eventualmente. Em caso de mudanças relevantes, uma
+          notificação será enviada aos assinantes por e-mail. A data da última atualização está
+          sempre indicada no topo desta página.
+        </p>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .privacy-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .last-update {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .prose h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .prose p,
+  .prose ul {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .prose ul {
+    padding-left: 1.5rem;
+  }
+
+  .prose ul li {
+    margin-bottom: 0.4rem;
+  }
+
+  .prose a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose strong {
+    color: var(--color-text);
+  }
+</style>

@@ -1,5 +1,7 @@
 ---
 const year = new Date().getFullYear();
+// Username do Buttondown
+const BUTTONDOWN_USERNAME = 'jeanlucio';
 ---
 
 <footer class="site-footer">
@@ -56,6 +58,32 @@ const year = new Date().getFullYear();
           </li>
         </ul>
       </div>
+
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <ul role="list">
+          <li>
+            <a href={`https://buttondown.com/${BUTTONDOWN_USERNAME}`} target="_blank" rel="noopener noreferrer">
+              📬 Assinar por e-mail
+            </a>
+          </li>
+          <li>
+            <a href="/sobre#newsletter-subscribe-form">
+              Formulário de assinatura
+            </a>
+          </li>
+          <li>
+            <a href="/rss.xml" title="Feed RSS do blog">
+              📡 Feed RSS
+            </a>
+          </li>
+          <li>
+            <a href="/privacidade">
+              Privacidade
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
 
@@ -99,7 +127,7 @@ const year = new Date().getFullYear();
 
   .footer-nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
 
@@ -150,14 +178,16 @@ const year = new Date().getFullYear();
     color: #fff;
   }
 
+  @media (max-width: 900px) {
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .footer-inner {
       grid-template-columns: 1fr;
       gap: 2rem;
-    }
-
-    .footer-nav {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 
