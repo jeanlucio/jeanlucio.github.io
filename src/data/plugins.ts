@@ -125,9 +125,12 @@ export const teacherTools: PluginData[] = [
     name: 'Lab Virtual',
     description:
       'Plugin local para criação e manutenção em lote de cursos-laboratório (sandboxes isolados), organizados por turmas, com painel self-service para estudantes escolherem e acessarem seus ambientes sem intervenção do administrador.',
-    updatedDate: '2026-07-07T12:00:00Z',
+    version: '1.0.2',
+    updatedDate: '2026-07-08T02:01:06Z',
     tags: ['Local', 'Laboratório', 'Gestão', 'Sandboxes', 'Self-service'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_virtuallab',
+    moodleUrl: 'https://moodle.org/plugins/local_virtuallab',
+    reviewUrl: '/blog/virtuallab-o-que-e',
     color: 'teal',
     icon: '🖥️',
   },
