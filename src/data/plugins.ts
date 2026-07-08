@@ -129,7 +129,7 @@ export const teacherTools: PluginData[] = [
     tags: ['Local', 'Laboratório', 'Gestão', 'Sandboxes', 'Self-service'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_virtuallab',
     color: 'teal',
-    icon: '🧪',
+    icon: '🖥️',
   },
 ];
 
