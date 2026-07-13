@@ -43,6 +43,30 @@ O AI Hub abre portas para um ecossistema mais rico de IA no Moodle sem dores de 
 - **Redução de Custos:** Permitir que professores ou departamentos insiram suas próprias chaves (BYOK) para os modelos que desejam usar, aliviando o custo global da plataforma.
 - **Auditoria Transparente:** O log centralizado garante que as instituições saibam exatamente quais componentes estão utilizando IA e com qual frequência.
 
+## 📋 Como utilizar o AI Hub (passo a passo)
+
+**1️⃣ Configurar chaves globais (Administrador)**
+
+Navegue até **Administração do site → Plugins → Plugins locais → AI Hub**. Insira as chaves de API nos campos correspondentes (Google Gemini, Groq ou endpoint OpenAI compatível). Salve as mudanças para que todos os plugins do site possam utilizá-las.
+
+**2️⃣ Configurar chaves pessoais (Usuário)**
+
+Se o administrador habilitou o uso de chaves pessoais e concedeu a permissão necessária, o usuário pode ir ao seu menu de perfil e clicar em **Preferências → Minhas chaves de IA**. Lá, ele pode salvar suas próprias chaves para uso pessoal nos plugins compatíveis.
+
+**3️⃣ Monitorar o uso (Administrador)**
+
+Na tela de configuração do plugin, você encontrará um relatório de uso consolidado. Você verá uma tabela com o histórico de requisições recentes informando o usuário, qual componente acionou a geração, provedor, modelo e a camada de chave utilizada (Site ou Pessoal).
+
+**4️⃣ Integrar em um novo plugin (Desenvolvedor)**
+
+Se você desenvolve plugins, pode verificar a existência do AI Hub via `class_exists` e solicitar a geração de texto com `\local_aihub\ai::generate_text()`, sem se preocupar em armazenar chaves ou construir clientes HTTP.
+
+## 🎯 Público-alvo
+
+- Administradores Moodle que buscam centralizar e auditar o uso de IA na plataforma com relatórios unificados.
+- Desenvolvedores que precisam de uma API pronta e segura (SSRF guard) para criar ferramentas de IA.
+- Instituições que adotam a modalidade BYOK para democratizar ou distribuir os custos de uso de IA entre os departamentos.
+
 ## 🔗 Como instalar
 
 O AI Hub está disponível nos repositórios oficiais:
