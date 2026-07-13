@@ -14,6 +14,7 @@ const PLUGINS = [
   { name: 'Penalidade por Atraso',  repo: 'jeanlucio/moodle-local_latepenalty' },
   { name: 'Report Unlocker',        repo: 'jeanlucio/moodle-report_unlocker' },
   { name: 'Lab Virtual',            repo: 'jeanlucio/moodle-local_virtuallab' },
+  { name: 'AI Hub',                 repo: 'jeanlucio/moodle-local_aihub' },
 ];
 
 async function fetchLatestVersion(repo) {

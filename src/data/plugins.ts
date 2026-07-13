@@ -138,7 +138,8 @@ export const teacherTools: PluginData[] = [
     name: 'AI Hub',
     description:
       'Plugin local (BYOK broker) que centraliza chaves de API de IA (Gemini, Groq, OpenAI). Permite que a instituição configure chaves globais ou usuários tragam as suas, facilitando a geração de texto por outros plugins com proteção SSRF e relatórios de uso.',
-    updatedDate: '2026-06-29T19:41:32Z',
+    version: '1.0.0',
+    updatedDate: '2026-06-29T19:25:12Z',
     tags: ['Local', 'IA', 'BYOK', 'API', 'Gestão'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_aihub',
     moodleUrl: 'https://moodle.org/plugins/local_aihub',
