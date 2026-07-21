@@ -23,7 +23,7 @@ const enOverrides: Record<string, { description: string; tags: string[] }> = {
   },
 };
 
-const plugins = playerGames.map(p => ({
+const plugins = playerGames.map(({ reviewUrl: _r, ...p }) => ({
   ...p,
   ...(enOverrides[p.name] ?? {}),
 }));
