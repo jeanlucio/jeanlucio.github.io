@@ -27,6 +27,73 @@ const plugins = playerGames.map(p => ({
   ...p,
   ...(enOverrides[p.name] ?? {}),
 }));
+
+// Plugins in development or review — no Moodle URL yet, version omitted
+const inDev = [
+  {
+    name: 'PlayerGames',
+    description: 'The central hub of the ecosystem. Manages cartridges, quizzes, leaderboards and a full suite of gamified mini-games — providing a unified engine that all Player* activities connect to.',
+    status: 'In development · 75%',
+    tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_playergames',
+    color: 'indigo' as const,
+    icon: '🎮',
+  },
+  {
+    name: 'PlayerCross',
+    description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
+    status: 'In development · 80%',
+    tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playercross',
+    color: 'purple' as const,
+    icon: '🔤',
+  },
+  {
+    name: 'PlayerLand',
+    description: 'A 2-D side-scroller game (Phaser) where students run through a course-themed level and answer formative questions embedded as in-world blocks.',
+    status: 'In development · 65%',
+    tags: ['Activity', 'Game', 'Phaser', 'Formative'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerland',
+    color: 'purple' as const,
+    icon: '🏃',
+  },
+  {
+    name: 'PlayerPuzzle',
+    description: 'A Match-3 puzzle activity where correct answers clear tiles. Progress, scoring and debrief integrate with the gradebook and the PlayerHUD XP system.',
+    status: 'In development · 28%',
+    tags: ['Activity', 'Match-3', 'Game', 'AI'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerpuzzle',
+    color: 'indigo' as const,
+    icon: '🧩',
+  },
+  {
+    name: 'PlayerRaid',
+    description: 'A cooperative raid activity where student teams tackle challenge waves together. XP rewards and team rankings feed directly into PlayerHUD.',
+    status: 'In development · 20%',
+    tags: ['Activity', 'Cooperative', 'Teams', 'Gamification'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerraid',
+    color: 'purple' as const,
+    icon: '⚔️',
+  },
+  {
+    name: 'PlayerWords',
+    description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
+    status: 'In review',
+    tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
+    color: 'indigo' as const,
+    icon: '🔠',
+  },
+  {
+    name: 'PlayerGames Widget',
+    description: 'A lightweight block that mirrors the PlayerHUD profile panel on the dashboard and homepage — showing XP, level and missions without requiring a full block re-render.',
+    status: 'In review',
+    tags: ['Block', 'Dashboard', 'Gamification'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-block_playergames',
+    color: 'indigo' as const,
+    icon: '📊',
+  },
+];
 ---
 
 <BaseLayout
@@ -56,7 +123,7 @@ const plugins = playerGames.map(p => ({
 
       <!-- Published Plugins -->
       <div class="pg-section-label">
-        <span class="pg-section-tag">Published plugins</span>
+        <span class="pg-section-tag">✅ Published plugins</span>
       </div>
 
       <div class="pg-grid">
@@ -65,18 +132,18 @@ const plugins = playerGames.map(p => ({
         ))}
       </div>
 
-      <!-- Coming Soon -->
-      <div class="pg-coming-soon">
-        <div class="pg-coming-soon-inner">
-          <span class="pg-coming-soon-icon">🚀</span>
-          <div>
-            <h2 class="pg-coming-soon-title">More plugins coming soon</h2>
-            <p class="pg-coming-soon-text">
-              The PlayerGames ecosystem is actively growing. New plugins focused on gamification
-              and engagement are currently in development.
-            </p>
+      <!-- In Development & Review -->
+      <div class="pg-section-label pg-section-label--dev">
+        <span class="pg-section-tag pg-section-tag--dev">🚧 In development &amp; review</span>
+      </div>
+
+      <div class="pg-grid">
+        {inDev.map(plugin => (
+          <div class="pg-dev-card-wrapper">
+            <span class="pg-dev-status">{plugin.status}</span>
+            <PluginCard {...plugin} />
           </div>
-        </div>
+        ))}
       </div>
 
       <!-- Suggestions -->
@@ -179,38 +246,38 @@ const plugins = playerGames.map(p => ({
     margin-bottom: 4rem;
   }
 
-  /* Coming soon */
-  .pg-coming-soon {
-    border: 1px dashed var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem 2.25rem;
-    margin-bottom: 4rem;
-    background: var(--color-bg-alt);
+  /* In development & review section */
+  .pg-section-label--dev {
+    margin-top: 0;
   }
 
-  .pg-coming-soon-inner {
+  .pg-section-tag--dev {
+    color: #B45309;
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  /* Dev card wrapper — positions the status badge on top of the PluginCard */
+  .pg-dev-card-wrapper {
+    position: relative;
     display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
+    flex-direction: column;
   }
 
-  .pg-coming-soon-icon {
-    font-size: 2rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .pg-coming-soon-title {
-    font-size: 1.15rem;
+  .pg-dev-status {
+    display: inline-block;
+    align-self: flex-end;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    margin: 0 0 0.4rem;
-  }
-
-  .pg-coming-soon-text {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.12);
+    color: #B45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    white-space: nowrap;
   }
 
   /* Suggestions */
