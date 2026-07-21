@@ -118,7 +118,10 @@ const inDev = [
       <!-- Hero -->
       <header class="pg-hero">
         <div class="pg-hero-badge">🕹️ Open Source · GPL v3+</div>
-        <h1 class="pg-hero-title">PlayerGames</h1>
+        <h1 class="pg-hero-title">
+          <span class="pg-hero-ecosystem">Ecosystem</span>
+          PlayerGames
+        </h1>
 
         <!-- Language switcher -->
         <div class="pg-lang-switcher">
@@ -218,6 +221,17 @@ const inDev = [
     font-weight: 800;
     margin: 0;
     line-height: 1.1;
+  }
+
+  .pg-hero-ecosystem {
+    display: block;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary, #4F46E5);
+    opacity: 0.75;
+    margin-bottom: 0.2rem;
   }
 
   .pg-hero-subtitle {
