@@ -1,7 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PluginCard from '../../components/PluginCard.astro';
-import { playerGames } from '../../data/plugins';
+import { playerGames, ecosystemLastUpdated } from '../../data/plugins';
+
+// Compute ecosystem last-updated date
+const _rawTs = ecosystemLastUpdated
+  ? new Date(ecosystemLastUpdated).getTime()
+  : Math.max(...playerGames.filter(p => p.updatedDate).map(p => new Date(p.updatedDate!).getTime()));
+const _rawDate = new Date(_rawTs);
+const lastUpdatedEN = `Last updated: ${_rawDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+const lastUpdatedPT = `Última atualização: ${_rawDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+
 
 // English descriptions and tags — version/updatedDate come from plugins.ts (kept in sync by update-versions.mjs)
 const enOverrides: Record<string, { description: string; tags: string[]; docsUrl?: string }> = {
@@ -127,6 +136,10 @@ const inDev = [
           rel="noopener noreferrer"
           data-i18n="viewGithub"
         ></a>
+        <p class="pg-last-updated"
+          data-updated-en={lastUpdatedEN}
+          data-updated-pt={lastUpdatedPT}
+        >{lastUpdatedEN}</p>
       </header>
 
       <!-- Published Plugins -->
@@ -220,6 +233,13 @@ const inDev = [
     line-height: 1.75;
     margin: 0;
     font-style: italic;
+  }
+
+  .pg-last-updated {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    opacity: 0.7;
   }
 
   /* Language switcher */
@@ -522,6 +542,14 @@ const inDev = [
     document.querySelectorAll('.pg-lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
+
+    // Last-updated date
+    const updEl = document.querySelector('.pg-last-updated');
+    if (updEl) {
+      updEl.textContent = lang === 'pt'
+        ? updEl.getAttribute('data-updated-pt')
+        : updEl.getAttribute('data-updated-en');
+    }
 
     localStorage.setItem('pg-lang', lang);
   }

@@ -171,3 +171,8 @@ export const featuredPlugins: PluginData[] = [
   const dateB = b.updatedDate ? new Date(b.updatedDate).getTime() : 0;
   return dateB - dateA;
 }).slice(0, 3);
+
+// Optional manual override for the PlayerGames ecosystem page.
+// Set to an ISO date string (e.g. '2026-07-21T00:00:00Z') to pin the date manually.
+// Set to null to auto-derive from the most recent updatedDate across playerGames plugins.
+export const ecosystemLastUpdated: string | null = null;
