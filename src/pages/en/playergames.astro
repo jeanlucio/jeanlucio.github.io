@@ -4,10 +4,11 @@ import PluginCard from '../../components/PluginCard.astro';
 import { playerGames } from '../../data/plugins';
 
 // English descriptions and tags — version/updatedDate come from plugins.ts (kept in sync by update-versions.mjs)
-const enOverrides: Record<string, { description: string; tags: string[] }> = {
+const enOverrides: Record<string, { description: string; tags: string[]; docsUrl?: string }> = {
   'PlayerHUD': {
     description: 'The core gamification block for Moodle. Brings XP, customizable levels, achievements, ranking, missions, activity history, and an integrated AI assistant to your courses. Teachers define the rules — students choose to engage.',
     tags: ['Block', 'Gamification', 'XP', 'Achievements', 'AI', 'Ranking'],
+    docsUrl: 'https://jeanlucio.github.io/moodle-block_playerhud/',
   },
   'PlayerHUD Filter': {
     description: 'A companion text filter that lets you embed live PlayerHUD data — current level, XP, and progress — directly inside Moodle activity content using simple shortcodes. No need to leave the page.',
@@ -36,6 +37,7 @@ const inDev = [
     status: 'In development · 75%',
     tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_playergames',
+    docsUrl: 'https://jeanlucio.github.io/moodle-local_playergames/',
     color: 'indigo' as const,
     icon: '🎮',
   },
@@ -81,6 +83,7 @@ const inDev = [
     status: 'In review',
     tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
+    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerwords/',
     color: 'indigo' as const,
     icon: '🔠',
   },
