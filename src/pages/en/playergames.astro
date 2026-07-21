@@ -110,46 +110,47 @@ const inDev = [
       <header class="pg-hero">
         <div class="pg-hero-badge">🕹️ Open Source · GPL v3+</div>
         <h1 class="pg-hero-title">PlayerGames</h1>
-        <p class="pg-hero-origin">
-          I have always been passionate about games — and for years I have been exploring ways to bring
-          them into education through Moodle. After working extensively with gamification and
-          game-based learning, I decided to build a true ecosystem inside Moodle dedicated to these
-          methodologies. That is how <strong>PlayerGames</strong> was born.
-        </p>
-        <p class="pg-hero-subtitle">
-          An ecosystem of Moodle plugins built around one goal: making gamification and student engagement
-          a first-class experience — flexible for teachers, meaningful for students.
-        </p>
+
+        <!-- Language switcher -->
+        <div class="pg-lang-switcher">
+          <button class="pg-lang-btn active" data-lang="en" id="btn-lang-en">English</button>
+          <span class="pg-lang-sep">|</span>
+          <button class="pg-lang-btn" data-lang="pt" id="btn-lang-pt">Português</button>
+        </div>
+
+        <p class="pg-hero-origin" data-i18n="origin"></p>
+        <p class="pg-hero-subtitle" data-i18n="subtitle"></p>
         <a
           href="https://github.com/jeanlucio"
           class="btn btn--outline"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          View on GitHub →
-        </a>
+          data-i18n="viewGithub"
+        ></a>
       </header>
 
       <!-- Published Plugins -->
       <div class="pg-section-label">
-        <span class="pg-section-tag">✅ Published plugins</span>
+        <span class="pg-section-tag" data-i18n="labelPublished"></span>
       </div>
 
       <div class="pg-grid">
         {plugins.map(plugin => (
-          <PluginCard {...plugin} />
+          <div data-plugin-key={plugin.name}>
+            <PluginCard {...plugin} />
+          </div>
         ))}
       </div>
 
       <!-- In Development & Review -->
       <div class="pg-section-label pg-section-label--dev">
-        <span class="pg-section-tag pg-section-tag--dev">🚧 In development &amp; review</span>
+        <span class="pg-section-tag pg-section-tag--dev" data-i18n="labelInDev"></span>
       </div>
 
       <div class="pg-grid">
         {inDev.map(plugin => (
-          <div class="pg-dev-card-wrapper">
-            <span class="pg-dev-status">{plugin.status}</span>
+          <div class="pg-dev-card-wrapper" data-plugin-key={plugin.name}>
+            <span class="pg-dev-status" data-i18n-status={plugin.status}></span>
             <PluginCard {...plugin} />
           </div>
         ))}
@@ -157,20 +158,15 @@ const inDev = [
 
       <!-- Suggestions -->
       <div class="pg-suggestions">
-        <h2 class="pg-suggestions-title">Have an idea?</h2>
-        <p class="pg-suggestions-text">
-          Suggestions for new plugins, pedagogical use cases, or improvements to existing ones
-          are always welcome. If you work with Moodle and have a gamification challenge in mind,
-          feel free to reach out or open an issue on GitHub.
-        </p>
+        <h2 class="pg-suggestions-title" data-i18n="suggestionsTitle"></h2>
+        <p class="pg-suggestions-text" data-i18n="suggestionsText"></p>
         <a
           href="https://github.com/jeanlucio"
           class="btn btn--primary"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          Share a suggestion →
-        </a>
+          data-i18n="suggestionsBtn"
+        ></a>
       </div>
 
     </div>
@@ -225,6 +221,39 @@ const inDev = [
     line-height: 1.75;
     margin: 0;
     font-style: italic;
+  }
+
+  /* Language switcher */
+  .pg-lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pg-lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    padding: 0;
+    transition: color 0.15s;
+  }
+
+  .pg-lang-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .pg-lang-btn.active {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pg-lang-sep {
+    color: var(--color-border);
+    user-select: none;
   }
 
   /* Section label */
@@ -321,3 +350,187 @@ const inDev = [
     margin: 0;
   }
 </style>
+
+<script>
+(function () {
+  const T = {
+    en: {
+      origin: 'I have always been passionate about games — and for years I have been exploring ways to bring them into education through Moodle. After working extensively with gamification and game-based learning, I decided to build a true ecosystem inside Moodle dedicated to these methodologies. That is how <strong>PlayerGames</strong> was born.',
+      subtitle: 'An ecosystem of Moodle plugins built around one goal: making gamification and student engagement a first-class experience — flexible for teachers, meaningful for students.',
+      viewGithub: 'View on GitHub →',
+      labelPublished: '✅ Published plugins',
+      labelInDev: '🚧 In development & review',
+      suggestionsTitle: 'Have an idea?',
+      suggestionsText: 'Suggestions for new plugins, pedagogical use cases, or improvements to existing ones are always welcome. If you work with Moodle and have a gamification challenge in mind, feel free to reach out or open an issue on GitHub.',
+      suggestionsBtn: 'Share a suggestion →',
+      statuses: {
+        'In development · 75%': 'In development · 75%',
+        'In development · 80%': 'In development · 80%',
+        'In development · 65%': 'In development · 65%',
+        'In development · 28%': 'In development · 28%',
+        'In development · 20%': 'In development · 20%',
+        'In review': 'In review',
+      },
+      plugins: {
+        'PlayerHUD': {
+          description: 'The core gamification block for Moodle. Brings XP, customizable levels, achievements, ranking, missions, activity history, and an integrated AI assistant to your courses. Teachers define the rules — students choose to engage.',
+          tags: ['Block', 'Gamification', 'XP', 'Achievements', 'AI', 'Ranking'],
+        },
+        'PlayerHUD Filter': {
+          description: 'A companion text filter that lets you embed live PlayerHUD data — current level, XP, and progress — directly inside Moodle activity content using simple shortcodes. No need to leave the page.',
+          tags: ['Filter', 'Gamification', 'Dynamic Content', 'Shortcodes'],
+        },
+        'PlayerHUD Availability': {
+          description: "An availability condition that restricts access to activities, resources, or course sections based on a student's PlayerHUD progress — unlock content only when a student reaches a specific level or XP threshold.",
+          tags: ['Availability', 'Gamification', 'XP Gating', 'Conditional Access'],
+        },
+        'PlayerGroup': {
+          description: 'Lets students autonomously form their own groups directly from the activity page — no teacher intervention needed. Replaces manual group assignment with a self-service experience that works with any course format.',
+          tags: ['Activity', 'Groups', 'Collaboration', 'Gamification'],
+        },
+        'PlayerGames': {
+          description: 'The central hub of the ecosystem. Manages cartridges, quizzes, leaderboards and a full suite of gamified mini-games — providing a unified engine that all Player* activities connect to.',
+          tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
+        },
+        'PlayerCross': {
+          description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
+          tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
+        },
+        'PlayerLand': {
+          description: 'A 2-D side-scroller game (Phaser) where students run through a course-themed level and answer formative questions embedded as in-world blocks.',
+          tags: ['Activity', 'Game', 'Phaser', 'Formative'],
+        },
+        'PlayerPuzzle': {
+          description: 'A Match-3 puzzle activity where correct answers clear tiles. Progress, scoring and debrief integrate with the gradebook and the PlayerHUD XP system.',
+          tags: ['Activity', 'Match-3', 'Game', 'AI'],
+        },
+        'PlayerRaid': {
+          description: 'A cooperative raid activity where student teams tackle challenge waves together. XP rewards and team rankings feed directly into PlayerHUD.',
+          tags: ['Activity', 'Cooperative', 'Teams', 'Gamification'],
+        },
+        'PlayerWords': {
+          description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
+          tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
+        },
+        'PlayerGames Block': {
+          description: 'A lightweight block that mirrors the PlayerHUD profile panel on the dashboard and homepage — showing XP, level and missions without requiring a full block re-render.',
+          tags: ['Block', 'Dashboard', 'Gamification'],
+        },
+      },
+    },
+    pt: {
+      origin: 'Sempre fui apaixonado por games — e por anos explorei formas de levá-los para a educação através do Moodle. Após trabalhar extensivamente com gamificação e aprendizagem baseada em games, decidi construir um verdadeiro ecossistema dentro do Moodle dedicado a estas metodologias. Foi assim que o <strong>PlayerGames</strong> nasceu.',
+      subtitle: 'Um ecossistema de plugins para Moodle construído em torno de um objetivo: tornar a gamificação e o engajamento dos alunos uma experiência de primeira classe — flexível para professores, significativa para alunos.',
+      viewGithub: 'Ver no GitHub →',
+      labelPublished: '✅ Plugins publicados',
+      labelInDev: '🚧 Em desenvolvimento e revisão',
+      suggestionsTitle: 'Tem uma sugestão?',
+      suggestionsText: 'Sugestões para novos plugins, casos de uso pedagógicos ou melhorias nos existentes são sempre bem-vindos. Se você trabalha com Moodle e tem um desafio de gamificação em mente, sinta-se à vontade para entrar em contato ou abrir uma issue no GitHub.',
+      suggestionsBtn: 'Compartilhe uma sugestão →',
+      statuses: {
+        'In development · 75%': 'Em desenvolvimento · 75%',
+        'In development · 80%': 'Em desenvolvimento · 80%',
+        'In development · 65%': 'Em desenvolvimento · 65%',
+        'In development · 28%': 'Em desenvolvimento · 28%',
+        'In development · 20%': 'Em desenvolvimento · 20%',
+        'In review': 'Em revisão',
+      },
+      plugins: {
+        'PlayerHUD': {
+          description: 'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado para sugestões pedagógicas.',
+          tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
+        },
+        'PlayerHUD Filter': {
+          description: 'Filtro de texto que permite exibir dados do PlayerHUD diretamente no conteúdo de atividades e recursos — nível atual do aluno, XP acumulado e progresso — sem precisar sair da página.',
+          tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
+        },
+        'PlayerHUD Availability': {
+          description: 'Condição de disponibilidade que permite restringir o acesso a atividades com base nos dados do PlayerHUD — libere conteúdo somente quando o aluno atingir determinado nível ou quantidade de XP.',
+          tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
+        },
+        'PlayerGroup': {
+          description: 'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
+          tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
+        },
+        'PlayerGames': {
+          description: 'Hub central do ecossistema. Gerencia cartuchos, quizzes, rankings e uma suíte completa de mini-games gamificados — fornecendo o motor unificado ao qual todas as atividades Player* se conectam.',
+          tags: ['Local', 'Hub', 'Gamificação', 'IA', 'Quizzes'],
+        },
+        'PlayerCross': {
+          description: 'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosamente preenchendo a grade.',
+          tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
+        },
+        'PlayerLand': {
+          description: 'Jogo de plataforma 2D (Phaser) onde os alunos percorrem um nível temático do curso e respondem perguntas formativas embutidas como blocos interativos no mundo do jogo.',
+          tags: ['Atividade', 'Jogo', 'Phaser', 'Formativo'],
+        },
+        'PlayerPuzzle': {
+          description: 'Atividade Match-3 onde respostas corretas eliminam peças. O progresso, pontuação e debriefing integram-se ao livro de notas e ao sistema de XP do PlayerHUD.',
+          tags: ['Atividade', 'Match-3', 'Jogo', 'IA'],
+        },
+        'PlayerRaid': {
+          description: 'Atividade colaborativa de raid onde equipes de alunos enfrentam ondas de desafios juntos. As recompensas de XP e rankings alimentam diretamente o PlayerHUD.',
+          tags: ['Atividade', 'Cooperativo', 'Equipes', 'Gamificação'],
+        },
+        'PlayerWords': {
+          description: 'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
+          tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
+        },
+        'PlayerGames Block': {
+          description: 'Bloco leve que espelha o painel de perfil do PlayerHUD na página inicial e no dashboard — exibindo XP, nível e missões sem necessitar de uma rerenderização completa do bloco.',
+          tags: ['Bloco', 'Dashboard', 'Gamificação'],
+        },
+      },
+    },
+  };
+
+  function applyLang(lang) {
+    const t = T[lang];
+    if (!t) return;
+
+    // Static text elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Status badges
+    document.querySelectorAll('[data-i18n-status]').forEach(el => {
+      const key = el.getAttribute('data-i18n-status');
+      el.textContent = t.statuses[key] || key;
+    });
+
+    // Plugin card descriptions and tags
+    document.querySelectorAll('[data-plugin-key]').forEach(wrapper => {
+      const name = wrapper.getAttribute('data-plugin-key');
+      const data = t.plugins[name];
+      if (!data) return;
+
+      const desc = wrapper.querySelector('.plugin-description');
+      if (desc) desc.textContent = data.description;
+
+      const tagsContainer = wrapper.querySelector('.plugin-tags');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = data.tags
+          .map(tag => `<span class="badge badge--muted">${tag}</span>`)
+          .join('');
+      }
+    });
+
+    // Update button states
+    document.querySelectorAll('.pg-lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    localStorage.setItem('pg-lang', lang);
+  }
+
+  // Init
+  const saved = localStorage.getItem('pg-lang') || 'en';
+  applyLang(saved);
+
+  document.querySelectorAll('.pg-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+})();
+</script>
