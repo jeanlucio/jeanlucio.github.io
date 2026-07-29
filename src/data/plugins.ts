@@ -20,8 +20,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.7.1',
-    updatedDate: '2026-07-07T17:40:57Z',
+    version: '1.8.0',
+    updatedDate: '2026-07-28T21:45:52Z',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
@@ -138,8 +138,8 @@ export const teacherTools: PluginData[] = [
     name: 'AI Hub',
     description:
       'Plugin local (BYOK broker) que centraliza chaves de API de IA (Gemini, Groq, OpenAI). Permite que a instituição configure chaves globais ou usuários tragam as suas, facilitando a geração de texto por outros plugins com proteção SSRF e relatórios de uso.',
-    version: '1.2.1',
-    updatedDate: '2026-07-21T09:54:29Z',
+    version: '1.3.0',
+    updatedDate: '2026-07-28T14:04:40Z',
     tags: ['Local', 'IA', 'BYOK', 'API', 'Gestão'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_aihub',
     moodleUrl: 'https://moodle.org/plugins/local_aihub',
