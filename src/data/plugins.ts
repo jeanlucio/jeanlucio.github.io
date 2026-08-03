@@ -38,6 +38,7 @@ export const playerGames: PluginData[] = [
     tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
     githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
     moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
+    docsUrl: 'https://jeanlucio.github.io/moodle-filter_playerhud/',
     color: 'indigo',
     icon: '🔍',
   },
