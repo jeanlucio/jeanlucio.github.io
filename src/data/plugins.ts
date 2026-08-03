@@ -51,6 +51,7 @@ export const playerGames: PluginData[] = [
     tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
     githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
     moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
+    docsUrl: 'https://jeanlucio.github.io/moodle-availability_playerhud/',
     color: 'purple',
     icon: '🔓',
   },
