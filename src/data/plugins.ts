@@ -33,8 +33,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Filter',
     description:
       'Filtro de texto que permite exibir dados do PlayerHUD diretamente no conteúdo de atividades e recursos — nível atual do aluno, XP acumulado e progresso — sem precisar sair da página.',
-    version: '1.6.0',
-    updatedDate: '2026-06-24T10:19:06Z',
+    version: '1.6.4',
+    updatedDate: '2026-08-03T20:35:26Z',
     tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
     githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
     moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
@@ -46,8 +46,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Availability',
     description:
       'Condição de disponibilidade que permite restringir o acesso a atividades com base nos dados do PlayerHUD — libere conteúdo somente quando o aluno atingir determinado nível ou quantidade de XP.',
-    version: '1.4.1',
-    updatedDate: '2026-06-09T00:34:25Z',
+    version: '1.4.2',
+    updatedDate: '2026-08-03T19:34:28Z',
     tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
     githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
     moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
