@@ -12,31 +12,40 @@ const lastUpdatedEN = `Last updated: ${_rawDate.toLocaleDateString('en-US', { ye
 const lastUpdatedPT = `Última atualização: ${_rawDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}`;
 
 
+const docsUrls: Record<string, string> = {
+  'PlayerHUD': 'https://jeanlucio.github.io/moodle-block_playerhud/',
+  'PlayerHUD Filter': 'https://jeanlucio.github.io/moodle-filter_playerhud/',
+  'PlayerHUD Availability': 'https://jeanlucio.github.io/moodle-availability_playerhud/',
+  'PlayerGroup': 'https://jeanlucio.github.io/moodle-mod_playergroup/',
+};
+
 // English descriptions and tags — version/updatedDate come from plugins.ts (kept in sync by update-versions.mjs)
 const enOverrides: Record<string, { description: string; tags: string[]; docsUrl?: string }> = {
   'PlayerHUD': {
     description: 'The core gamification block for Moodle. Brings XP, customizable levels, achievements, ranking, missions, activity history, and an integrated AI assistant to your courses. Teachers define the rules — students choose to engage.',
     tags: ['Block', 'Gamification', 'XP', 'Achievements', 'AI', 'Ranking'],
-    docsUrl: 'https://jeanlucio.github.io/moodle-block_playerhud/',
+    docsUrl: docsUrls['PlayerHUD'],
   },
   'PlayerHUD Filter': {
     description: 'A companion text filter that lets you embed live PlayerHUD data — current level, XP, and progress — directly inside Moodle activity content using simple shortcodes. No need to leave the page.',
     tags: ['Filter', 'Gamification', 'Dynamic Content', 'Shortcodes'],
-    docsUrl: 'https://jeanlucio.github.io/moodle-filter_playerhud/',
+    docsUrl: docsUrls['PlayerHUD Filter'],
   },
   'PlayerHUD Availability': {
     description: "An availability condition that restricts access to activities, resources, or course sections based on a student's PlayerHUD progress — unlock content only when a student reaches a specific level or XP threshold.",
     tags: ['Availability', 'Gamification', 'XP Gating', 'Conditional Access'],
-    docsUrl: 'https://jeanlucio.github.io/moodle-availability_playerhud/',
+    docsUrl: docsUrls['PlayerHUD Availability'],
   },
   'PlayerGroup': {
     description: 'Lets students autonomously form their own groups directly from the activity page — no teacher intervention needed. Replaces manual group assignment with a self-service experience that works with any course format.',
     tags: ['Activity', 'Groups', 'Collaboration', 'Gamification'],
+    docsUrl: docsUrls['PlayerGroup'],
   },
 };
 
 const plugins = playerGames.map(({ reviewUrl: _r, ...p }) => ({
   ...p,
+  docsUrl: docsUrls[p.name],
   ...(enOverrides[p.name] ?? {}),
 }));
 
