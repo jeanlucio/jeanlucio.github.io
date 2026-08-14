@@ -59,8 +59,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerGroup',
     description:
       'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
-    version: '1.3.1',
-    updatedDate: '2026-08-10T12:32:18Z',
+    version: '1.3.2',
+    updatedDate: '2026-08-13T19:41:50Z',
     tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playergroup',
     moodleUrl: 'https://moodle.org/plugins/mod_playergroup',
