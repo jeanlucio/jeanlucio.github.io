@@ -77,12 +77,6 @@ const categoryColors: Record<string, string> = {
 <BaseLayout title={`${title} — Jean Lúcio`} description={description} image={heroImage} ogType="article">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
   <article class="post-page">
-    {heroImage && (
-      <div class="post-hero-image">
-        <img src={heroImage} alt={title} />
-      </div>
-    )}
-
     <div class="container--narrow">
       <header class="post-header">
         <div class="post-meta">

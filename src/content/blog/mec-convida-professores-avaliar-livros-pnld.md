@@ -2,6 +2,7 @@
 title: "MEC convida professores para avaliar livros do PNLD: veja como se inscrever no Banco de Avaliadores"
 description: "O Ministério da Educação está com cadastro aberto para professores e especialistas comporem o Banco de Avaliadores do PNLD. O processo é em fluxo contínuo, gratuito e prevê Auxílio de Avaliação Educacional (AAE)."
 pubDate: 2026-08-14
+heroImage: "/images/pnld-avaliadores.jpg"
 category: geral
 tags: [MEC, PNLD, livros didáticos, avaliação pedagógica, formação de professores, educação básica]
 ---
