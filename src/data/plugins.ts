@@ -159,6 +159,7 @@ export const webTools: PluginData[] = [
     tags: ['Prompts', 'IA', 'Educação', 'Moodle'],
     githubUrl: 'https://github.com/jeanlucio/promptkitedu',
     siteUrl: 'https://jeanlucio.github.io/promptkitedu/',
+    reviewUrl: '/blog/promptkit-edu-o-que-e',
     color: 'teal',
     icon: '✨',
   },
