@@ -178,4 +178,4 @@ export const featuredPlugins: PluginData[] = [
 // Optional manual override for the PlayerGames ecosystem page.
 // Set to an ISO date string (e.g. '2026-07-21T00:00:00Z') to pin the date manually.
 // Set to null to auto-derive from the most recent updatedDate across playerGames plugins.
-export const ecosystemLastUpdated: string | null = null;
+export const ecosystemLastUpdated: string | null = '2026-08-26T00:00:00Z';
