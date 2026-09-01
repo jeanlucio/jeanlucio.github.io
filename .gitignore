@@ -19,3 +19,7 @@ npm-debug.log*
 # Astro
 .astro/
 scripts/retry_deploy.sh
+
+# Python
+__pycache__/
+*.pyc

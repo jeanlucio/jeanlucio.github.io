@@ -291,6 +291,11 @@ def git_commit_push(post_path: Path, slug: str) -> None:
         ['git', 'commit', '-m', f'add weekly digest {slug}'],
         cwd=SITE_REPO, check=True,
     )
+    # Remote moves on its own (the update-versions GitHub Action commits on a
+    # schedule), so rebase onto it before pushing or the push is rejected with
+    # "fetch first" and the digest never reaches the blog.
+    subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=SITE_REPO, check=True)
+    subprocess.run(['git', 'rebase', 'origin/main'], cwd=SITE_REPO, check=True)
     subprocess.run(['git', 'push'], cwd=SITE_REPO, check=True)
 
 
@@ -388,7 +393,19 @@ def run_publish() -> None:
         return
 
     print(f'Publicando rascunho: {slug}')
-    git_commit_push(post_path, slug)
+    try:
+        git_commit_push(post_path, slug)
+    except subprocess.CalledProcessError as exc:
+        print(f'Falha ao commitar/publicar: {exc}')
+        if token and chat_id:
+            send_telegram(
+                token, chat_id,
+                f'❌ *Falha ao publicar o digest*\n\n`{slug}`\n\n'
+                f'O commit/push falhou (`{exc}`). O rascunho continua '
+                f'pendente — rode `weekly-digest.py --publish` de novo ou '
+                f'publique manualmente.',
+            )
+        sys.exit(1)
     print('Commit e push realizados.')
 
     if token and chat_id:
