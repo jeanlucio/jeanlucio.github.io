@@ -157,9 +157,20 @@ def ai_worth_publishing(plugins: list[dict], env: dict) -> tuple[bool, str]:
 # Geração do post
 # ---------------------------------------------------------------------------
 
+def price_label(plugin: dict) -> str:
+    label = plugin.get('preco', '')
+    detail = plugin.get('preco_detalhe', '')
+    if label == 'pago':
+        return f'pago (a partir de {detail})' if detail else 'pago'
+    if label == 'gratuito':
+        return 'gratuito'
+    return 'preço não identificado'
+
+
 def build_digest_prompt(plugins: list[dict], date_range: str) -> str:
     plugin_list = '\n\n'.join(
         f'{i+1}. **{p["name"]}** (`{p["component"]}`) — {p["tipo"]}\n'
+        f'   Preço: {price_label(p)}\n'
         f'   {p["summary"]}\n'
         f'   {p["link"]}'
         for i, p in enumerate(plugins)
@@ -177,7 +188,11 @@ def build_digest_prompt(plugins: list[dict], date_range: str) -> str:
         '(proibido: "essenciais", "melhores", "mais úteis", "7 plugins que vão...")\n'
         '- A introdução deve ser neutra: apenas situe o leitor sobre os lançamentos da semana, sem ranking\n'
         '- A conclusão deve ser simples e neutra, sem prometer transformação ou resultados da instituição\n'
-        '- Cada plugin: seção `## [Nome](link)` com 2-3 parágrafos sobre o que faz e para quem é útil\n\n'
+        '- Cada plugin: seção `## [Nome](link)` com 2-3 parágrafos sobre o que faz e para quem é útil\n'
+        '- Em cada seção, informe de forma natural se o plugin é gratuito ou pago (quando pago, '
+        'cite o valor aproximado se disponível). Use o campo "Preço" fornecido para cada plugin; '
+        'se estiver "preço não identificado", não invente — apenas omita a menção a preço nessa seção\n'
+        '- Não transforme o preço em julgamento de valor ("caro", "vale a pena"); apenas informe\n\n'
         'Escreva o post com o seguinte formato EXATO, sem markdown extra:\n\n'
         '---INICIO---\n'
         'TITULO: <título do post>\n'
