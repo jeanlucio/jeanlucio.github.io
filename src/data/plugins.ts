@@ -20,8 +20,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD',
     description:
       'Bloco de gamificação completo para Moodle. Oferece XP, níveis personalizáveis, sistema de conquistas, ranking, missões, histórico de atividades e um assistente de IA integrado (Gemini/Groq) para sugestões pedagógicas.',
-    version: '1.8.2',
-    updatedDate: '2026-08-12T17:35:30Z',
+    version: '1.9.0',
+    updatedDate: '2026-09-03T12:55:03Z',
     tags: ['Bloco', 'Gamificação', 'XP', 'Conquistas', 'IA', 'Ranking'],
     githubUrl: 'https://github.com/jeanlucio/moodle-block_playerhud',
     moodleUrl: 'https://moodle.org/plugins/block_playerhud',
@@ -33,8 +33,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Filter',
     description:
       'Filtro de texto que permite exibir dados do PlayerHUD diretamente no conteúdo de atividades e recursos — nível atual do aluno, XP acumulado e progresso — sem precisar sair da página.',
-    version: '1.6.4',
-    updatedDate: '2026-08-03T20:35:26Z',
+    version: '1.7.0',
+    updatedDate: '2026-09-03T12:55:47Z',
     tags: ['Filtro', 'Gamificação', 'Conteúdo Dinâmico'],
     githubUrl: 'https://github.com/jeanlucio/moodle-filter_playerhud',
     moodleUrl: 'https://moodle.org/plugins/filter_playerhud',
@@ -46,8 +46,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerHUD Availability',
     description:
       'Condição de disponibilidade que permite restringir o acesso a atividades com base nos dados do PlayerHUD — libere conteúdo somente quando o aluno atingir determinado nível ou quantidade de XP.',
-    version: '1.4.2',
-    updatedDate: '2026-08-03T19:34:28Z',
+    version: '1.5.0',
+    updatedDate: '2026-09-03T12:56:23Z',
     tags: ['Disponibilidade', 'Gamificação', 'Restrição por XP'],
     githubUrl: 'https://github.com/jeanlucio/moodle-availability_playerhud',
     moodleUrl: 'https://moodle.org/plugins/availability_playerhud',
