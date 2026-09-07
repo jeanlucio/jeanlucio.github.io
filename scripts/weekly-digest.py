@@ -80,7 +80,7 @@ def http_post(url: str, headers: dict, body: dict) -> dict:
 def call_gemini(prompt: str, key: str) -> str:
     url = (
         'https://generativelanguage.googleapis.com/v1beta/'
-        f'models/gemini-3.8-flash:generateContent?key={key}'
+        f'models/gemini-flash-latest:generateContent?key={key}'
     )
     body = {'contents': [{'parts': [{'text': prompt}]}]}
     result = http_post(url, {}, body)
