@@ -101,6 +101,12 @@ def call_ai(prompt: str, env: dict) -> str:
     providers = []
     if env.get('GEMINI_KEY'):
         providers.append(lambda: call_gemini(prompt, env['GEMINI_KEY']))
+    if env.get('GROQ_KEY'):
+        providers.append(lambda: call_openai_compat(
+            prompt, env['GROQ_KEY'],
+            'https://api.groq.com/openai/v1/chat/completions',
+            env.get('GROQ_MODEL', 'openai/gpt-oss-120b'),
+        ))
     if env.get('OPENAI_KEY') and env.get('OPENAI_URL'):
         providers.append(lambda: call_openai_compat(
             prompt, env['OPENAI_KEY'], env['OPENAI_URL'],
@@ -359,7 +365,20 @@ def run_preview() -> None:
         return
 
     print(f'Gerando digest da semana de {date_range} com {len(plugins)} plugin(s)...')
-    raw = call_ai(build_digest_prompt(plugins, date_range), env)
+    try:
+        raw = call_ai(build_digest_prompt(plugins, date_range), env)
+    except Exception as exc:
+        print(f'Falha ao gerar digest: {exc}')
+        if token and chat_id:
+            send_telegram(
+                token, chat_id,
+                f'❌ *Falha ao gerar a prévia do digest semanal*\n\n'
+                f'Semana de {date_range}, {len(plugins)} plugin(s) no acumulador.\n\n'
+                f'Todos os provedores de IA falharam (`{exc}`). O acumulador não '
+                f'foi limpo — rode `weekly-digest.py --preview` de novo depois de '
+                f'corrigir, ou gere o post manualmente.',
+            )
+        sys.exit(1)
     parsed = parse_ai_response(raw, date_range)
 
     post_path = write_draft(slug, parsed, publish_date)
