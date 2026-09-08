@@ -17,6 +17,8 @@ const docsUrls: Record<string, string> = {
   'PlayerHUD Filter': 'https://jeanlucio.github.io/moodle-filter_playerhud/',
   'PlayerHUD Availability': 'https://jeanlucio.github.io/moodle-availability_playerhud/',
   'PlayerGroup': 'https://jeanlucio.github.io/moodle-mod_playergroup/',
+  'PlayerWords': 'https://jeanlucio.github.io/moodle-mod_playerwords/',
+  'PlayerCross': 'https://jeanlucio.github.io/moodle-mod_playercross/',
 };
 
 // English descriptions and tags — version/updatedDate come from plugins.ts (kept in sync by update-versions.mjs)
@@ -40,6 +42,16 @@ const enOverrides: Record<string, { description: string; tags: string[]; docsUrl
     description: 'Lets students autonomously form their own groups directly from the activity page — no teacher intervention needed. Replaces manual group assignment with a self-service experience that works with any course format.',
     tags: ['Activity', 'Groups', 'Collaboration', 'Gamification'],
     docsUrl: docsUrls['PlayerGroup'],
+  },
+  'PlayerWords': {
+    description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
+    tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
+    docsUrl: docsUrls['PlayerWords'],
+  },
+  'PlayerCross': {
+    description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
+    tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
+    docsUrl: docsUrls['PlayerCross'],
   },
 };
 
@@ -72,16 +84,6 @@ const inDev = [
     icon: '📊',
   },
   {
-    name: 'PlayerCross',
-    description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
-    status: 'In development · 80%',
-    tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playercross',
-    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playercross/',
-    color: 'purple' as const,
-    icon: '🔤',
-  },
-  {
     name: 'PlayerLand',
     description: 'A 2-D side-scroller game (Phaser) where students run through a course-themed level and answer formative questions embedded as in-world blocks.',
     status: 'In development · 65%',
@@ -108,16 +110,6 @@ const inDev = [
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerraid',
     color: 'purple' as const,
     icon: '⚔️',
-  },
-  {
-    name: 'PlayerWords',
-    description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
-    status: 'In review',
-    tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
-    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerwords/',
-    color: 'indigo' as const,
-    icon: '🔠',
   },
 ];
 ---
@@ -413,7 +405,6 @@ const inDev = [
       docBtn: 'Documentation',
       statuses: {
         'In development · 75%': 'In development · 75%',
-        'In development · 80%': 'In development · 80%',
         'In development · 65%': 'In development · 65%',
         'In development · 28%': 'In development · 28%',
         'In development · 20%': 'In development · 20%',
@@ -436,13 +427,17 @@ const inDev = [
           description: 'Lets students autonomously form their own groups directly from the activity page — no teacher intervention needed. Replaces manual group assignment with a self-service experience that works with any course format.',
           tags: ['Activity', 'Groups', 'Collaboration', 'Gamification'],
         },
-        'PlayerGames': {
-          description: 'The central hub of the ecosystem. Manages cartridges, quizzes, leaderboards and a full suite of gamified mini-games — providing a unified engine that all Player* activities connect to.',
-          tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
+        'PlayerWords': {
+          description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
+          tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
         },
         'PlayerCross': {
           description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
           tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
+        },
+        'PlayerGames': {
+          description: 'The central hub of the ecosystem. Manages cartridges, quizzes, leaderboards and a full suite of gamified mini-games — providing a unified engine that all Player* activities connect to.',
+          tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
         },
         'PlayerLand': {
           description: 'A 2-D side-scroller game (Phaser) where students run through a course-themed level and answer formative questions embedded as in-world blocks.',
@@ -455,10 +450,6 @@ const inDev = [
         'PlayerRaid': {
           description: 'A cooperative raid activity where student teams tackle challenge waves together. XP rewards and team rankings feed directly into PlayerHUD.',
           tags: ['Activity', 'Cooperative', 'Teams', 'Gamification'],
-        },
-        'PlayerWords': {
-          description: 'A word-game activity (Wordle-style) that challenges students to guess vocabulary terms from the course. Supports AI-generated clues and connects to PlayerHUD XP.',
-          tags: ['Activity', 'Vocabulary', 'Word Game', 'AI'],
         },
         'PlayerGames Block': {
           description: 'A lightweight block that mirrors the PlayerHUD profile panel on the dashboard and homepage — showing XP, level and missions without requiring a full block re-render.',
@@ -478,7 +469,6 @@ const inDev = [
       docBtn: 'Documentação',
       statuses: {
         'In development · 75%': 'Em desenvolvimento · 75%',
-        'In development · 80%': 'Em desenvolvimento · 80%',
         'In development · 65%': 'Em desenvolvimento · 65%',
         'In development · 28%': 'Em desenvolvimento · 28%',
         'In development · 20%': 'Em desenvolvimento · 20%',
@@ -501,13 +491,17 @@ const inDev = [
           description: 'Plugin de atividade para grupos gamificados no Moodle. Crie equipes com XP coletivo, missões colaborativas e ranking entre times. Integra com o PlayerHUD para uma experiência gamificada completa.',
           tags: ['Atividade', 'Grupos', 'Colaboração', 'Gamificação'],
         },
+        'PlayerWords': {
+          description: 'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
+          tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
+        },
+        'PlayerCross': {
+          description: 'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosa preenchendo a grade.',
+          tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
+        },
         'PlayerGames': {
           description: 'Hub central do ecossistema. Gerencia cartuchos, quizzes, rankings e uma suíte completa de mini-games gamificados — fornecendo o motor unificado ao qual todas as atividades Player* se conectam.',
           tags: ['Local', 'Hub', 'Gamificação', 'IA', 'Quizzes'],
-        },
-        'PlayerCross': {
-          description: 'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosamente preenchendo a grade.',
-          tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
         },
         'PlayerLand': {
           description: 'Jogo de plataforma 2D (Phaser) onde os alunos percorrem um nível temático do curso e respondem perguntas formativas embutidas como blocos interativos no mundo do jogo.',
@@ -520,10 +514,6 @@ const inDev = [
         'PlayerRaid': {
           description: 'Atividade colaborativa de raid onde equipes de alunos enfrentam ondas de desafios juntos. As recompensas de XP e rankings alimentam diretamente o PlayerHUD.',
           tags: ['Atividade', 'Cooperativo', 'Equipes', 'Gamificação'],
-        },
-        'PlayerWords': {
-          description: 'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
-          tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
         },
         'PlayerGames Block': {
           description: 'Bloco leve que espelha o painel de perfil do PlayerHUD na página inicial e no dashboard — exibindo XP, nível e missões sem necessitar de uma rerenderização completa do bloco.',

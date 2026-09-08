@@ -68,6 +68,32 @@ export const playerGames: PluginData[] = [
     color: 'purple',
     icon: '👥',
   },
+  {
+    name: 'PlayerWords',
+    description:
+      'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
+    version: '1.0.0',
+    updatedDate: '2026-09-08T00:00:00Z',
+    tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playerwords',
+    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerwords/',
+    color: 'indigo',
+    icon: '🔠',
+  },
+  {
+    name: 'PlayerCross',
+    description:
+      'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosa preenchendo a grade.',
+    version: '1.0.0',
+    updatedDate: '2026-09-08T00:00:00Z',
+    tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playercross',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playercross',
+    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playercross/',
+    color: 'purple',
+    icon: '🔤',
+  },
 ];
 
 export const teacherTools: PluginData[] = [
@@ -178,4 +204,4 @@ export const featuredPlugins: PluginData[] = [
 // Optional manual override for the PlayerGames ecosystem page.
 // Set to an ISO date string (e.g. '2026-07-21T00:00:00Z') to pin the date manually.
 // Set to null to auto-derive from the most recent updatedDate across playerGames plugins.
-export const ecosystemLastUpdated: string | null = '2026-08-26T00:00:00Z';
+export const ecosystemLastUpdated: string | null = '2026-09-08T00:00:00Z';
