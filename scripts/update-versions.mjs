@@ -9,6 +9,8 @@ const PLUGINS = [
   { name: 'PlayerHUD Filter',       repo: 'jeanlucio/moodle-filter_playerhud' },
   { name: 'PlayerHUD Availability', repo: 'jeanlucio/moodle-availability_playerhud' },
   { name: 'PlayerGroup',            repo: 'jeanlucio/moodle-mod_playergroup' },
+  { name: 'PlayerWords',            repo: 'jeanlucio/moodle-mod_playerwords' },
+  { name: 'PlayerCross',            repo: 'jeanlucio/moodle-mod_playercross' },
   { name: 'Checklist do Professor',  repo: 'jeanlucio/moodle-block_teacher_checklist' },
   { name: 'Estatísticas de Recursos', repo: 'jeanlucio/moodle-local_resourcestats' },
   { name: 'Penalidade por Atraso',  repo: 'jeanlucio/moodle-local_latepenalty' },
