@@ -72,8 +72,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerWords',
     description:
       'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
-    version: '1.0.4',
-    updatedDate: '2026-08-31T13:24:03Z',
+    version: '1.0.5',
+    updatedDate: '2026-09-08T22:19:17Z',
     tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
     moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playerwords',
@@ -85,8 +85,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerCross',
     description:
       'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosa preenchendo a grade.',
-    version: '1.0.4',
-    updatedDate: '2026-08-31T13:24:56Z',
+    version: '1.0.5',
+    updatedDate: '2026-09-08T22:19:51Z',
     tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playercross',
     moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playercross',
@@ -114,8 +114,8 @@ export const teacherTools: PluginData[] = [
     name: 'Estatísticas de Recursos',
     description:
       'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
-    version: '1.2.1',
-    updatedDate: '2026-06-20T17:42:31Z',
+    version: '1.3.0',
+    updatedDate: '2026-09-08T21:08:22Z',
     tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
     moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
