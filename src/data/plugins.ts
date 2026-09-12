@@ -114,8 +114,8 @@ export const teacherTools: PluginData[] = [
     name: 'Estatísticas de Recursos',
     description:
       'Plugin local que exibe badges de acesso nos módulos do curso — total de visualizações e alunos únicos — visível só para professores, sem depender de ferramentas externas de analytics.',
-    version: '1.3.0',
-    updatedDate: '2026-09-08T21:08:22Z',
+    version: '1.4.0',
+    updatedDate: '2026-09-11T16:55:33Z',
     tags: ['Local', 'Estatísticas', 'Engajamento', 'LGPD'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_resourcestats',
     moodleUrl: 'https://moodle.org/plugins/local_resourcestats',
