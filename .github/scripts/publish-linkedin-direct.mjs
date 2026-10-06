@@ -1,12 +1,20 @@
-async function publishToLinkedIn(accessToken, personUrn, text) {
+// With a url, the post carries a link preview card; without it, it is a plain text post.
+function buildShareContent(text, url, title, description) {
+  if (!url) {
+    return { shareCommentary: { text }, shareMediaCategory: 'NONE' };
+  }
+  const media = { status: 'READY', originalUrl: url };
+  if (title) media.title = { text: title };
+  if (description) media.description = { text: description };
+  return { shareCommentary: { text }, shareMediaCategory: 'ARTICLE', media: [media] };
+}
+
+async function publishToLinkedIn(accessToken, personUrn, text, url, title, description) {
   const body = {
     author: personUrn,
     lifecycleState: 'PUBLISHED',
     specificContent: {
-      'com.linkedin.ugc.ShareContent': {
-        shareCommentary: { text },
-        shareMediaCategory: 'NONE',
-      },
+      'com.linkedin.ugc.ShareContent': buildShareContent(text, url, title, description),
     },
     visibility: {
       'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
@@ -26,7 +34,7 @@ async function publishToLinkedIn(accessToken, personUrn, text) {
   return res.json();
 }
 
-const { LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN, POST_TEXT } = process.env;
+const { LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN, POST_TEXT, POST_URL, POST_TITLE, POST_DESCRIPTION } = process.env;
 
 if (!LINKEDIN_ACCESS_TOKEN || !LINKEDIN_PERSON_URN) {
   console.error('LINKEDIN_ACCESS_TOKEN and LINKEDIN_PERSON_URN secrets are required.');
@@ -39,5 +47,14 @@ if (!POST_TEXT || !POST_TEXT.trim()) {
 }
 
 console.log('Publishing to LinkedIn...');
-const result = await publishToLinkedIn(LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN, POST_TEXT.trim());
+// The workflow input is a single line, so a literal \n typed there means a line break.
+const text = POST_TEXT.replace(/\\n/g, '\n').trim();
+const result = await publishToLinkedIn(
+  LINKEDIN_ACCESS_TOKEN,
+  LINKEDIN_PERSON_URN,
+  text,
+  POST_URL?.trim() || null,
+  POST_TITLE?.trim() || null,
+  POST_DESCRIPTION?.trim() || null
+);
 console.log(`Published: ${result.id}`);

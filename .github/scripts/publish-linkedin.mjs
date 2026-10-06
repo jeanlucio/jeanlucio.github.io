@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
@@ -19,14 +19,25 @@ function getPostUrl(filePath, siteUrl) {
   return `${siteUrl}/blog/${slug}/`;
 }
 
-async function publishToLinkedIn(accessToken, personUrn, title, description, postUrl) {
+// Custom text for a post lives in .github/social/<slug>.txt and must be committed together with the post.
+// Without it, the post falls back to "title + description + link".
+function getCustomText(filePath, postUrl) {
+  const slug = filePath.replace('src/content/blog/', '').replace('.md', '');
+  const customPath = `.github/social/${slug}.txt`;
+  if (!existsSync(customPath)) return null;
+  const text = readFileSync(customPath, 'utf-8').trim();
+  if (!text) return null;
+  return text.includes(postUrl) ? text : `${text}\n\n${postUrl}`;
+}
+
+async function publishToLinkedIn(accessToken, personUrn, title, description, postUrl, customText) {
   const body = {
     author: personUrn,
     lifecycleState: 'PUBLISHED',
     specificContent: {
       'com.linkedin.ugc.ShareContent': {
         shareCommentary: {
-          text: `${title}\n\n${description}\n\n${postUrl}`,
+          text: customText ?? `${title}\n\n${description}\n\n${postUrl}`,
         },
         shareMediaCategory: 'ARTICLE',
         media: [
@@ -79,7 +90,8 @@ for (const filePath of files) {
     LINKEDIN_PERSON_URN,
     title,
     description,
-    postUrl
+    postUrl,
+    getCustomText(filePath, postUrl)
   );
   console.log(`Publicado: ${result.id}`);
 }

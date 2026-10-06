@@ -7,6 +7,18 @@ on:
         description: 'Post text (plain text, supports line breaks with \n)'
         required: true
         type: string
+      url:
+        description: 'Optional link to attach as a preview card'
+        required: false
+        type: string
+      title:
+        description: 'Optional card title (used with url)'
+        required: false
+        type: string
+      description:
+        description: 'Optional card description (used with url)'
+        required: false
+        type: string
 
 jobs:
   post:
@@ -23,4 +35,7 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           POST_TEXT: ${{ inputs.text }}
+          POST_URL: ${{ inputs.url }}
+          POST_TITLE: ${{ inputs.title }}
+          POST_DESCRIPTION: ${{ inputs.description }}
         run: node .github/scripts/publish-linkedin-direct.mjs
