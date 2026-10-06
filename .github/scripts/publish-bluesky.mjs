@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
@@ -29,21 +29,56 @@ async function createSession(handle, password) {
   return res.json();
 }
 
-async function publishPost(accessJwt, did, title, description, postUrl) {
-  const text = `${title}\n\n${postUrl}`;
+const MAX_GRAPHEMES = 300;
+
+// Custom text for a post lives in .github/social/<slug>.bluesky.txt (committed with the post).
+// Bluesky caps posts at 300 graphemes, so an over-long file falls back to "title + link" with a warning.
+function getCustomText(filePath, postUrl) {
+  const slug = filePath.replace('src/content/blog/', '').replace('.md', '');
+  const customPath = `.github/social/${slug}.bluesky.txt`;
+  if (!existsSync(customPath)) return null;
+  const raw = readFileSync(customPath, 'utf-8').trim();
+  if (!raw) return null;
+  const text = raw.includes(postUrl) ? raw : `${raw}\n\n${postUrl}`;
+  const length = [...new Intl.Segmenter().segment(text)].length;
+  if (length > MAX_GRAPHEMES) {
+    console.log(`::warning::${customPath} tem ${length} caracteres (limite ${MAX_GRAPHEMES}); usando título + link.`);
+    return null;
+  }
+  return text;
+}
+
+// Link and hashtag facets are indexed in UTF-8 bytes, not in JS string characters.
+function buildFacets(text, postUrl) {
   const encoder = new TextEncoder();
-  const urlByteStart = encoder.encode(text.slice(0, text.lastIndexOf(postUrl))).length;
-  const urlByteEnd = urlByteStart + encoder.encode(postUrl).length;
+  const byteOffset = (charIndex) => encoder.encode(text.slice(0, charIndex)).length;
+  const facets = [];
+
+  const urlStart = text.lastIndexOf(postUrl);
+  if (urlStart !== -1) {
+    facets.push({
+      index: { byteStart: byteOffset(urlStart), byteEnd: byteOffset(urlStart + postUrl.length) },
+      features: [{ $type: 'app.bsky.richtext.facet#link', uri: postUrl }],
+    });
+  }
+
+  for (const match of text.matchAll(/(^|\s)#([\p{L}\p{N}_]+)/gu)) {
+    const hashStart = match.index + match[1].length;
+    facets.push({
+      index: { byteStart: byteOffset(hashStart), byteEnd: byteOffset(hashStart + match[2].length + 1) },
+      features: [{ $type: 'app.bsky.richtext.facet#tag', tag: match[2] }],
+    });
+  }
+  return facets;
+}
+
+async function publishPost(accessJwt, did, title, description, postUrl, customText) {
+  const text = customText ?? `${title}\n\n${postUrl}`;
 
   const record = {
     $type: 'app.bsky.feed.post',
     text,
-    facets: [
-      {
-        index: { byteStart: urlByteStart, byteEnd: urlByteEnd },
-        features: [{ $type: 'app.bsky.richtext.facet#link', uri: postUrl }],
-      },
-    ],
+    facets: buildFacets(text, postUrl),
     embed: {
       $type: 'app.bsky.embed.external',
       external: { uri: postUrl, title, description },
@@ -81,6 +116,13 @@ for (const filePath of files) {
 
   console.log(`Publicando no Bluesky: ${title}`);
   const session = await createSession(BLUESKY_HANDLE, BLUESKY_APP_PASSWORD);
-  const result = await publishPost(session.accessJwt, session.did, title, description, postUrl);
+  const result = await publishPost(
+    session.accessJwt,
+    session.did,
+    title,
+    description,
+    postUrl,
+    getCustomText(filePath, postUrl)
+  );
   console.log(`Publicado: ${result.uri}`);
 }

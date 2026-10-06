@@ -5,7 +5,8 @@ FILE="${1:-/tmp/linkedin-post.txt}"
 
 if [ ! -f "$FILE" ]; then
   echo "Error: file not found: $FILE"
-  echo "Usage: bash scripts/post-linkedin.sh [path/to/post.txt]"
+  echo "Usage: [POST_URL=... POST_TITLE=... POST_DESCRIPTION=...] bash scripts/post-linkedin.sh [path/to/post.txt]"
+  echo "With POST_URL the post carries a link preview card."
   exit 1
 fi
 
@@ -33,7 +34,11 @@ fi
 gh api repos/jeanlucio/jeanlucio.github.io/actions/workflows/linkedin-post.yml/dispatches \
   --method POST \
   --input <(jq -n --arg ref "main" --arg text "$TEXT" \
-    '{"ref": $ref, "inputs": {"text": $text}}')
+    --arg url "${POST_URL:-}" --arg title "${POST_TITLE:-}" --arg description "${POST_DESCRIPTION:-}" \
+    '{"ref": $ref, "inputs": ({"text": $text}
+      + (if $url != "" then {"url": $url} else {} end)
+      + (if $title != "" then {"title": $title} else {} end)
+      + (if $description != "" then {"description": $description} else {} end))}')
 
 echo ""
 echo "Workflow triggered."
