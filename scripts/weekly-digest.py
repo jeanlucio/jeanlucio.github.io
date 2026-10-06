@@ -10,6 +10,7 @@ import re
 import subprocess
 import sys
 import datetime
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -258,15 +259,61 @@ def write_draft(slug: str, parsed: dict, pub_date: datetime.date) -> Path:
 # Telegram
 # ---------------------------------------------------------------------------
 
-def send_telegram(token: str, chat_id: str, text: str) -> None:
+# Telegram rejects messages over 4096 characters; stay a little under it.
+TELEGRAM_LIMIT = 4000
+
+
+def send_telegram(token: str, chat_id: str, text: str, markdown: bool = True) -> None:
     url = f'https://api.telegram.org/bot{token}/sendMessage'
     body = {
         'chat_id': chat_id,
         'text': text,
-        'parse_mode': 'Markdown',
         'disable_web_page_preview': True,
     }
+    if markdown:
+        body['parse_mode'] = 'Markdown'
     http_post(url, {}, body)
+
+
+def split_message(text: str, limit: int = TELEGRAM_LIMIT) -> list[str]:
+    """Split text into chunks of at most `limit` characters, breaking at paragraph, then line boundaries."""
+    chunks: list[str] = []
+    current = ''
+    for paragraph in text.split('\n\n'):
+        candidate = f'{current}\n\n{paragraph}' if current else paragraph
+        if len(candidate) <= limit:
+            current = candidate
+            continue
+        if current:
+            chunks.append(current)
+        current = ''
+        # A single paragraph longer than the limit: fall back to lines, then to a hard cut.
+        for line in paragraph.split('\n'):
+            candidate = f'{current}\n{line}' if current else line
+            if len(candidate) <= limit:
+                current = candidate
+                continue
+            if current:
+                chunks.append(current)
+            while len(line) > limit:
+                chunks.append(line[:limit])
+                line = line[limit:]
+            current = line
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def send_telegram_long(token: str, chat_id: str, text: str) -> None:
+    """Send text in as many messages as needed, retrying a chunk as plain text if Markdown is rejected."""
+    for chunk in split_message(text):
+        try:
+            send_telegram(token, chat_id, chunk)
+        except urllib.error.HTTPError as exc:
+            if exc.code != 400:
+                raise
+            # Unbalanced Markdown entities in the post body: deliver it as plain text instead of failing.
+            send_telegram(token, chat_id, chunk, markdown=False)
 
 
 def build_preview_message(
@@ -275,14 +322,13 @@ def build_preview_message(
     date_range: str,
     plugin_count: int,
 ) -> str:
-    body_preview = parsed['body'][:600].rsplit('\n', 1)[0]
     tags = ', '.join(f'`{t}`' for t in parsed['tags'][:5])
     rel_path = post_path.relative_to(Path.home())
     return (
         f'📋 *Prévia — Destaques da Semana ({date_range})*\n\n'
         f'*{parsed["title"]}*\n'
         f'_{parsed["description"]}_\n\n'
-        f'{body_preview}…\n\n'
+        f'{parsed["body"]}\n\n'
         f'🏷 {tags}\n'
         f'📦 {plugin_count} plugin(s) detectado(s)\n\n'
         f'📝 Edite se necessário:\n`~/{rel_path}`\n\n'
@@ -392,7 +438,7 @@ def run_preview() -> None:
 
     if token and chat_id:
         msg = build_preview_message(parsed, post_path, date_range, len(plugins))
-        send_telegram(token, chat_id, msg)
+        send_telegram_long(token, chat_id, msg)
         print('Prévia enviada via Telegram.')
 
     WEEKLY_FILE.write_text('[]', encoding='utf-8')
