@@ -92,13 +92,15 @@ def call_openai_compat(prompt: str, key: str, api_url: str, model: str) -> str:
     body = {
         'model': model,
         'messages': [{'role': 'user', 'content': prompt}],
-        'max_tokens': 6000,
+        # Reasoning models spend part of this budget thinking; too low a cap truncates the post itself.
+        'max_tokens': 16000,
     }
     result = http_post(api_url, {'Authorization': f'Bearer {key}'}, body)
     return result['choices'][0]['message']['content'].strip()
 
 
-def call_ai(prompt: str, env: dict) -> str:
+def call_ai(prompt: str, env: dict, validate=None) -> str:
+    """Try each provider in turn; a response rejected by `validate` counts as a failure."""
     providers = []
     if env.get('GEMINI_KEY'):
         providers.append(lambda: call_gemini(prompt, env['GEMINI_KEY']))
@@ -121,8 +123,12 @@ def call_ai(prompt: str, env: dict) -> str:
     for fn in providers:
         try:
             result = fn()
-            if result:
-                return result
+            if not result:
+                continue
+            if validate is not None and not validate(result):
+                print(f'  Resposta de IA incompleta ({len(result)} caracteres), tentando o próximo provedor.')
+                continue
+            return result
         except Exception as exc:
             print(f'  IA falhou: {exc}')
     raise RuntimeError('Todos os provedores de IA falharam.')
@@ -213,6 +219,14 @@ def build_digest_prompt(plugins: list[dict], date_range: str) -> str:
         '---FIM---\n\n'
         f'Plugins da semana de {date_range}:\n\n'
         f'{plugin_list}'
+    )
+
+
+def is_complete_digest(text: str) -> bool:
+    """A usable digest has the CORPO marker and at least one plugin section, not just a header."""
+    return bool(
+        re.search(r'^CORPO:\s*$', text, re.MULTILINE)
+        and re.search(r'^## ', text, re.MULTILINE)
     )
 
 
@@ -412,7 +426,7 @@ def run_preview() -> None:
 
     print(f'Gerando digest da semana de {date_range} com {len(plugins)} plugin(s)...')
     try:
-        raw = call_ai(build_digest_prompt(plugins, date_range), env)
+        raw = call_ai(build_digest_prompt(plugins, date_range), env, validate=is_complete_digest)
     except Exception as exc:
         print(f'Falha ao gerar digest: {exc}')
         if token and chat_id:
@@ -471,6 +485,18 @@ def run_publish() -> None:
         print(f'Post {slug} já foi commitado manualmente. Nada a fazer.')
         DRAFT_FILE.unlink()
         return
+
+    # Never push a draft that is only a header: publishing also triggers LinkedIn/Bluesky posts.
+    body = post_path.read_text(encoding='utf-8').split('---', 2)[-1]
+    if '---INICIO---' in body or not re.search(r'^## ', body, re.MULTILINE):
+        print(f'Rascunho {slug} sem conteúdo. Publicação cancelada.')
+        if token and chat_id:
+            send_telegram(
+                token, chat_id,
+                f'❌ *Digest não publicado*\n\n`{slug}` está sem seções de plugins. '
+                f'Corrija `{post_path}` e rode `weekly-digest.py --publish`.',
+            )
+        sys.exit(1)
 
     print(f'Publicando rascunho: {slug}')
     try:
