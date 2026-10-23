@@ -19,6 +19,8 @@ WEEKLY_FILE  = Path.home() / '.moodle-plugins-weekly.json'
 DRAFT_FILE   = Path.home() / '.moodle-weekly-draft.json'
 SITE_REPO    = Path.home() / 'jeanlucio-github-io'
 BLOG_DIR     = SITE_REPO / 'src' / 'content' / 'blog'
+SOCIAL_DIR   = SITE_REPO / '.github' / 'social'
+SITE_URL     = 'https://jeanlucio.github.io'
 
 TOP_N        = 7   # Máximo de plugins destacados no post
 
@@ -270,6 +272,110 @@ def write_draft(slug: str, parsed: dict, pub_date: datetime.date) -> Path:
 
 
 # ---------------------------------------------------------------------------
+# Textos para redes sociais
+# ---------------------------------------------------------------------------
+#
+# publish-linkedin.mjs / publish-bluesky.mjs usam .github/social/<slug>.txt e
+# <slug>.bluesky.txt quando existem; sem eles caem em "título + descrição + link".
+
+LINKEDIN_HASHTAGS = '#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS'
+BLUESKY_HASHTAGS = '#Moodle #EdTech'
+BLUESKY_LIMIT = 300
+
+
+def selected_plugins(body: str, plugins: list[dict]) -> list[dict]:
+    """Plugins the AI chose to feature, recovered from the `## [Name](link)` headings of the body."""
+    by_component = {p['component']: p for p in plugins}
+    selected: list[dict] = []
+    for component in re.findall(r'^## \[[^\]]+\]\([^)]*plugin=([a-z0-9_]+)\)', body, re.MULTILINE):
+        plugin = by_component.get(component)
+        if plugin and plugin not in selected:
+            selected.append(plugin)
+    return selected
+
+
+def social_price_line(selected: list[dict]) -> str:
+    """Price remark only when every featured plugin has a known price; never guesses."""
+    labels = {p.get('preco', '') for p in selected}
+    if labels == {'gratuito'}:
+        return 'Todos gratuitos.' if len(selected) > 1 else 'Gratuito.'
+    paid = [p['name'] for p in selected if p.get('preco') == 'pago']
+    if paid and labels <= {'gratuito', 'pago'}:
+        if len(paid) == len(selected):
+            return 'Pagos.' if len(selected) > 1 else 'Pago.'
+        return f'Pagos: {", ".join(paid)}. Os demais são gratuitos.'
+    return ''
+
+
+def build_social_lines_prompt(selected: list[dict]) -> str:
+    plugin_list = '\n'.join(f'- {p["name"]}: {p["summary"]}' for p in selected)
+    return (
+        'Para um post de LinkedIn em português brasileiro, escreva UMA linha curta para cada plugin '
+        'Moodle abaixo, na mesma ordem, neste formato exato:\n'
+        '<um emoji relacionado ao tema> <Nome do plugin> — <o que faz, em até 70 caracteres>\n\n'
+        'Regras: um único emoji por linha, no início; sem superlativos; sem mencionar preço; '
+        'sem texto antes ou depois das linhas; sem markdown.\n\n'
+        f'Plugins:\n{plugin_list}'
+    )
+
+
+def social_lines(selected: list[dict], env: dict) -> list[str]:
+    """One emoji line per plugin; falls back to plain names so the post is never blocked by this step."""
+    def valid(text: str) -> bool:
+        lines = [ln for ln in text.splitlines() if ln.strip()]
+        return len(lines) == len(selected) and all(' — ' in ln for ln in lines)
+
+    try:
+        raw = call_ai(build_social_lines_prompt(selected), env, validate=valid)
+        return [ln.strip() for ln in raw.splitlines() if ln.strip()]
+    except Exception as exc:
+        print(f'  Linhas sociais por IA falharam, usando só os nomes: {exc}')
+        return [f'📌 {p["name"]}' for p in selected]
+
+
+def build_linkedin_text(parsed: dict, selected: list[dict], lines: list[str], post_url: str) -> str:
+    price = social_price_line(selected)
+    closing = f'{price} Os detalhes de cada um estão no post 👇' if price else 'Os detalhes de cada um estão no post 👇'
+    return (
+        f'📦 {parsed["title"]}\n\n'
+        'Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:\n\n'
+        + '\n'.join(lines)
+        + f'\n\n{closing}\n{post_url}\n\n{LINKEDIN_HASHTAGS}\n'
+    )
+
+
+def build_bluesky_text(date_range: str, selected: list[dict], post_url: str) -> str:
+    """Plugin names that fit in Bluesky's 300-character cap, dropping from the end and adding "e mais"."""
+    price = social_price_line(selected)
+    names = [p['name'] for p in selected]
+    dropped = False
+    while True:
+        listed = ', '.join(names) + (' e mais' if dropped else '')
+        head = f'📦 Novos plugins no Moodle ({date_range}): {listed}.'
+        text = f'{head} {price}'.strip() + f'\n\n{post_url}\n\n{BLUESKY_HASHTAGS}'
+        if len(text) <= BLUESKY_LIMIT - 10 or len(names) <= 1:
+            return text
+        names.pop()
+        dropped = True
+
+
+def write_social(slug: str, parsed: dict, plugins: list[dict], date_range: str, env: dict) -> list[Path]:
+    selected = selected_plugins(parsed['body'], plugins)
+    if not selected:
+        print('Nenhum plugin destacado identificado no corpo; textos sociais não gerados.')
+        return []
+    post_url = f'{SITE_URL}/blog/{slug}/'
+    SOCIAL_DIR.mkdir(parents=True, exist_ok=True)
+    linkedin = SOCIAL_DIR / f'{slug}.txt'
+    bluesky = SOCIAL_DIR / f'{slug}.bluesky.txt'
+    linkedin.write_text(
+        build_linkedin_text(parsed, selected, social_lines(selected, env), post_url), encoding='utf-8'
+    )
+    bluesky.write_text(build_bluesky_text(date_range, selected, post_url) + '\n', encoding='utf-8')
+    return [linkedin, bluesky]
+
+
+# ---------------------------------------------------------------------------
 # Telegram
 # ---------------------------------------------------------------------------
 
@@ -335,9 +441,14 @@ def build_preview_message(
     post_path: Path,
     date_range: str,
     plugin_count: int,
+    social_paths: list[Path],
 ) -> str:
     tags = ', '.join(f'`{t}`' for t in parsed['tags'][:5])
     rel_path = post_path.relative_to(Path.home())
+    social = ''.join(
+        f'\n📱 `~/{path.relative_to(Path.home())}`\n```\n{path.read_text(encoding="utf-8").strip()}\n```\n'
+        for path in social_paths
+    )
     return (
         f'📋 *Prévia — Destaques da Semana ({date_range})*\n\n'
         f'*{parsed["title"]}*\n'
@@ -345,7 +456,7 @@ def build_preview_message(
         f'{parsed["body"]}\n\n'
         f'🏷 {tags}\n'
         f'📦 {plugin_count} plugin(s) detectado(s)\n\n'
-        f'📝 Edite se necessário:\n`~/{rel_path}`\n\n'
+        f'📝 Edite se necessário:\n`~/{rel_path}`\n{social}\n'
         f'⏰ Será publicado automaticamente na *segunda-feira às 14h*.\n'
         f'Se já tiver editado e quiser publicar antes, faça o commit manualmente.'
     )
@@ -367,7 +478,13 @@ def git_is_tracked(post_path: Path) -> bool:
 
 def git_commit_push(post_path: Path, slug: str) -> None:
     rel = str(post_path.relative_to(SITE_REPO))
-    subprocess.run(['git', 'add', rel], cwd=SITE_REPO, check=True)
+    # The social texts must land in the same commit as the post: the workflow reads them from the checkout.
+    socials = [
+        str(path.relative_to(SITE_REPO))
+        for path in (SOCIAL_DIR / f'{slug}.txt', SOCIAL_DIR / f'{slug}.bluesky.txt')
+        if path.exists()
+    ]
+    subprocess.run(['git', 'add', rel, *socials], cwd=SITE_REPO, check=True)
     subprocess.run(
         ['git', 'commit', '-m', f'add weekly digest {slug}'],
         cwd=SITE_REPO, check=True,
@@ -443,6 +560,9 @@ def run_preview() -> None:
 
     post_path = write_draft(slug, parsed, publish_date)
     print(f'Rascunho criado: {post_path}')
+    social_paths = write_social(slug, parsed, plugins, date_range, env)
+    for path in social_paths:
+        print(f'Texto social criado: {path.name}')
 
     DRAFT_FILE.write_text(json.dumps({
         'slug': slug,
@@ -451,7 +571,7 @@ def run_preview() -> None:
     }, ensure_ascii=False))
 
     if token and chat_id:
-        msg = build_preview_message(parsed, post_path, date_range, len(plugins))
+        msg = build_preview_message(parsed, post_path, date_range, len(plugins), social_paths)
         send_telegram_long(token, chat_id, msg)
         print('Prévia enviada via Telegram.')
 
