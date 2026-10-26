@@ -1,0 +1,16 @@
+📦 Destaques da semana — novos plugins no Moodle (19 a 25 de out)
+
+Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:
+
+🎯 Outcome Mapper — alinha resultados de aprendizagem a matrizes e padrões institucionais.
+😊 Mood Tracker — registra e monitora o estado emocional dos estudantes.
+🤔 Socratic AI Tutor — guia estudantes com perguntas reflexivas no método socrático.
+🔍 Course Audit — verifica salas virtuais e gera relatórios de conformidade.
+🩺 Gradebook Doctor — diagnostica e repara erros no livro de notas.
+📜 Log Explainer — traduz logs técnicos em explicações claras.
+🎬 Video Checkpoint — insere perguntas em vídeos e rastreia visualização.
+
+Todos gratuitos. Os detalhes de cada um estão no post 👇
+https://jeanlucio.github.io/blog/destaques-semana-2026-10-26/
+
+#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS
