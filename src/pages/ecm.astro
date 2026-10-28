@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Problem {
+  id: string;
+  icon: string;
+  problem: string;
+  name: string;
+  summary: string;
+  note?: string;
+  proof?: string;
+  need: string;
+  marketplace: string;
+  docs: string;
+}
+
+const icons: Record<string, string> = {
+  star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  chart: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+  list: '<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+};
+
+const problems: Problem[] = [
+  {
+    id: 'playerhud',
+    icon: 'star',
+    problem: 'Quero motivar a turma com progressão, missões e conquistas',
+    name: 'PlayerHUD',
+    summary:
+      'Bloco de gamificação com XP, níveis, inventário, missões e troca de itens, configurado pelo próprio professor dentro do curso. Os recursos de IA são opcionais e ficam desligados até alguém configurar uma chave. Tem ainda um filtro (PlayerHUD Filter) e uma condição de restrição por nível ou XP (PlayerHUD Availability).',
+    proof: 'Em uso em mais de 100 sites Moodle (dados do Marketplace, set/2026).',
+    need: 'motivar a turma com XP, níveis e missões',
+    marketplace: 'https://marketplace.moodle.com/plugins/block_playerhud',
+    docs: 'https://jeanlucio.github.io/moodle-block_playerhud/',
+  },
+  {
+    id: 'playergroup',
+    icon: 'users',
+    problem: 'Quero que os estudantes formem seus próprios grupos',
+    name: 'PlayerGroup',
+    summary:
+      'O estudante cria um grupo ou entra em um (aberto, com senha ou só por convite) direto na página da atividade, sem o professor montar listas. Funciona em qualquer formato de curso, e o Livro de notas e a conclusão da atividade acompanham.',
+    proof: 'Em uso em mais de 50 sites Moodle (dados do Marketplace, set/2026).',
+    need: 'permitir que os estudantes formem seus próprios grupos nas atividades',
+    marketplace: 'https://marketplace.moodle.com/plugins/mod_playergroup',
+    docs: 'https://jeanlucio.github.io/moodle-mod_playergroup/',
+  },
+  {
+    id: 'latepenalty',
+    icon: 'clock',
+    problem: 'Quero descontar nota por atraso em qualquer tipo de atividade',
+    name: 'Penalidade por Atraso (Late Penalty)',
+    summary:
+      'Aplica um desconto progressivo por dia de atraso, com limite máximo, em qualquer atividade que registre nota: Tarefas, Questionários, Fóruns, Lições, SCORM, Workshops e outras. Permite exceções por estudante e por grupo, e as alterações ficam no histórico do Livro de notas.',
+    note: 'O Moodle 5.3 já traz penalidades de nota nativas, mas apenas para Tarefas. Este plugin cobre os demais tipos de atividade e também funciona nos Moodle 4.5 a 5.2.',
+    need: 'descontar nota por atraso em qualquer tipo de atividade, e não só em Tarefas',
+    marketplace: 'https://marketplace.moodle.com/plugins/local_latepenalty',
+    docs: 'https://jeanlucio.github.io/moodle-local_latepenalty/pt',
+  },
+  {
+    id: 'resourcestats',
+    icon: 'chart',
+    problem: 'Quero saber o que os estudantes realmente acessam',
+    name: 'Estatísticas de Recursos (Resource Stats)',
+    summary:
+      'Mostra, na própria página do curso, quantas vezes cada recurso ou atividade foi acessado, por quantos estudantes diferentes e quem foi o último a visitar. Onde há conclusão de atividade, mostra também quantos concluíram e foram aprovados. Não depende de ferramenta externa de analytics.',
+    need: 'ver quais recursos os estudantes realmente acessam',
+    marketplace: 'https://marketplace.moodle.com/plugins/local_resourcestats',
+    docs: 'https://jeanlucio.github.io/moodle-local_resourcestats/pt',
+  },
+  {
+    id: 'teacherchecklist',
+    icon: 'list',
+    problem: 'Quero conferir se meu curso está pronto antes de a turma chegar',
+    name: 'Checklist do Professor (Teacher Checklist)',
+    summary:
+      'Detecta automaticamente problemas de configuração do curso, como visibilidade, prazos e atividades sem descrição, e reúne tudo numa lista com pendentes, ignorados e concluídos. Também aceita tarefas próprias. Só quem pode editar o curso vê o bloco.',
+    need: 'conferir se meus cursos estão prontos antes de a turma começar',
+    marketplace: 'https://marketplace.moodle.com/plugins/block_teacher_checklist',
+    docs: 'https://jeanlucio.github.io/moodle-block_teacher_checklist/pt',
+  },
+];
+
+const requestMessage = (p: Problem): string =>
+  `Olá! No Moodle, gostaria de ${p.need}. Encontrei um plugin gratuito e de código aberto (GPL v3) que resolve isso: ` +
+  `${p.name}, disponível em ${p.marketplace}. Ele é compatível com o Moodle 4.5 a 5.3 e se instala como qualquer outro plugin ` +
+  `(Administração do site > Notificações). A documentação está em ${p.docs}. ` +
+  'Podemos testá-lo primeiro em um ambiente de testes?';
+
+const adminFacts = [
+  'Gratuitos e de código aberto (GPL v3): o código pode ser auditado por quem quiser.',
+  'Compatíveis com o Moodle 4.5 a 5.3.',
+  'Instalação padrão: copiar a pasta do plugin e concluir em Administração do site > Notificações.',
+  'Publicados no Marketplace do Moodle, com testes automatizados e integração contínua públicos no GitHub.',
+  'Declaram o que armazenam pela API de privacidade do Moodle.',
+  'Os recursos de IA do PlayerHUD são opcionais e não enviam dados de estudantes ao provedor.',
+];
+---
+
+<BaseLayout
+  title="Plugins Moodle por problema — ECM Brasil 2026 — Jean Lúcio"
+  description="Plugins Moodle gratuitos e de código aberto, organizados pelo problema que resolvem, com um texto pronto para levar ao administrador do seu Moodle."
+>
+  <meta slot="head" name="robots" content="noindex" />
+
+  <section class="ecm-page">
+    <div class="container">
+      <header class="ecm-header">
+        <span class="badge badge--primary">ECM Brasil 2026</span>
+        <h1 class="ecm-title">Qual é o seu problema no Moodle?</h1>
+        <p class="ecm-subtitle">
+          Plugins gratuitos e de código aberto, criados por um professor a partir de necessidades reais da sala
+          de aula. Escolha o problema, veja o plugin e leve um texto pronto para o administrador do seu Moodle.
+        </p>
+      </header>
+
+      <div class="ecm-list">
+        {problems.map(p => (
+          <article class="ecm-card" id={p.id}>
+            <div class="ecm-card-icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[p.icon]} />
+            </div>
+            <div class="ecm-card-body">
+              <h2 class="ecm-card-problem">{p.problem}</h2>
+              <p class="ecm-card-name">{p.name}</p>
+              <p class="ecm-card-summary">{p.summary}</p>
+              {p.note && <p class="ecm-card-note">{p.note}</p>}
+              {p.proof && <p class="ecm-card-proof">{p.proof}</p>}
+
+              <div class="ecm-card-actions">
+                <a
+                  class="btn btn--primary btn--sm"
+                  href={p.marketplace}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track={`ecm-marketplace-${p.id}`}
+                >
+                  Ver no Marketplace
+                </a>
+                <a
+                  class="btn btn--outline btn--sm"
+                  href={p.docs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track={`ecm-docs-${p.id}`}
+                >
+                  Documentação
+                </a>
+              </div>
+
+              <details class="ecm-request">
+                <summary>Texto pronto para enviar ao meu administrador</summary>
+                <p class="ecm-request-text" id={`msg-${p.id}`}>{requestMessage(p)}</p>
+                <button type="button" class="btn btn--outline btn--sm ecm-copy" data-copy={`msg-${p.id}`} data-id={p.id} hidden>
+                  Copiar texto
+                </button>
+                <span class="ecm-copy-status" role="status" aria-live="polite"></span>
+              </details>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <section class="ecm-admin" aria-labelledby="ecm-admin-title">
+        <h2 id="ecm-admin-title" class="ecm-admin-title">Para o administrador do Moodle</h2>
+        <p class="ecm-admin-lead">O que costuma importar antes de instalar um plugin de terceiros:</p>
+        <ul class="ecm-admin-list">
+          {adminFacts.map(fact => <li>{fact}</li>)}
+        </ul>
+        <p class="ecm-admin-foot">
+          Se o seu Moodle é hospedado por uma empresa, é ela quem precisa instalar o plugin. O texto acima serve
+          também para o pedido ao provedor. Dúvidas ou problemas: abra uma issue ou uma discussão no repositório do
+          plugin no GitHub.
+        </p>
+      </section>
+
+      <section class="ecm-about" aria-labelledby="ecm-about-title">
+        <h2 id="ecm-about-title" class="ecm-about-title">Quem faz</h2>
+        <p>
+          Sou o Prof. Jean Lúcio. Desenvolvo estes plugins a partir do que encontro na prática docente com o Moodle e
+          os publico como código aberto. Quer levar uma oficina ou uma capacitação para a sua instituição?
+          Veja <a href="/capacitacoes">Capacitações e parcerias</a>.
+        </p>
+        <p class="ecm-about-links">
+          <a href="https://marketplace.moodle.com/user/984" target="_blank" rel="noopener noreferrer">Todos os plugins no Marketplace</a>
+          <a href="/projetos">Todos os projetos</a>
+          <a href="https://github.com/jeanlucio" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  type Goat = { count: (opts: { path: string; title?: string; event?: boolean }) => void };
+  const track = (path: string): void => {
+    const goat = (window as unknown as { goatcounter?: Goat }).goatcounter;
+    goat?.count({ path, title: path, event: true });
+  };
+
+  document.querySelectorAll<HTMLAnchorElement>('a[data-track]').forEach(link => {
+    link.addEventListener('click', () => track(link.dataset.track ?? 'ecm-link'));
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      const source = document.getElementById(button.dataset.copy ?? '');
+      const status = button.parentElement?.querySelector<HTMLElement>('.ecm-copy-status');
+      try {
+        await navigator.clipboard.writeText(source?.textContent?.trim() ?? '');
+        if (status) status.textContent = 'Texto copiado.';
+        track(`ecm-copiar-${button.dataset.id}`);
+      } catch {
+        if (status) status.textContent = 'Não foi possível copiar. Selecione o texto e copie manualmente.';
+      }
+    });
+  });
+</script>
+
+<style>
+  .ecm-page {
+    padding: 4rem 0 6rem;
+  }
+
+  .ecm-header {
+    max-width: 720px;
+    margin-bottom: 3rem;
+  }
+
+  .ecm-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin: 0.75rem 0 0.75rem;
+  }
+
+  .ecm-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+
+  .ecm-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 860px;
+  }
+
+  .ecm-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    border-inline-start: 4px solid var(--color-primary);
+  }
+
+  .ecm-card-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius);
+    background: #4f46e50f;
+    color: var(--color-primary);
+  }
+
+  .ecm-card-body {
+    min-width: 0;
+  }
+
+  .ecm-card-problem {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.25rem;
+  }
+
+  .ecm-card-name {
+    color: var(--color-primary-dark);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.75rem;
+  }
+
+  .ecm-card-summary {
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+  }
+
+  .ecm-card-note,
+  .ecm-card-proof {
+    color: var(--color-text-muted);
+    font-size: 0.925rem;
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+
+  .ecm-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .ecm-request summary {
+    cursor: pointer;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.925rem;
+  }
+
+  .ecm-request-text {
+    margin: 0.75rem 0;
+    padding: 1rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+    font-size: 0.925rem;
+    line-height: 1.65;
+  }
+
+  .ecm-copy[hidden] {
+    display: none;
+  }
+
+  .ecm-copy-status {
+    margin-inline-start: 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .ecm-admin {
+    max-width: 860px;
+    margin-top: 3.5rem;
+    padding: 2rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+  }
+
+  .ecm-admin-title,
+  .ecm-about-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+  }
+
+  .ecm-admin-lead {
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+  }
+
+  .ecm-admin-list {
+    margin: 0 0 1rem;
+    padding-inline-start: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .ecm-admin-foot {
+    color: var(--color-text-muted);
+    font-size: 0.925rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ecm-about {
+    max-width: 860px;
+    margin-top: 3rem;
+    line-height: 1.7;
+  }
+
+  .ecm-about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .ecm-card {
+      flex-direction: column;
+      padding: 1.25rem;
+    }
+  }
+</style>
