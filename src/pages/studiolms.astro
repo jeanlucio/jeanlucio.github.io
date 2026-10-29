@@ -1,0 +1,477 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PluginCard from '../components/PluginCard.astro';
+
+const inDev = [
+  {
+    name: 'StudioLMS Editor',
+    description: 'Visual instructional design blocks inside Moodle\'s TinyMCE editor: 19 blocks, 26 ready-made layouts and optional AI assistance, so a teacher composes a page with cards, steps, accordions and infographics without writing HTML.',
+    status: 'In review',
+    tags: ['Editor', 'TinyMCE', 'Blocks', 'Templates', 'AI'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-tiny_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-tiny_studiolms/',
+    color: 'indigo' as const,
+    icon: '🎨',
+  },
+  {
+    name: 'StudioLMS Course Builder',
+    description: 'An AI assistant that works from inside an existing course: it fills it with sections, rich pages, quizzes, forums, assignments and glossaries, and restyles a page you already wrote into Studio blocks, in a hidden copy, without rewriting your text.',
+    status: 'In review',
+    tags: ['Local', 'AI', 'Course builder', 'Restyle'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-local_studiolms/',
+    color: 'purple' as const,
+    icon: '🪄',
+  },
+  {
+    name: 'StudioLMS Widgets',
+    description: 'A text filter that swaps simple markers for live data: the participation bar of a forum, the course map as a path of sections, and the rules of a quiz as they are now, including each student\'s exceptions.',
+    status: 'In review',
+    tags: ['Filter', 'Dynamic content', 'Forum', 'Course map', 'Quiz'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-filter_studiolms',
+    color: 'teal' as const,
+    icon: '📊',
+  },
+];
+---
+
+<BaseLayout
+  title="StudioLMS — Course Design Ecosystem for Moodle"
+  description="StudioLMS is an open source family of three Moodle plugins for course design: visual blocks in the editor, an AI course builder and live data widgets. Developed by Jean Lúcio."
+>
+  <section class="pg-page">
+    <div class="container">
+
+      <!-- Hero -->
+      <header class="pg-hero">
+        <div class="pg-hero-badge">🎨 Open Source · GPL v3+</div>
+        <h1 class="pg-hero-title">
+          <span class="pg-hero-ecosystem">Ecosystem</span>
+          StudioLMS
+        </h1>
+
+        <!-- Language switcher -->
+        <div class="pg-lang-switcher">
+          <button class="pg-lang-btn active" data-lang="en" id="btn-lang-en">English</button>
+          <span class="pg-lang-sep">|</span>
+          <button class="pg-lang-btn" data-lang="pt" id="btn-lang-pt">Português</button>
+        </div>
+
+        <p class="pg-hero-origin" data-i18n="origin"></p>
+        <p class="pg-hero-subtitle" data-i18n="subtitle"></p>
+        <a
+          href="https://github.com/jeanlucio"
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="viewGithub"
+        ></a>
+      </header>
+
+      <!-- Plugins -->
+      <div class="pg-section-label pg-section-label--dev">
+        <span class="pg-section-tag pg-section-tag--dev" data-i18n="labelInDev"></span>
+      </div>
+
+      <div class="pg-grid">
+        {inDev.map(plugin => (
+          <div class="pg-dev-card-wrapper" data-plugin-key={plugin.name}>
+            <span class="pg-dev-status" data-i18n-status={plugin.status}></span>
+            <PluginCard {...plugin} />
+          </div>
+        ))}
+      </div>
+
+      <!-- How the three fit together -->
+      <section class="pg-fit">
+        <h2 class="pg-fit-title" data-i18n="fitTitle"></h2>
+        <p class="pg-fit-intro" data-i18n="fitIntro"></p>
+        <ul class="pg-fit-list">
+          <li class="pg-fit-item" data-i18n="fitEditor"></li>
+          <li class="pg-fit-item" data-i18n="fitBuilder"></li>
+          <li class="pg-fit-item" data-i18n="fitWidgets"></li>
+        </ul>
+        <p class="pg-fit-order" data-i18n="fitOrder"></p>
+      </section>
+
+      <!-- Suggestions -->
+      <div class="pg-suggestions">
+        <h2 class="pg-suggestions-title" data-i18n="suggestionsTitle"></h2>
+        <p class="pg-suggestions-text" data-i18n="suggestionsText"></p>
+        <a
+          href="https://github.com/jeanlucio"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="suggestionsBtn"
+        ></a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pg-page {
+    padding: 4rem 0 6rem;
+  }
+
+  /* Hero */
+  .pg-hero {
+    text-align: center;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .pg-hero-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .pg-hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .pg-hero-ecosystem {
+    display: block;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary, #4F46E5);
+    opacity: 0.75;
+    margin-bottom: 0.2rem;
+  }
+
+  .pg-hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .pg-hero-origin {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Language switcher */
+  .pg-lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pg-lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    padding: 0;
+    transition: color 0.15s;
+  }
+
+  .pg-lang-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .pg-lang-btn.active {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pg-lang-sep {
+    color: var(--color-border);
+    user-select: none;
+  }
+
+  /* Section label */
+  .pg-section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .pg-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .pg-section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  /* Grid */
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+
+  /* In development & review section */
+  .pg-section-label--dev {
+    margin-top: 0;
+  }
+
+  .pg-section-tag--dev {
+    color: #B45309;
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  /* Dev card wrapper — positions the status badge on top of the PluginCard */
+  .pg-dev-card-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pg-dev-status {
+    display: inline-block;
+    align-self: flex-end;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.12);
+    color: #B45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    white-space: nowrap;
+  }
+
+  /* Suggestions */
+  .pg-suggestions {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pg-suggestions-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .pg-suggestions-text {
+    color: var(--color-text-muted);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* How the plugins fit together */
+  .pg-fit {
+    max-width: 860px;
+    margin: 0 auto 4rem;
+  }
+
+  .pg-fit-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    text-align: center;
+  }
+
+  .pg-fit-intro {
+    color: var(--color-text-muted);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0 0 1.75rem;
+  }
+
+  .pg-fit-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pg-fit-item {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .pg-fit-item :global(strong) {
+    display: block;
+    color: var(--color-text);
+    margin-bottom: 0.3rem;
+  }
+
+  .pg-fit-order {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
+
+<script>
+(function () {
+  const T = {
+    en: {
+      origin: 'Building a well-structured course in Moodle takes time, and the text a teacher already has rarely looks the way they want it to. <strong>StudioLMS</strong> is a family of three plugins that work on this together: one to write with visual blocks, one to build and restyle course content with AI, and one to show live data in the page.',
+      subtitle: 'Each plugin works on its own. Together they cover the whole path, from a blank course to a page that students find clear — flexible for teachers, meaningful for students.',
+      viewGithub: 'View on GitHub →',
+      labelInDev: '🚧 In review',
+      fitTitle: 'How the three fit together',
+      fitIntro: 'None of them needs the others: each one checks whether the others are there and uses them when they are.',
+      fitEditor: '<strong>StudioLMS Editor</strong>Where teachers write. The blocks, the ready-made layouts and the AI assistance live in the TinyMCE editor, and a Widgets tab inserts the markers of the filter.',
+      fitBuilder: '<strong>StudioLMS Course Builder</strong>Where the course is built. It generates the content as Studio blocks that reopen in the editor, and restyles the text you already have. It needs one source of AI: the AI Hub or Moodle\'s AI subsystem.',
+      fitWidgets: '<strong>StudioLMS Widgets</strong>Where the page shows what is happening. The marker of a quiz written by the Course Builder, for instance, is replaced by the rules of the quiz as they are right now.',
+      fitOrder: 'Suggested order: the Editor first, then the Course Builder (with an AI source configured), then the Widgets.',
+      suggestionsTitle: 'Have an idea?',
+      suggestionsText: 'Suggestions for new blocks, widgets, pedagogical use cases or improvements are always welcome. If you work with Moodle and have a course design challenge in mind, feel free to reach out or open an issue on GitHub.',
+      suggestionsBtn: 'Share a suggestion →',
+      docBtn: 'Documentation',
+      statuses: {
+        'In review': 'In review',
+      },
+      plugins: {
+        'StudioLMS Editor': {
+          description: 'Visual instructional design blocks inside Moodle\'s TinyMCE editor: 19 blocks, 26 ready-made layouts and optional AI assistance, so a teacher composes a page with cards, steps, accordions and infographics without writing HTML.',
+          tags: ['Editor', 'TinyMCE', 'Blocks', 'Templates', 'AI'],
+        },
+        'StudioLMS Course Builder': {
+          description: 'An AI assistant that works from inside an existing course: it fills it with sections, rich pages, quizzes, forums, assignments and glossaries, and restyles a page you already wrote into Studio blocks, in a hidden copy, without rewriting your text.',
+          tags: ['Local', 'AI', 'Course builder', 'Restyle'],
+        },
+        'StudioLMS Widgets': {
+          description: 'A text filter that swaps simple markers for live data: the participation bar of a forum, the course map as a path of sections, and the rules of a quiz as they are now, including each student\'s exceptions.',
+          tags: ['Filter', 'Dynamic content', 'Forum', 'Course map', 'Quiz'],
+        },
+      },
+    },
+    pt: {
+      origin: 'Montar um curso bem estruturado no Moodle toma tempo, e o texto que o professor já tem raramente fica do jeito que ele quer. O <strong>StudioLMS</strong> é uma família de três plugins que trabalham nisso juntos: um para escrever com blocos visuais, um para montar e estilizar o conteúdo do curso com IA, e um para mostrar dados ao vivo na página.',
+      subtitle: 'Cada plugin funciona sozinho. Juntos cobrem o caminho todo, de um curso em branco até uma página que o estudante entende — flexível para professores, significativa para estudantes.',
+      viewGithub: 'Ver no GitHub →',
+      labelInDev: '🚧 Em revisão',
+      fitTitle: 'Como os três se encaixam',
+      fitIntro: 'Nenhum precisa dos outros: cada um confere se os outros estão lá e os usa quando estão.',
+      fitEditor: '<strong>StudioLMS Editor</strong>Onde o professor escreve. Os blocos, os modelos prontos e a assistência de IA ficam no editor TinyMCE, e uma aba Widgets insere as marcas do filtro.',
+      fitBuilder: '<strong>StudioLMS Course Builder</strong>Onde o curso é montado. Gera o conteúdo como blocos do Studio que reabrem no editor, e estiliza o texto que você já tem. Precisa de uma fonte de IA: o Hub de IA ou o subsistema de IA do Moodle.',
+      fitWidgets: '<strong>StudioLMS Widgets</strong>Onde a página mostra o que está acontecendo. A marca de um questionário escrita pelo Course Builder, por exemplo, é trocada pelas regras do questionário como estão agora.',
+      fitOrder: 'Ordem sugerida: o Editor primeiro, depois o Course Builder (com uma fonte de IA configurada), depois os Widgets.',
+      suggestionsTitle: 'Tem uma ideia?',
+      suggestionsText: 'Sugestões de novos blocos, widgets, casos de uso pedagógicos ou melhorias são sempre bem-vindas. Se você trabalha com Moodle e tem um desafio de design de curso em mente, sinta-se à vontade para entrar em contato ou abrir uma issue no GitHub.',
+      suggestionsBtn: 'Compartilhe uma sugestão →',
+      docBtn: 'Documentação',
+      statuses: {
+        'In review': 'Em revisão',
+      },
+      plugins: {
+        'StudioLMS Editor': {
+          description: 'Blocos visuais de design instrucional dentro do editor TinyMCE do Moodle: 19 blocos, 26 modelos prontos e assistência opcional de IA, para o professor compor uma página com cards, passos, sanfonas e infográficos sem escrever HTML.',
+          tags: ['Editor', 'TinyMCE', 'Blocos', 'Modelos', 'IA'],
+        },
+        'StudioLMS Course Builder': {
+          description: 'Um assistente de IA que trabalha de dentro de um curso já existente: preenche-o com seções, páginas ricas, questionários, fóruns, tarefas e glossários, e estiliza em blocos do Studio uma página que você já escreveu, numa cópia oculta, sem reescrever o seu texto.',
+          tags: ['Local', 'IA', 'Construtor de curso', 'Estilização'],
+        },
+        'StudioLMS Widgets': {
+          description: 'Um filtro de texto que troca marcas simples por dados ao vivo: a barra de participação de um fórum, o mapa do curso como um caminho de seções e as regras de um questionário como estão agora, inclusive as exceções de cada estudante.',
+          tags: ['Filtro', 'Conteúdo dinâmico', 'Fórum', 'Mapa do curso', 'Questionário'],
+        },
+      },
+    },
+  };
+
+  function applyLang(lang) {
+    const t = T[lang];
+    if (!t) return;
+
+    // Static text elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Status badges
+    document.querySelectorAll('[data-i18n-status]').forEach(el => {
+      const key = el.getAttribute('data-i18n-status');
+      el.textContent = t.statuses[key] || key;
+    });
+
+    // Plugin card descriptions and tags
+    document.querySelectorAll('[data-plugin-key]').forEach(wrapper => {
+      const name = wrapper.getAttribute('data-plugin-key');
+      const data = t.plugins[name];
+      if (!data) return;
+
+      const desc = wrapper.querySelector('.plugin-description');
+      if (desc) desc.textContent = data.description;
+
+      const tagsContainer = wrapper.querySelector('.plugin-tags');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = data.tags
+          .map(tag => `<span class="badge badge--muted">${tag}</span>`)
+          .join('');
+      }
+    });
+
+    // Update button states
+    document.querySelectorAll('.pg-lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+
+    localStorage.setItem('pg-lang', lang);
+  }
+
+  // Init
+  const saved = localStorage.getItem('pg-lang') || 'en';
+  applyLang(saved);
+
+  document.querySelectorAll('.pg-lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+})();
+</script>
