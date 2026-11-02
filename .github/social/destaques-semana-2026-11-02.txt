@@ -1,0 +1,16 @@
+📦 Destaques da semana — novos plugins no Moodle (26 out a 1 nov)
+
+Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:
+
+🖼️ Cloze on Image — Cria questões Cloze em áreas específicas de uma imagem.
+🎥 Screen Recorder — Grava a tela direto no editor TinyMCE do Moodle.
+🎤 PresenterAI — Cria atividades com gravação de vídeo/áudio e avaliação por rubrica.
+👥 Group distribution — Distribui estudantes em grupos por critérios definidos.
+📚 Bulk Copy Courses — Duplica vários cursos via CSV a partir de modelos.
+🎫 Support Desk — Adiciona tickets para abrir e acompanhar solicitações de suporte.
+🔗 Event Webhooks — Envia eventos do Moodle a endpoints HTTPS com JSON assinado.
+
+Todos gratuitos. Os detalhes de cada um estão no post 👇
+https://jeanlucio.github.io/blog/destaques-semana-2026-11-02/
+
+#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS
