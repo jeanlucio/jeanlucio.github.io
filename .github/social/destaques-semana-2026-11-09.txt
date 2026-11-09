@@ -1,0 +1,16 @@
+📦 Destaques da semana — novos plugins no Moodle (2 a 8 de nov)
+
+Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:
+
+📊 Feedback Flow — Mostra o fluxo de feedback e o tempo efetivo de trabalho
+✅ EdQ Score — Analisa e pontua a qualidade pedagógica dos cursos
+🔄 Syllabus Workflow — Automatiza criação, revisão e aprovação de planos de curso
+📄 PDF Workspace — Permite visualizar, anotar e editar PDFs no Moodle
+💾 Plugin Stash — Armazena versões de plugins antes de atualizar o Moodle
+📦 h5p Bulk Upload — Importa pacotes H5P em lote para bancos de conteúdo
+🤝 Mentorship — Cria e acompanha programas de mentoria no Moodle
+
+Todos gratuitos. Os detalhes de cada um estão no post 👇
+https://jeanlucio.github.io/blog/destaques-semana-2026-11-09/
+
+#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS
