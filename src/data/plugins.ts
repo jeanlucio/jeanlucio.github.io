@@ -72,8 +72,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerWords',
     description:
       'Atividade de jogo de palavras (estilo Wordle) que desafia os alunos a adivinhar termos do vocabulário do curso. Suporta pistas geradas por IA e conecta-se ao XP do PlayerHUD.',
-    version: '1.0.8',
-    updatedDate: '2026-10-16T09:37:29Z',
+    version: '1.0.9',
+    updatedDate: '2026-11-12T22:24:52Z',
     tags: ['Atividade', 'Vocabulário', 'Jogo de Palavras', 'IA'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerwords',
     moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playerwords',
@@ -85,8 +85,8 @@ export const playerGames: PluginData[] = [
     name: 'PlayerCross',
     description:
       'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosa preenchendo a grade.',
-    version: '1.0.8',
-    updatedDate: '2026-10-16T09:50:28Z',
+    version: '1.0.9',
+    updatedDate: '2026-11-12T22:24:54Z',
     tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playercross',
     moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playercross',
