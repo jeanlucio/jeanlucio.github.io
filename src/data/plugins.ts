@@ -127,8 +127,8 @@ export const teacherTools: PluginData[] = [
     name: 'Penalidade por Atraso',
     description:
       'Plugin local que aplica penalidades progressivas por atraso em atividades avaliativas do Moodle. Funciona com Assignment, Quiz, Fórum, SCORM e outros módulos que registram nota no livro de notas.',
-    version: '1.5.1',
-    updatedDate: '2026-11-14T09:11:30Z',
+    version: '1.5.2',
+    updatedDate: '2026-11-16T12:14:15Z',
     tags: ['Local', 'Avaliação', 'Prazos', 'Notas', 'Relatórios'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_latepenalty',
     moodleUrl: 'https://moodle.org/plugins/local_latepenalty',
