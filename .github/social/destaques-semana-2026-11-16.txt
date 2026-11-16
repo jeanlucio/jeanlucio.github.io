@@ -1,0 +1,16 @@
+📦 Destaques da semana — novos plugins no Moodle (9 a 15 de nov)
+
+Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:
+
+♿ Accessibility (A11y) — Avalia e corrige a acessibilidade do curso pelas diretrizes WCAG.
+👓 OCA Learning Lens — Adiciona menu com ajustes de contraste, fonte e leitura em voz alta.
+📊 Reportium - Interactive and comparative reports — Cria painéis e relatórios interativos a partir de consultas SQL.
+❓ Question Hub — Permite compartilhar e importar bancos de questões centralizados.
+📄 File Submission with Document Preview for Grading — Permite pré-visualizar tarefas de alunos diretamente na avaliação.
+🤖 StudioLMS - Course Builder — Usa IA para criar a estrutura completa de cursos no Moodle.
+🌐 OER Client Exchange Block — Busca e integra recursos educacionais abertos direto no curso.
+
+Todos gratuitos. Os detalhes de cada um estão no post 👇
+https://jeanlucio.github.io/blog/destaques-semana-2026-11-16/
+
+#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS
