@@ -1,0 +1,16 @@
+📦 Destaques da semana — novos plugins no Moodle (16 a 22 de nov)
+
+Lançamentos do Plugin Directory que chamaram minha atenção nesta semana:
+
+♿ Learning Prism — Cria formatos acessíveis para Book, Page, Label e SCORM
+🗓️ Office Hours — Agenda online para reservas de horários de atendimento
+🤖 AI Assisted Feedback — Gera feedback automático e personalizado para entregas
+🔐 Magic Link Authentication — Login sem senha via links únicos enviados por e‑mail
+⚙️ Autoflow — Automação visual de fluxos com editor de nós React Flow
+✅ Evidence Checklist — Lista de verificação com upload de evidências por item
+🧠 ALL-E — Responde dúvidas com IA RAG citando fontes do curso
+
+Pagos: Evidence Checklist. Os demais são gratuitos. Os detalhes de cada um estão no post 👇
+https://jeanlucio.github.io/blog/destaques-semana-2026-11-23/
+
+#Moodle #MoodlePlugins #EdTech #Elearning #Education #LMS
