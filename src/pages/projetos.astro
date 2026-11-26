@@ -2,6 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
 import { playerGames, studioLms, teacherTools, webTools } from '../data/plugins';
+
+// Playable demos, shown only on this page.
+const demoUrls: Record<string, string> = {
+  PlayerWords: 'https://educainfo2.duckdns.org/mod/playerwords/view.php?id=660',
+  PlayerCross: 'https://educainfo2.duckdns.org/mod/playercross/view.php?id=661',
+};
 ---
 
 <BaseLayout
@@ -47,7 +53,7 @@ import { playerGames, studioLms, teacherTools, webTools } from '../data/plugins'
 
         <div class="plugins-grid">
           {playerGames.map(plugin => (
-            <PluginCard {...plugin} />
+            <PluginCard {...plugin} demoUrl={demoUrls[plugin.name]} />
           ))}
         </div>
       </section>
