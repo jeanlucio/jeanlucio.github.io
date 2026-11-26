@@ -98,7 +98,7 @@ export const playerGames: PluginData[] = [
 
 export const studioLms: PluginData[] = [
   {
-    name: 'StudioLMS Editor',
+    name: 'StudioLMS Course Designer',
     description:
       'Blocos visuais de design instrucional dentro do editor TinyMCE do Moodle: 19 blocos, 26 modelos prontos e assistência opcional de IA, para o professor compor uma página com cards, passos, sanfonas e infográficos sem escrever HTML.',
     version: '1.0.2',
