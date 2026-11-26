@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
 
-const inDev = [
+const studioPlugins = [
   {
     name: 'StudioLMS Editor',
     description: 'Visual instructional design blocks inside Moodle\'s TinyMCE editor: 19 blocks, 26 ready-made layouts and optional AI assistance, so a teacher composes a page with cards, steps, accordions and infographics without writing HTML.',
-    status: 'In review',
     tags: ['Editor', 'TinyMCE', 'Blocks', 'Templates', 'AI'],
     githubUrl: 'https://github.com/jeanlucio/moodle-tiny_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/tiny_studiolms',
     docsUrl: 'https://jeanlucio.github.io/moodle-tiny_studiolms/',
     color: 'indigo' as const,
     icon: '🎨',
@@ -16,9 +16,9 @@ const inDev = [
   {
     name: 'StudioLMS Course Builder',
     description: 'An AI assistant that works from inside an existing course: it fills it with sections, rich pages, quizzes, forums, assignments and glossaries, and restyles a page you already wrote into Studio blocks, in a hidden copy, without rewriting your text.',
-    status: 'In review',
     tags: ['Local', 'AI', 'Course builder', 'Restyle'],
     githubUrl: 'https://github.com/jeanlucio/moodle-local_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/local_studiolms',
     docsUrl: 'https://jeanlucio.github.io/moodle-local_studiolms/',
     color: 'purple' as const,
     icon: '🪄',
@@ -26,9 +26,10 @@ const inDev = [
   {
     name: 'StudioLMS Widgets',
     description: 'A text filter that swaps simple markers for live data: the participation bar of a forum, the course map as a path of sections, and the rules of a quiz as they are now, including each student\'s exceptions.',
-    status: 'In review',
     tags: ['Filter', 'Dynamic content', 'Forum', 'Course map', 'Quiz'],
     githubUrl: 'https://github.com/jeanlucio/moodle-filter_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/filter_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-filter_studiolms/',
     color: 'teal' as const,
     icon: '📊',
   },
@@ -69,14 +70,13 @@ const inDev = [
       </header>
 
       <!-- Plugins -->
-      <div class="pg-section-label pg-section-label--dev">
-        <span class="pg-section-tag pg-section-tag--dev" data-i18n="labelInDev"></span>
+      <div class="pg-section-label">
+        <span class="pg-section-tag" data-i18n="labelPublished"></span>
       </div>
 
       <div class="pg-grid">
-        {inDev.map(plugin => (
-          <div class="pg-dev-card-wrapper" data-plugin-key={plugin.name}>
-            <span class="pg-dev-status" data-i18n-status={plugin.status}></span>
+        {studioPlugins.map(plugin => (
+          <div class="pg-card-wrapper" data-plugin-key={plugin.name}>
             <PluginCard {...plugin} />
           </div>
         ))}
@@ -240,38 +240,14 @@ const inDev = [
     margin-bottom: 4rem;
   }
 
-  /* In development & review section */
-  .pg-section-label--dev {
-    margin-top: 0;
-  }
-
-  .pg-section-tag--dev {
-    color: #B45309;
-    background: rgba(245, 158, 11, 0.08);
-    border-color: rgba(245, 158, 11, 0.3);
-  }
-
-  /* Dev card wrapper — positions the status badge on top of the PluginCard */
-  .pg-dev-card-wrapper {
-    position: relative;
+  /* Card wrapper — carries the translation key and stretches the card */
+  .pg-card-wrapper {
     display: flex;
     flex-direction: column;
   }
 
-  .pg-dev-status {
-    display: inline-block;
-    align-self: flex-end;
-    margin-bottom: 0.4rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: rgba(245, 158, 11, 0.12);
-    color: #B45309;
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    white-space: nowrap;
+  .pg-card-wrapper :global(.plugin-card) {
+    flex: 1;
   }
 
   /* Suggestions */
@@ -360,7 +336,7 @@ const inDev = [
       origin: 'In distance education, the look of the platform matters as much as its content. Yet making a course pleasant to look at is not easy, especially without a team dedicated to it. After years working on course design in Moodle, I decided to build a tool that helps teachers and technical teams with this mission. That is how <strong>StudioLMS</strong> was born.',
       subtitle: 'It is a package of three plugins that, together, can transform the content of your course. All of them are free, so you can try them and reinvent your courses in Moodle.',
       viewGithub: 'View on GitHub →',
-      labelInDev: '🚧 In review',
+      labelPublished: '✅ Published',
       fitTitle: 'How the three fit together',
       fitIntro: 'None of them needs the others: each one checks whether the others are there and uses them when they are.',
       fitEditor: '<strong>StudioLMS Editor</strong>Where teachers write. The blocks, the ready-made layouts and the AI assistance live in the TinyMCE editor, and a Widgets tab inserts the markers of the filter.',
@@ -371,9 +347,6 @@ const inDev = [
       suggestionsText: 'Suggestions for new blocks, widgets, pedagogical use cases or improvements are always welcome. If you work with Moodle and have a course design challenge in mind, feel free to reach out or open an issue on GitHub.',
       suggestionsBtn: 'Share a suggestion →',
       docBtn: 'Documentation',
-      statuses: {
-        'In review': 'In review',
-      },
       plugins: {
         'StudioLMS Editor': {
           description: 'Visual instructional design blocks inside Moodle\'s TinyMCE editor: 19 blocks, 26 ready-made layouts and optional AI assistance, so a teacher composes a page with cards, steps, accordions and infographics without writing HTML.',
@@ -393,7 +366,7 @@ const inDev = [
       origin: 'Na Educação a Distância, o visual da plataforma é tão importante quanto o conteúdo. Contudo, deixar o curso agradável visualmente não é uma tarefa fácil, em especial quando não se tem equipes dedicadas a isso. Depois de anos trabalhando com design de cursos no Moodle, resolvi criar uma ferramenta capaz de auxiliar docentes e equipes técnicas nesta missão. Assim nasceu o <strong>StudioLMS</strong>.',
       subtitle: 'Trata-se de um pacote de três plugins que, juntos, podem transformar o conteúdo do seu curso. Todos gratuitos, para você experimentar e revolucionar seus cursos no Moodle.',
       viewGithub: 'Ver no GitHub →',
-      labelInDev: '🚧 Em revisão',
+      labelPublished: '✅ Publicados',
       fitTitle: 'Como os três se encaixam',
       fitIntro: 'Nenhum precisa dos outros: cada um confere se os outros estão lá e os usa quando estão.',
       fitEditor: '<strong>StudioLMS Editor</strong>Onde o professor escreve. Os blocos, os modelos prontos e a assistência de IA ficam no editor TinyMCE, e uma aba Widgets insere as marcas do filtro.',
@@ -404,9 +377,6 @@ const inDev = [
       suggestionsText: 'Sugestões de novos blocos, widgets, casos de uso pedagógicos ou melhorias são sempre bem-vindas. Se você trabalha com Moodle e tem um desafio de design de curso em mente, sinta-se à vontade para entrar em contato ou abrir uma issue no GitHub.',
       suggestionsBtn: 'Compartilhe uma sugestão →',
       docBtn: 'Documentação',
-      statuses: {
-        'In review': 'Em revisão',
-      },
       plugins: {
         'StudioLMS Editor': {
           description: 'Blocos visuais de design instrucional dentro do editor TinyMCE do Moodle: 19 blocos, 26 modelos prontos e assistência opcional de IA, para o professor compor uma página com cards, passos, sanfonas e infográficos sem escrever HTML.',
@@ -432,12 +402,6 @@ const inDev = [
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (t[key] !== undefined) el.innerHTML = t[key];
-    });
-
-    // Status badges
-    document.querySelectorAll('[data-i18n-status]').forEach(el => {
-      const key = el.getAttribute('data-i18n-status');
-      el.textContent = t.statuses[key] || key;
     });
 
     // Plugin card descriptions and tags

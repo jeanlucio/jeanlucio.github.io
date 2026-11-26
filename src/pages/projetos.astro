@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
-import { playerGames, teacherTools, webTools } from '../data/plugins';
+import { playerGames, studioLms, teacherTools, webTools } from '../data/plugins';
 ---
 
 <BaseLayout
@@ -47,6 +47,35 @@ import { playerGames, teacherTools, webTools } from '../data/plugins';
 
         <div class="plugins-grid">
           {playerGames.map(plugin => (
+            <PluginCard {...plugin} />
+          ))}
+        </div>
+      </section>
+
+      <section class="plugin-group">
+        <header class="group-header">
+          <div class="group-header-top">
+            <div class="group-label">
+              <span class="group-icon" aria-hidden="true">🎨</span>
+              <h2 class="group-title">Ecossistema StudioLMS</h2>
+            </div>
+            <a
+              href="/studiolms/"
+              class="btn btn--outline btn--sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver ecossistema →
+            </a>
+          </div>
+          <p class="group-description">
+            Três plugins para o design de cursos no Moodle: blocos visuais no editor, construtor de curso com IA
+            e widgets com dados ao vivo. Cada plugin funciona de forma independente e em conjunto.
+          </p>
+        </header>
+
+        <div class="plugins-grid">
+          {studioLms.map(plugin => (
             <PluginCard {...plugin} />
           ))}
         </div>

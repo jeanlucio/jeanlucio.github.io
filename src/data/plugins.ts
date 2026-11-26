@@ -96,6 +96,48 @@ export const playerGames: PluginData[] = [
   },
 ];
 
+export const studioLms: PluginData[] = [
+  {
+    name: 'StudioLMS Editor',
+    description:
+      'Blocos visuais de design instrucional dentro do editor TinyMCE do Moodle: 19 blocos, 26 modelos prontos e assistência opcional de IA, para o professor compor uma página com cards, passos, sanfonas e infográficos sem escrever HTML.',
+    version: '1.0.2',
+    updatedDate: '2026-11-17T12:17:45Z',
+    tags: ['Editor', 'TinyMCE', 'Blocos', 'Modelos', 'IA'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-tiny_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/tiny_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-tiny_studiolms/',
+    color: 'indigo',
+    icon: '🎨',
+  },
+  {
+    name: 'StudioLMS Course Builder',
+    description:
+      'Um assistente de IA que trabalha de dentro de um curso já existente: preenche-o com seções, páginas ricas, questionários, fóruns, tarefas e glossários, e estiliza em blocos do Studio uma página que você já escreveu, numa cópia oculta, sem reescrever o seu texto.',
+    version: '1.0.1',
+    updatedDate: '2026-11-21T17:35:51Z',
+    tags: ['Local', 'IA', 'Construtor de curso', 'Estilização'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-local_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/local_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-local_studiolms/',
+    color: 'purple',
+    icon: '🪄',
+  },
+  {
+    name: 'StudioLMS Widgets',
+    description:
+      'Um filtro de texto que troca marcas simples por dados ao vivo: a barra de participação de um fórum, o mapa do curso como um caminho de seções e as regras de um questionário como estão agora, inclusive as exceções de cada estudante.',
+    version: '1.0.1',
+    updatedDate: '2026-11-18T17:58:19Z',
+    tags: ['Filtro', 'Conteúdo dinâmico', 'Fórum', 'Mapa do curso', 'Questionário'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-filter_studiolms',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/filter_studiolms',
+    docsUrl: 'https://jeanlucio.github.io/moodle-filter_studiolms/',
+    color: 'teal',
+    icon: '📊',
+  },
+];
+
 export const teacherTools: PluginData[] = [
   {
     name: 'Checklist do Professor',
@@ -193,6 +235,7 @@ export const webTools: PluginData[] = [
 
 export const featuredPlugins: PluginData[] = [
   ...playerGames,
+  ...studioLms,
   ...teacherTools,
   ...webTools,
 ].sort((a, b) => {

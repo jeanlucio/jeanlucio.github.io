@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PluginCard from '../components/PluginCard.astro';
 import PostCard from '../components/PostCard.astro';
-import { featuredPlugins, playerGames, teacherTools, webTools } from '../data/plugins';
+import { featuredPlugins, playerGames, studioLms, teacherTools, webTools } from '../data/plugins';
 
-const totalMoodlePlugins = playerGames.length + teacherTools.length;
+const totalMoodlePlugins = playerGames.length + studioLms.length + teacherTools.length;
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
