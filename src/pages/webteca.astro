@@ -12,6 +12,7 @@ const curatedItems = sorted.filter(item => item.data.origin === 'curated');
 const defaultTab = ownItems.length > 0 ? 'own' : 'curated';
 
 const TYPE_OPTIONS = [
+  { value: 'slides', label: 'Apresentações' },
   { value: 'all', label: 'Todos' },
   { value: 'article', label: 'Artigos' },
   { value: 'book', label: 'Livros' },
@@ -28,6 +29,7 @@ const TYPE_LABELS: Record<string, string> = {
   video: 'Vídeo',
   tool: 'Ferramenta',
   game: 'Jogo',
+  slides: 'Slides',
 };
 
 const TYPE_CLASS: Record<string, string> = {
@@ -37,6 +39,7 @@ const TYPE_CLASS: Record<string, string> = {
   video: 'type--video',
   tool: 'type--tool',
   game: 'type--game',
+  slides: 'type--slides',
 };
 ---
 
@@ -531,6 +534,7 @@ const TYPE_CLASS: Record<string, string> = {
   .type--video   { background: #FEE2E2; color: #991B1B; }
   .type--tool    { background: #DBEAFE; color: #1E40AF; }
   .type--game    { background: #FCE7F3; color: #9D174D; }
+  .type--slides  { background: #FFEDD5; color: #9A3412; }
 
   /* ---- Item content ---- */
   .item-title {
