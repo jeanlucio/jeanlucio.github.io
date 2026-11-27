@@ -103,7 +103,7 @@ export const playerGames: PluginData[] = [
     tags: ['Atividade', 'Match-3', 'RPG', 'Banco de Questões', 'IA'],
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerpuzzle',
     moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playerpuzzle',
-    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerpuzzle/',
+    reviewUrl: '/blog/playerpuzzle-o-que-e',
     color: 'indigo',
     icon: '🧩',
   },
