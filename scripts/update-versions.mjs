@@ -11,6 +11,7 @@ const PLUGINS = [
   { name: 'PlayerGroup',            repo: 'jeanlucio/moodle-mod_playergroup' },
   { name: 'PlayerWords',            repo: 'jeanlucio/moodle-mod_playerwords' },
   { name: 'PlayerCross',            repo: 'jeanlucio/moodle-mod_playercross' },
+  { name: 'PlayerPuzzle',           repo: 'jeanlucio/moodle-mod_playerpuzzle' },
   { name: 'StudioLMS Course Designer', repo: 'jeanlucio/moodle-tiny_studiolms' },
   { name: 'StudioLMS Course Builder', repo: 'jeanlucio/moodle-local_studiolms' },
   { name: 'StudioLMS Widgets',      repo: 'jeanlucio/moodle-filter_studiolms' },

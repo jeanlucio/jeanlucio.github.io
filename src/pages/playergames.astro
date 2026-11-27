@@ -19,6 +19,7 @@ const docsUrls: Record<string, string> = {
   'PlayerGroup': 'https://jeanlucio.github.io/moodle-mod_playergroup/',
   'PlayerWords': 'https://jeanlucio.github.io/moodle-mod_playerwords/',
   'PlayerCross': 'https://jeanlucio.github.io/moodle-mod_playercross/',
+  'PlayerPuzzle': 'https://jeanlucio.github.io/moodle-mod_playerpuzzle/',
 };
 
 // English descriptions and tags — version/updatedDate come from plugins.ts (kept in sync by update-versions.mjs)
@@ -52,6 +53,11 @@ const enOverrides: Record<string, { description: string; tags: string[]; docsUrl
     description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
     tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
     docsUrl: docsUrls['PlayerCross'],
+  },
+  'PlayerPuzzle': {
+    description: 'A turn-based Match-3 RPG: students match pieces on an 8×8 board to fight a computer-controlled opponent and answer questions to land critical hits. Single Match or Campaign mode, a loadout shop, AI-assisted question generation and PlayerHUD integration.',
+    tags: ['Activity', 'Match-3', 'RPG', 'Question Bank', 'AI'],
+    docsUrl: docsUrls['PlayerPuzzle'],
   },
 };
 
@@ -91,16 +97,6 @@ const inDev = [
     githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerland',
     color: 'purple' as const,
     icon: '🦊',
-  },
-  {
-    name: 'PlayerPuzzle',
-    description: 'A Match-3 puzzle activity where correct answers clear tiles. Progress, scoring and debrief integrate with the gradebook and the PlayerHUD XP system.',
-    status: 'In development · 28%',
-    tags: ['Activity', 'Match-3', 'Game', 'AI'],
-    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerpuzzle',
-    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerpuzzle/',
-    color: 'indigo' as const,
-    icon: '🧩',
   },
   {
     name: 'PlayerRaid',
@@ -406,7 +402,6 @@ const inDev = [
       statuses: {
         'In development · 75%': 'In development · 75%',
         'In development · 65%': 'In development · 65%',
-        'In development · 28%': 'In development · 28%',
         'In development · 20%': 'In development · 20%',
         'In review': 'In review',
       },
@@ -435,6 +430,10 @@ const inDev = [
           description: 'A crossword-puzzle activity powered by course content. Clues are generated from the glossary or via AI, and students solve the mystery phrase by filling in the grid.',
           tags: ['Activity', 'Crossword', 'AI', 'Vocabulary'],
         },
+        'PlayerPuzzle': {
+          description: 'A turn-based Match-3 RPG: students match pieces on an 8×8 board to fight a computer-controlled opponent and answer questions to land critical hits. Single Match or Campaign mode, a loadout shop, AI-assisted question generation and PlayerHUD integration.',
+          tags: ['Activity', 'Match-3', 'RPG', 'Question Bank', 'AI'],
+        },
         'PlayerGames': {
           description: 'The central hub of the ecosystem. Manages cartridges, quizzes, leaderboards and a full suite of gamified mini-games — providing a unified engine that all Player* activities connect to.',
           tags: ['Local', 'Hub', 'Gamification', 'AI', 'Quizzes'],
@@ -442,10 +441,6 @@ const inDev = [
         'PlayerLand': {
           description: 'A 2-D side-scroller game (Phaser) where students run through a course-themed level and answer formative questions embedded as in-world blocks.',
           tags: ['Activity', 'Game', 'Phaser', 'Formative'],
-        },
-        'PlayerPuzzle': {
-          description: 'A Match-3 puzzle activity where correct answers clear tiles. Progress, scoring and debrief integrate with the gradebook and the PlayerHUD XP system.',
-          tags: ['Activity', 'Match-3', 'Game', 'AI'],
         },
         'PlayerRaid': {
           description: 'A cooperative raid activity where student teams tackle challenge waves together. XP rewards and team rankings feed directly into PlayerHUD.',
@@ -470,7 +465,6 @@ const inDev = [
       statuses: {
         'In development · 75%': 'Em desenvolvimento · 75%',
         'In development · 65%': 'Em desenvolvimento · 65%',
-        'In development · 28%': 'Em desenvolvimento · 28%',
         'In development · 20%': 'Em desenvolvimento · 20%',
         'In review': 'Em revisão',
       },
@@ -499,6 +493,10 @@ const inDev = [
           description: 'Atividade de palavras cruzadas impulsionada pelo conteúdo do curso. As pistas são geradas a partir do glossário ou via IA, e os alunos resolvem a frase misteriosa preenchendo a grade.',
           tags: ['Atividade', 'Palavras Cruzadas', 'IA', 'Vocabulário'],
         },
+        'PlayerPuzzle': {
+          description: 'RPG Match-3 por turnos: os alunos combinam peças num tabuleiro 8×8 para enfrentar um oponente controlado pelo computador e respondem questões para desferir ataques críticos. Partida Única ou Campanha, loja de equipamentos, geração de questões por IA e integração com o PlayerHUD.',
+          tags: ['Atividade', 'Match-3', 'RPG', 'Banco de Questões', 'IA'],
+        },
         'PlayerGames': {
           description: 'Hub central do ecossistema. Gerencia cartuchos, quizzes, rankings e uma suíte completa de mini-games gamificados — fornecendo o motor unificado ao qual todas as atividades Player* se conectam.',
           tags: ['Local', 'Hub', 'Gamificação', 'IA', 'Quizzes'],
@@ -506,10 +504,6 @@ const inDev = [
         'PlayerLand': {
           description: 'Jogo de plataforma 2D (Phaser) onde os alunos percorrem um nível temático do curso e respondem perguntas formativas embutidas como blocos interativos no mundo do jogo.',
           tags: ['Atividade', 'Jogo', 'Phaser', 'Formativo'],
-        },
-        'PlayerPuzzle': {
-          description: 'Atividade Match-3 onde respostas corretas eliminam peças. O progresso, pontuação e debriefing integram-se ao livro de notas e ao sistema de XP do PlayerHUD.',
-          tags: ['Atividade', 'Match-3', 'Jogo', 'IA'],
         },
         'PlayerRaid': {
           description: 'Atividade colaborativa de raid onde equipes de alunos enfrentam ondas de desafios juntos. As recompensas de XP e rankings alimentam diretamente o PlayerHUD.',

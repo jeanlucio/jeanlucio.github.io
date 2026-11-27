@@ -94,6 +94,19 @@ export const playerGames: PluginData[] = [
     color: 'purple',
     icon: '🔤',
   },
+  {
+    name: 'PlayerPuzzle',
+    description:
+      'RPG Match-3 por turnos: os alunos combinam peças num tabuleiro 8×8 para enfrentar um oponente controlado pelo computador e respondem questões para desferir ataques críticos. Partida Única ou Campanha, loja de equipamentos, geração de questões por IA e integração com o PlayerHUD.',
+    version: '1.0.0',
+    updatedDate: '2026-11-20T21:58:58Z',
+    tags: ['Atividade', 'Match-3', 'RPG', 'Banco de Questões', 'IA'],
+    githubUrl: 'https://github.com/jeanlucio/moodle-mod_playerpuzzle',
+    moodleUrl: 'https://marketplace.moodle.com/plugins/mod_playerpuzzle',
+    docsUrl: 'https://jeanlucio.github.io/moodle-mod_playerpuzzle/',
+    color: 'indigo',
+    icon: '🧩',
+  },
 ];
 
 export const studioLms: PluginData[] = [
@@ -247,4 +260,4 @@ export const featuredPlugins: PluginData[] = [
 // Optional manual override for the PlayerGames ecosystem page.
 // Set to an ISO date string (e.g. '2026-07-21T00:00:00Z') to pin the date manually.
 // Set to null to auto-derive from the most recent updatedDate across playerGames plugins.
-export const ecosystemLastUpdated: string | null = '2026-09-08T00:00:00Z';
+export const ecosystemLastUpdated: string | null = '2026-11-27T00:00:00Z';
